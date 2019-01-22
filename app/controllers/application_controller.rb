@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def signout
-    current_user.try(reset_token!)
+    current_user.try(:reset_token!)
     session[:session_token] = nil
   end
 

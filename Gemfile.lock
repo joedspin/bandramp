@@ -65,6 +65,7 @@ GEM
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.3)
+    bcrypt (3.1.12)
     better_errors (2.5.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -232,6 +233,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   aws-sdk-s3
+  bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
   bootsnap (>= 1.1.0)
