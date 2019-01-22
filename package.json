@@ -34,5 +34,12 @@
   "bugs": {
     "url": "https://github.com/joedspin/bandramp/issues"
   },
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.4.0"
+  },
+  "scripts": {
+    "postinstall": "webpack"
+  },
   "homepage": "https://github.com/joedspin/bandramp#readme"
 }
