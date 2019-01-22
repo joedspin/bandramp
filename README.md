@@ -22,3 +22,19 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+For possible further development
+
+## `artists`
+| column name       | data type | details                        |
+|:------------------|:---------:|:-------------------------------|
+| `id`              | integer   | not null, primary key          |
+| `name`            | integer   | not null, indexed              |
+| `img_url`         | string    |                                |
+| `fb_url`          | string    |                                | 
+| `twitter_url`     | string    |                                |
+| `vimeo_url`       | string    |                                |            
+| `created_at`      | datetime  | not null                       |
+| `updated_at`      | datetime  | not null                       |
+
++ index on `:name, unique: true`
