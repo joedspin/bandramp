@@ -4,10 +4,19 @@ import AuthHeader from './auth_header';
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: '',
-      password: ''
-    };
+    if (this.props.demoCredentials) {
+      this.state = {
+        username: `${this.props.demoCredentials.username}`,
+        password: `${this.props.demoCredentials.password}`,
+        disabled: true
+      };
+    } else {
+      this.state = {
+        username: '',
+        password: '',
+        disabled: false
+      };
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -46,13 +55,13 @@ class LoginForm extends React.Component {
               <label htmlFor="artist-form-username">Username</label>
               <input type="text" value={this.state.username} 
                 onChange={this.update('username')} 
-                id="artist-form-username" />
+                id="artist-form-username" disabled={this.state.disabled}/>
             </div>
             <div className="input-wrapper">
               <label htmlFor="artist-form-password">Password</label>
                 <input type="password" value={this.state.password} 
                 onChange={this.update('password')} 
-                id="artist-form-password" />
+                id="artist-form-password" disabled={this.state.disabled}/>
             </div>
             <div className="input-wrapper">
               <label htmlFor="artist-form-submit">&nbsp;</label>

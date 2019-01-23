@@ -23,6 +23,7 @@ class AuthLinks extends React.Component {
               <ul>
                 <li><Link to="/signup">sign up</Link></li>
                 <li><Link to="/login">log in</Link></li>
+                <li><Link to="/login/demo">demo log in</Link></li>
               </ul>
             </div>
           </div>
