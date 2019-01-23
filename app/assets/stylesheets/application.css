@@ -131,13 +131,29 @@ head {
 
 .head-highlight {
   color: #C32056;
-  -webkit-text-fill-color: transparent;
   background: -webkit-linear-gradient(left, #6046FE, #C32056);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: bold;
 }
 
 .head-links {
   justify-content: flex-end;
   align-items: flex-end;
+  color: #161113;
+}
+
+.head-links a {
+  text-decoration: none;
+}
+
+.head-links :hover {
+  color: #161113;
+  text-decoration: underline;
+}
+
+.head-links :visited {
+  color: #161113;
 }
 
 .head-links ul {
