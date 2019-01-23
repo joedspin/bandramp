@@ -98,16 +98,18 @@ body {
       font-family: 'FreeSans',Helvetica,Arial,sans-serif;
       font-size: 13px;
       line-height: 120%;
+      
 }
+
 
 header {
   display: block;
-  width: 100%;
   height: 90px;
   margin-bottom: 16px;
 }
 .flex-container {
   display: flex;
+  width: 100%;
 }
 
 .flex-7-12 {
@@ -117,6 +119,10 @@ header {
 .flex-5-12 {
   width: 42%;
   display: flex;
+}
+
+.flex-12-12 {
+  width: 100%;
 }
 
 .head-brand {
@@ -131,7 +137,14 @@ header {
 .head-statement h2 {
   font-size: 15px;
   color: #161113;
-  margin-top: 21px;
+  margin-top: 18px;
+}
+
+.form-head {
+  font-size: 15px;
+  color: #333;
+  padding-top: 40px;
+  font-weight: 500;
 }
 
 .head-highlight {
@@ -182,20 +195,29 @@ header {
 }
 
 .top-rule {
+  margin-top: 30px;
+  margin-bottom: 30px;
   border-top: 2px dotted #ccc;
+  width: 100%;
 }
 
 .auth {
+  width: 100%;
   background-color: #DDD;
 }
 
 .login-form-container {
   display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 650px;
 }
 
 .login-form-box {
   display: flex;
-  flex-direction: column;
+  flex-flow: column;
+  width: 650px;
+  margin: auto;
 }
 
 .login-form-box input {
@@ -205,18 +227,41 @@ header {
   border-radius: 0px;
   font-size: 16px;
   padding-left: 10px;
-  display: inline-block;
   box-sizing: border-box;
   border: 1px solid #ccc;
   padding-top: 0px;
+  margin-right: 155px;
+  float: right;
 }
 
 label {
-    display: inline-block;
     width: 155px;
     text-align: right;
     margin-top: 8px;
     vertical-align: top;
     font-size: 16px;
     margin-right: 16px;
+    float: left;
+}
+
+input[type="submit"] {
+  height: 36px;
+  background-color: #C32056;
+  color: white;
+  padding-left: 0px;
+  margin-bottom: 70px;
+}
+
+.input-wrapper {
+  width: 650px;
+  /* display: flex; */
+  /* flex-flow: row; */
+  height: 59px;
+  margin: auto;
+  /* flex-wrap: nowrap;
+  align-items: center; */
+}
+
+.user {
+  height: 55px;
 }

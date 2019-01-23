@@ -18,6 +18,7 @@ class LoginForm extends React.Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     this.props.action(this.state);
   }
 
@@ -35,22 +36,32 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className='login-form-container'>
+      <div className="auth-page">
         <AuthHeader />
-        <h2 className="form-head">Log in</h2>
-        <div className="top-rule"></div>
-        <form onSubmit={this.handleSubmit} className="login-form-box">
-          <label htmlFor="artist-form-username">Username
-          <input type="text" value={this.state.username} 
-            onChange={this.update('username')} 
-            name="artist-form-username" /></label>
-          <label htmlFor="artist-form-password">Password
-            <input type="password" value={this.state.password} 
-            onChange={this.update('password')} 
-            name="artist-form-password" /></label>
-          <input type="submit" value={this.props.formType} />
-        </form>
-        {this.props.navLink}
+        <div className='login-form-container'>
+          <h2 className="form-head">Log in</h2>
+          <div className="top-rule"></div>
+          <form onSubmit={this.handleSubmit} className="login-form-box">
+            <div className="input-wrapper">
+              <label htmlFor="artist-form-username">Username</label>
+              <input type="text" value={this.state.username} 
+                onChange={this.update('username')} 
+                id="artist-form-username" />
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="artist-form-password">Password</label>
+                <input type="password" value={this.state.password} 
+                onChange={this.update('password')} 
+                id="artist-form-password" />
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="artist-form-submit">&nbsp;</label>
+                <input type="submit" value={this.props.formType} 
+                id="artist=form-submit" />
+            </div>
+          </form>
+          {this.props.navLink}
+        </div>
       </div>
     );
   }
