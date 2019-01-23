@@ -37,8 +37,8 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <AuthHeader />
       <div className='login-form-container'>
+        <AuthHeader />
         <h2 className="form-head">Sign Up for an Artist Account</h2>
         <div className="top-rule"></div>
         <form onSubmit={this.handleSubmit} className="login-form-box">
