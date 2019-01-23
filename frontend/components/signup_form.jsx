@@ -44,25 +44,34 @@ class SignupForm extends React.Component {
           <h2 className="form-head">Sign Up for an Artist Account</h2>
           <div className="top-rule"></div>
           <form onSubmit={this.handleSubmit} className="login-form-box">
-            <label htmlFor="artist-form-username">Username</label>
-            <input type="text" value={this.state.username} 
-              onChange={this.update('username')} 
-              id="artist-form-username" />
-            <label htmlFor="artist-form-password">Password</label>
-              <input type="password" value={this.state.password} 
-              onChange={this.update('password')} 
+            <div className="input-wrapper">
+              <label htmlFor="artist-form-username">Username</label>
+              <input type="text" value={this.state.username} 
+                onChange={this.update('username')} 
+                id="artist-form-username" />
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="artist-form-password">Password</label>
+                <input type="password" value={this.state.password} 
+                onChange={this.update('password')} 
               id="artist-form-password" />
-            <label htmlFor="artist-form-email">Email</label>
-              <input type="text" value={this.state.email}
-                onChange={this.update('email')}
-                id="artist-form-email" />
-            <label htmlFor="artist-form-email-confirm">Confirm email</label>
-              <input type="text" value={this.state.emailConfirm}
-                onChange={this.update('emailConfirm')}
-                id="artist-form-email-confirm" />
-            <input type="submit" value={this.props.formType} />
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="artist-form-email">Email</label>
+                <input type="text" value={this.state.email}
+                  onChange={this.update('email')}
+              id="artist-form-email" />
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="artist-form-email-confirm">Confirm email</label>
+                <input type="text" value={this.state.emailConfirm}
+                  onChange={this.update('emailConfirm')}
+                  id="artist-form-email-confirm" />
+              <input type="submit" value={this.props.formType} />
+            </div>
+            {this.props.navLink}
           </form>
-          {this.props.navLink}
+          
         </div>
       </div>
     );

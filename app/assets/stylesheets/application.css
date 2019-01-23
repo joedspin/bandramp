@@ -39,6 +39,9 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+a {
+  text-decoration: none;
+}
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -211,6 +214,7 @@ header {
   flex-flow: column;
   align-items: center;
   width: 650px;
+  margin: auto;
 }
 
 .login-form-box {
@@ -232,6 +236,14 @@ header {
   padding-top: 0px;
   margin-right: 155px;
   float: right;
+}
+
+.login-form-box p {
+  margin-top: 60px;
+  text-align: center;
+  margin-left: 40px;
+  font-size: 12px;
+  color: #818285;
 }
 
 label {

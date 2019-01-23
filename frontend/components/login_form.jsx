@@ -59,8 +59,8 @@ class LoginForm extends React.Component {
                 <input type="submit" value={this.props.formType} 
                 id="artist=form-submit" />
             </div>
+            {this.props.navLink}
           </form>
-          {this.props.navLink}
         </div>
       </div>
     );
