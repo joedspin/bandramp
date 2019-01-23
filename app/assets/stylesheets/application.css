@@ -121,13 +121,13 @@ head {
 
 .head-brand img {
   height: 22px;
-  margin-top: 30px;
+  margin-top: 32px;
 }
 
 .head-statement h2 {
   font-size: 15px;
   color: #161113;
-  margin-top: 23px;
+  margin-top: 21px;
 }
 
 .head-highlight {
@@ -165,7 +165,7 @@ head {
 }
 
 .head-links li {
-  margin-left: 50px;
+  margin-left: 40px;
   font-weight: bold;
   font-size: 15px;
   color: #161113;
@@ -179,4 +179,40 @@ head {
 
 .top-rule {
   border-top: 2px dotted #ccc;
+}
+
+.auth {
+  background-color: #DDD;
+}
+
+.login-form-container {
+  display: flex;
+}
+
+.login-form-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form-box input {
+  line-height: normal;
+  width: 300px;
+  height: 35px;
+  border-radius: 0px;
+  font-size: 16px;
+  padding-left: 10px;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding-top: 0px;
+}
+
+label {
+    display: inline-block;
+    width: 155px;
+    text-align: right;
+    margin-top: 8px;
+    vertical-align: top;
+    font-size: 16px;
+    margin-right: 16px;
 }

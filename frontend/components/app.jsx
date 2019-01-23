@@ -1,46 +1,25 @@
 import React from 'react';
 // import { Provider } from 'react-redux';
 import {
-  // Route,
+  Route,
   // Redirect,
   Switch,
   Link,
   // HashRouter
 } from 'react-router-dom';
 
-import SignUpFormContainer from './session_form/signup_form_container';
-// import LogInFormContainer from './session_form/login_form_container';
+import AuthLinks from './auth_links';
+import SignUpFormContainer from './signup_form_container';
+import LogInFormContainer from './login_form_container';
 import { AuthRoute } from '../util/route_util';
 
 const App = () => (
   <div>
-    <header>
-      <div className="flex-container">
-        <div className="flex-7-12">
-          <div className="head-brand">
-            <Link to="/" className="header-link">
-              <img src={window.bandrampLogoURL} />
-            </Link> 
-            <div className="head-statement">
-              <h2>Discover amazing new music and&nbsp;
-                <span className="head-highlight">directly support</span>&nbsp;
-                the artists who make it.</h2>
-            </div>
-          </div>
-        </div>
-        <div className="flex-5-12">
-          <div className="head-links">
-            <ul>
-              <li><Link to="/signup">sign up</Link></li>
-              <li><Link to="/login">log in</Link></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </header>
+
     <Switch>
-      {/* <AuthRoute exact path="/login" component={LogInFormContainer} /> */}
+      <Route exact path="/" component={AuthLinks} />
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+      <AuthRoute exact path="/login" component={LogInFormContainer} />
     </Switch>
   </div>
 );
