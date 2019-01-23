@@ -127,6 +127,7 @@ head {
 .head-statement h2 {
   font-size: 15px;
   color: #161113;
+  margin-top: 23px;
 }
 
 .head-highlight {
@@ -141,18 +142,21 @@ head {
   justify-content: flex-end;
   align-items: flex-end;
   color: #161113;
+  height: 90px;
+  display: flex;
 }
 
 .head-links a {
+  color: #161113;
   text-decoration: none;
 }
 
-.head-links :hover {
+.head-links a:hover {
   color: #161113;
   text-decoration: underline;
 }
 
-.head-links :visited {
+.head-links a:visited {
   color: #161113;
 }
 
