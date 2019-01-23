@@ -1,6 +1,6 @@
-<script>
-  <% if current_user %>
+<% if signed_in? %>
+  <script>
     window.currentUser = <%= render('api/users/user.json.jbuilder', user: current_user).html_safe %>
-  <% end %>
-</script>
+  </script>
+<% end %>
 <main id="root"></main>
