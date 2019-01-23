@@ -1,4 +1,5 @@
 import React from 'react';
+import AuthHeader from './auth_header';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -21,11 +22,20 @@ class LoginForm extends React.Component {
   }
 
   renderErrors() {
-
+    return (
+      <ul>
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
   }
 
   render() {
     return (
+      <AuthHeader />
       <div className='login-form-container'>
         <h2 className="form-head">Log in</h2>
         <div className="top-rule"></div>

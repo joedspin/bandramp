@@ -1,4 +1,5 @@
 import React from 'react';
+import AuthHeader from './auth_header';
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -23,11 +24,20 @@ class SignupForm extends React.Component {
   }
 
   renderErrors() {
-
+    return (
+      <ul>
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
   }
 
   render() {
     return (
+      <AuthHeader />
       <div className='login-form-container'>
         <h2 className="form-head">Sign Up for an Artist Account</h2>
         <div className="top-rule"></div>

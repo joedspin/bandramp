@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class AuthLinks extends React.Component {
+class AuthHeader extends React.Component {
   render() {
     return (
       <header>
@@ -11,10 +11,12 @@ class AuthLinks extends React.Component {
               <Link to="/" className="header-link">
                 <img src={window.bandrampLogoURL} />
               </Link>
+            </div>
+          </div>
         </div>
       </header>
     );
     }
   }
 
-  export default AuthLinks;
+  export default AuthHeader;
