@@ -112,6 +112,7 @@ head {
 
 .flex-5-12 {
   width: 42%;
+  display: flex;
 }
 
 .head-brand {

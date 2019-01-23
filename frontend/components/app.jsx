@@ -31,8 +31,8 @@ const App = () => (
         <div className="flex-5-12">
           <div className="head-links">
             <ul>
-              <li>sign up</li>
-              <li>log in</li>
+              <li><Link to="/signup">sign up</Link></li>
+              <li><Link to="/login">log in</Link></li>
             </ul>
           </div>
         </div>
