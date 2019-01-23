@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  helper_method :current_user, :require_signed_in!
+  helper_method :current_user, :require_signed_in!, :signed_in?
 
   def current_user
     @current_user ||= User.find_by_session_token(session[:session_token])
