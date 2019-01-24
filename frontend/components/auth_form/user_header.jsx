@@ -8,19 +8,21 @@ class UserHeader extends React.Component {
   render() {
     const { logout } = this.props;
     return (
-      <header>
-        <div className="flex-container">
-          <div className="flex-7-12">
-            <div className="head-brand user">
-              <Link to="/" className="header-link">
-                <img src={window.bandrampLogoURL} />
-              </Link>&nbsp;
-              <Link to="/albums/new">+add</Link>&nbsp;
-              <button onClick={logout}>log out</button>
+      <div className="user-header-container">
+        <header className="user-header">
+          <div className="flex-container">
+            <div className="flex-7-12">
+              <div className="head-brand user">
+                <Link to="/">
+                  <img src={window.bandrampLogoURL} />
+                </Link>
+                <Link className="header-link" to="/albums/new">+add</Link>
+                <button className="logout" onClick={logout}>log out</button>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
     );
   }
 }

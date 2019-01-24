@@ -1,19 +1,10 @@
 import { connect } from 'react-redux';
 import { createAlbum, updateAlbum } from '../../actions/album_actions';
-import AlbumForm from './album_form';
+import { AlbumForm } from './album_form';
+import { BLANK_ALBUM } from './album_form';
 
 const mapStateToProps = (state, ownProps) => {
-  let album = {
-    title: '',
-    titleDisplay: 'Untitled Album',
-    artistName: '',
-    releaseDate: '',
-    description: '',
-    upcEan: '',
-    catalogNumber: '',
-    published: false,
-    administratorId: store.getState().session.id
-  };
+  let album = BLANK_ALBUM;
   let formType = 'Save Draft';
   if (ownProps.match.params.albumId) {
     album = ownProps.albums[ownProps.match.params.albumId];

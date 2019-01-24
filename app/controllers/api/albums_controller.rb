@@ -10,9 +10,13 @@ class Api::AlbumsController < ApplicationController
   end
 
   def create
-    debugger
-    @album = Album.create(album_params)
-    render "api/albums/show"
+    @album = Album.new(album_params)
+    @album.administrator_id = current_user.id
+    if @album.save
+      render "api/albums/show"
+    else
+      render json: @album.errors.full_messages, status: 422
+    end
   end
 
   def update

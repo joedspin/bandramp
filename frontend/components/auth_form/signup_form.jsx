@@ -45,29 +45,33 @@ class SignupForm extends React.Component {
           <div className="top-rule"></div>
           <form onSubmit={this.handleSubmit} className="login-form-box">
             <div className="input-wrapper">
-              <label htmlFor="artist-form-username">Username</label>
+              <label htmlFor="login-form-username">Username</label>
               <input type="text" value={this.state.username} 
                 onChange={this.update('username')} 
-                id="artist-form-username" />
+                id="login-form-username" />
             </div>
             <div className="input-wrapper">
-              <label htmlFor="artist-form-password">Password</label>
+              <label htmlFor="login-form-password">Password</label>
                 <input type="password" value={this.state.password} 
                 onChange={this.update('password')} 
-              id="artist-form-password" />
+              id="login-form-password" />
             </div>
             <div className="input-wrapper">
-              <label htmlFor="artist-form-email">Email</label>
+              <label htmlFor="login-form-email">Email</label>
                 <input type="text" value={this.state.email}
                   onChange={this.update('email')}
-              id="artist-form-email" />
+              id="login-form-email" />
             </div>
             <div className="input-wrapper">
-              <label htmlFor="artist-form-email-confirm">Confirm email</label>
+              <label htmlFor="login-form-email-confirm">Confirm email</label>
                 <input type="text" value={this.state.emailConfirm}
                   onChange={this.update('emailConfirm')}
-                  id="artist-form-email-confirm" />
-              <input type="submit" value={this.props.formType} />
+                  id="login-form-email-confirm" />
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="login-form-submit">&nbsp;</label>
+              <input type="submit" value={this.props.formType}
+                id="login-form-submit" />
             </div>
             {this.renderErrors()}
             {this.props.navLink}

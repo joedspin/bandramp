@@ -47,30 +47,35 @@ class LoginForm extends React.Component {
     return (
       <div className="auth-page">
         <AuthHeader />
-        <div className='login-form-container'>
-          <h2 className="form-head">Log in</h2>
-          <div className="top-rule"></div>
-          <form onSubmit={this.handleSubmit} className="login-form-box">
-            <div className="input-wrapper">
-              <label htmlFor="artist-form-username">Username</label>
-              <input type="text" value={this.state.username} 
-                onChange={this.update('username')} 
-                id="artist-form-username" disabled={this.state.disabled}/>
-            </div>
-            <div className="input-wrapper">
-              <label htmlFor="artist-form-password">Password</label>
-                <input type="password" value={this.state.password} 
-                onChange={this.update('password')} 
-                id="artist-form-password" disabled={this.state.disabled}/>
-            </div>
-            <div className="input-wrapper">
-              <label htmlFor="artist-form-submit">&nbsp;</label>
-                <input type="submit" value={this.props.formType} 
-                id="artist=form-submit" />
-            </div>
-            {this.renderErrors()}
-            {this.props.navLink}
-          </form>
+        <div className="auth-page-content">
+          <div className='login-form-container'>
+            <h2 className="form-head">Log in</h2>
+            <div className="top-rule"></div>
+            <form onSubmit={this.handleSubmit} className="login-form-box">
+              <div className="input-wrapper">
+                <label htmlFor="login-form-username">Username</label>
+                <input type="text" value={this.state.username} 
+                  onChange={this.update('username')} 
+                  id="login-form-username" disabled={this.state.disabled}/>
+              </div>
+              <div className="input-wrapper">
+                <label htmlFor="login-form-password">Password</label>
+                  <input type="password" value={this.state.password} 
+                  onChange={this.update('password')} 
+                  id="login-form-password" disabled={this.state.disabled}/>
+              </div>
+              <div className="input-wrapper">
+                <label htmlFor="login-form-submit">&nbsp;</label>
+                  <input type="submit" value={this.props.formType} 
+                  id="login-form-submit" />
+              </div>
+              {this.renderErrors()}
+              {this.props.navLink}
+            </form>
+          </div>
+          <div className="auth-footer">
+            help contact about
+          </div>
         </div>
       </div>
     );
