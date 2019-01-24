@@ -8,7 +8,7 @@ import {
   // HashRouter
 } from 'react-router-dom';
 
-import AuthLinks from './auth_links';
+import AuthLinks from './auth_form/auth_links';
 import SignUpFormContainer from './auth_form/signup_form_container';
 import LogInFormContainer from './auth_form/login_form_container';
 import DemoLogInFormContainer from './auth_form/demo_login_form_container';
