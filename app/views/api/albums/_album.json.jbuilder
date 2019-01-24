@@ -1,0 +1,10 @@
+json.extract! album, 
+  :id,
+  :title,
+  :artist_name,
+  :release_date,
+  :description,
+  :upc_ean,
+  :catalog_number,
+  :published,
+  :administrator_id

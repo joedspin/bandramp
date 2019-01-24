@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  helper_method :current_user, :require_signed_in!, :signed_in?
+  helper_method :current_user, :require_signed_in!, :signed_in?, :pro_signed_in?
 
   def current_user
     @current_user ||= User.find_by_session_token(session[:session_token])
@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
   def signed_in?
     !!current_user
+  end
+
+  def pro_signed_in?
+    !!current_user && !!current_user.pro_account
   end
 
   def sign_in(user)

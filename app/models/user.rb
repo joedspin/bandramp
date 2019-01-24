@@ -1,7 +1,25 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint(8)        not null, primary key
+#  username        :string
+#  email           :string
+#  password_digest :string
+#  session_token   :string
+#  pro_account     :boolean          default(FALSE)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
   validates :username, :email, :session_token, :password_digest, presence: true
   validates :pro_account, inclusion: { in: [ true, false ] }
   validates :password, length: { minimum: 8, allow_nil: true }
+
+  has_many :administered_albums,
+    class_name: 'Album',
+    foreign_key: :administrator_id
 
   after_initialize :ensure_session_token
 
