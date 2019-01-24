@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
     releaseDate: '',
     description: '',
     upcEan: '',
-    catalog_Number: '',
+    catalogNumber: '',
     published: false,
     administratorId: store.getState().session.id
   };
@@ -20,6 +20,7 @@ const mapStateToProps = (state, ownProps) => {
     formType = 'Update';
   }
   return {
+    errors: state.errors.album,
     album,
     formType
   };

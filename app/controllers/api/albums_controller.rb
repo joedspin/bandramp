@@ -10,6 +10,7 @@ class Api::AlbumsController < ApplicationController
   end
 
   def create
+    debugger
     @album = Album.create(album_params)
     render "api/albums/show"
   end

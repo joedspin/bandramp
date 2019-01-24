@@ -26,7 +26,7 @@ class SignupForm extends React.Component {
 
   renderErrors() {
     return (
-      <ul>
+      <ul className="form-errors">
         {this.props.errors.map((error, i) => (
           <li key={`error-${i}`}>
             {error}
@@ -41,7 +41,7 @@ class SignupForm extends React.Component {
       <div className="auth-page">
         <AuthHeader />
         <div className='login-form-container'>
-          <h2 className="form-head">Sign Up for an Artist Account</h2>
+          <h2 className="form-head">Sign Up for a Label Account</h2>
           <div className="top-rule"></div>
           <form onSubmit={this.handleSubmit} className="login-form-box">
             <div className="input-wrapper">
@@ -69,9 +69,9 @@ class SignupForm extends React.Component {
                   id="artist-form-email-confirm" />
               <input type="submit" value={this.props.formType} />
             </div>
+            {this.renderErrors()}
             {this.props.navLink}
           </form>
-          
         </div>
       </div>
     );

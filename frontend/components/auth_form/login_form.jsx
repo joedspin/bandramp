@@ -28,12 +28,12 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.action(this.state);
+    this.props.action(this.state).then();
   }
 
   renderErrors() {
     return (
-      <ul>
+      <ul className="form-errors">
         {this.props.errors.map((error, i) => (
           <li key={`error-${i}`}>
             {error}
@@ -68,6 +68,7 @@ class LoginForm extends React.Component {
                 <input type="submit" value={this.props.formType} 
                 id="artist=form-submit" />
             </div>
+            {this.renderErrors()}
             {this.props.navLink}
           </form>
         </div>

@@ -18,7 +18,9 @@ export const createAlbum = (album) => dispatch => {
   return PostApiUtil.createAlbum(album).then(album => 
     dispatch(
       receiveAlbum(album)),
-      err => (dispatch(receiveErrors(err.responseJSON)))
+      err => {
+        return dispatch(receiveErrors(err.responseJSON));
+      }
     );
 };
 

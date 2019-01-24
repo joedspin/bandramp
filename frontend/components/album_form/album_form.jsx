@@ -33,7 +33,7 @@ class AlbumForm extends React.Component {
 
   renderErrors() {
     return (
-      <ul>
+      <ul className="form-errors">
         {this.props.errors.map((error, i) => (
           <li key={`error-${i}`}>
             {error}
@@ -54,7 +54,8 @@ class AlbumForm extends React.Component {
               <label htmlFor="album-form-title">*</label>
               <input type="text" value={this.state.title}
                 onChange={this.update('title')}
-                id="album-form-title" required placeholder='album name' />
+                id="album-form-title" required placeholder='album name' 
+                className="form-album-title" />
             </div>
             <div className="input-wrapper">
               <label htmlFor="album-form-release-date">release date:</label>
@@ -70,7 +71,7 @@ class AlbumForm extends React.Component {
             </div>
             <div className="input-wrapper">
               <label htmlFor="album-form-description">about:</label>
-              <input type="text" value={this.state.description}
+              <textarea value={this.state.description}
                 onChange={this.update('description')}
                 id="album-form-description" />
             </div>
@@ -91,6 +92,7 @@ class AlbumForm extends React.Component {
               <input type="submit" value={this.state.formType}
                 id="artist=form-submit" />
             </div>
+            {this.renderErrors()}
           </form>
         </div>
       </div>
