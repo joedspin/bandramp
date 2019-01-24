@@ -5,6 +5,10 @@ import { logout } from '../../actions/session_actions';
 
 class UserHeader extends React.Component {
 
+  addAlbum() {
+    this.props.history.push('/albums/new');
+  }
+
   render() {
     const { logout } = this.props;
     return (
@@ -16,7 +20,7 @@ class UserHeader extends React.Component {
                 <Link to="/">
                   <img src={window.bandrampLogoURL} />
                 </Link>
-                <Link className="header-link" to="/albums/new">+add</Link>
+                <button className="header-link" onClick={this.addAlbum.bind(this)}>+add</button>
                 <button className="logout" onClick={logout}>log out</button>
               </div>
             </div>
