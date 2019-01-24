@@ -46,7 +46,7 @@ const receiveAlbum = (album) => {
 
 const receiveErrors = (errors) => {
   return {
-    type: RECEIVE_SESSION_ERRORS,
+    type: RECEIVE_ALBUM_ERRORS,
     errors
   };
 };

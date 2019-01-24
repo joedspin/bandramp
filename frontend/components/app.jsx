@@ -13,6 +13,7 @@ import SignUpFormContainer from './auth_form/signup_form_container';
 import LogInFormContainer from './auth_form/login_form_container';
 import DemoLogInFormContainer from './auth_form/demo_login_form_container';
 import UserHeader from './auth_form/user_header';
+import AlbumForm from './album_form/album_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
@@ -24,6 +25,8 @@ const App = () => (
       <AuthRoute exact path="/login" component={LogInFormContainer} />
       <AuthRoute exact path="/login/demo" component={DemoLogInFormContainer} />
       {/* <AuthRoute exact path="/" component={AuthLinks} /> */}
+      <ProtectedRoute path="/albums/new" component={AlbumForm} />
+      <ProtectedRoute path="/albums/:albumId/edit" component={AlbumForm} />
       <ProtectedRoute path="/" component={UserHeader} />
     </Switch>
   </div>

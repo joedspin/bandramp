@@ -3,26 +3,35 @@ import { createAlbum, updateAlbum } from '../../actions/album_actions';
 import AlbumForm from './album_form';
 
 const mapStateToProps = (state, ownProps) => {
-  const defaultAlbum = {
+  let album = {
     title: '',
-    titlePlaceholder: 'Untitled Album',
+    titleDisplay: 'Untitled Album',
     artistName: '',
     releaseDate: '',
     description: '',
-    upc_ean: '',
-    catalog_number: '',
-    administrator_id: session.current_user.id,
-    published: false
+    upcEan: '',
+    catalog_Number: '',
+    published: false,
+    administratorId: store.getState().session.id
   };
+  let formType = 'Save Draft';
+  if (ownProps.match.params.albumId) {
+    album = ownProps.albums[ownProps.match.params.albumId];
+    formType = 'Update';
+  }
   return {
-    album: ownProps.albums[this.props.match.params.albumId] || defaultAlbum
+    album,
+    formType
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+  let action = (album) => dispatch(createAlbum(album));
+  if (ownProps.match.params.albumId) {
+    action = (album) => dispatch(updateAlbum(album));
+  }
   return {
-    createAlbum: (album) => dispatch(createAlbum(album)),
-    updateAlbum: (album) => dispatch(updateAlbum(album))
+    action
   };
 };
 
