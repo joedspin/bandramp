@@ -40,9 +40,9 @@ class SignupForm extends React.Component {
     return (
       <div className="auth-page">
         <AuthHeader />
-        <div className="auth-page-content"></div>
+        <div className="auth-page-content">
           <div className='login-form-container'>
-            <h2 className="form-head">Sign Up for a Label Account</h2>
+            <h2 className="form-head">Sign up for Label account</h2>
             <div className="top-rule"></div>
             <form onSubmit={this.handleSubmit} className="login-form-box">
               <div className="input-wrapper">
@@ -82,6 +82,7 @@ class SignupForm extends React.Component {
 
           </div>
         </div>
+      </div>
     );
   }
 }
