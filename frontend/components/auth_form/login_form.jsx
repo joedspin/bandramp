@@ -74,7 +74,7 @@ class LoginForm extends React.Component {
             </form>
           </div>
           <div className="auth-footer">
-            help contact about
+            
           </div>
         </div>
       </div>
