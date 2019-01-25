@@ -4,7 +4,8 @@ class Api::SessionsController < ApplicationController
     @user = User.find_by_credentials(
       params[:user][:username],
       params[:user][:password])
-    if @user 
+    if @user
+      @albums = @user.administered_albums
       sign_in(@user)
       render 'api/users/show'
     else

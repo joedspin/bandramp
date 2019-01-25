@@ -162,7 +162,6 @@ header {
 }
 
 .head-brand .user {
-  height: 53px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -170,7 +169,7 @@ header {
 }
 
 .user img {
-  margin: 18px 20px 0 20px;
+  margin: 0 20px 0 20px;
   height: 17px;
 }
 
@@ -368,10 +367,28 @@ input[type="submit"] {
   height: 42px;
 }
 
-
 .album-head {
   font-size: 28px;
   position: absolute;
   top: 90px;
   left: 90px;
+}
+
+.album-box {
+  width: auto;
+  margin: auto;
+}
+
+.album-thumb-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.album-thumb {
+  margin: 5px;
+  border: 1px #333 solid;
+  width: 150px;
+  height: 150px;
+  background-color: #DDD;
 }

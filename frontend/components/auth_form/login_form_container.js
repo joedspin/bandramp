@@ -15,10 +15,10 @@ const mapStateToProps = ({ errors }) => {
   };
 };
 
-const mapDispatchToProp = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
     action: (user) => dispatch(login(user))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProp)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

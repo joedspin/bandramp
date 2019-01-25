@@ -1,5 +1,6 @@
 import React from 'react';
 import UserHeader from '../auth_form/user_header';
+import AlbumUserIndex from './album_user_index_container';
 
 export const BLANK_ALBUM = {
     title: '',
@@ -15,14 +16,18 @@ export const BLANK_ALBUM = {
 class AlbumForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.album;
+    this.state = this.props.album || BLANK_ALBUM;
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.blankAlbum = this.blankAlbum;
     if (this.state.title === '') {
       this.state.titleDisplay = 'Untitled Album';
     } else {
       this.state.titleDisplay = this.state.title;
     }
+  }
+
+  componentDidMount() {
+    this.props.fetchAlbums();
+    this.props.fetchAlbum(this.props.match.params.albumId);
   }
 
   clearForm() {
@@ -116,6 +121,7 @@ class AlbumForm extends React.Component {
             {this.renderErrors()}
           </form>
         </div>
+        <AlbumUserIndex />
       </div>
     );
   }

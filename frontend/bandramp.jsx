@@ -7,7 +7,8 @@ import { logout }  from './actions/session_actions';
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState = {};
   if (window.currentUser) {
-    preloadedState = { session: {id: window.currentUser.id }};
+    preloadedState = { session: {id: window.currentUser.id },
+      users: {[window.currentUser.id]: window.currentUser}};
     delete window['currentUser'];
   }
   const store = configureStore(preloadedState);

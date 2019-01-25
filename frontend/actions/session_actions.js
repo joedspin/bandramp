@@ -26,10 +26,11 @@ export const signup = (user) => dispatch => {
   );
 };
 
-const receiveCurrentUser = (currentUser) => {
+const receiveCurrentUser = ({ user, albums }) => {
   return {
     type: RECEIVE_CURRENT_USER,
-    currentUser
+    user,
+    albums
   };
 };
 
