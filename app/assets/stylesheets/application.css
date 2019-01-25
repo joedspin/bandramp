@@ -65,7 +65,8 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-button:active, button:focus, input:active, input:focus, a:focus, a:active  {
+button:active, button:focus, input:active, input:focus, 
+  a:focus, a:active, textarea:active, textarea:focus  {
   outline: none;
 }
 
@@ -185,6 +186,7 @@ header {
 
 .logout:hover, .header-link:hover {
   background-color: #DDD;
+  cursor: pointer;
 }
 
 .head-statement h2 {
@@ -225,6 +227,7 @@ header {
 .head-links a:hover {
   color: #161113;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .head-links a:visited {
@@ -333,6 +336,7 @@ input[type="submit"] {
   color: white;
   padding-left: 0px;
   margin-bottom: 70px;
+  cursor: pointer;
 }
 
 #album-form-submit {
@@ -340,6 +344,7 @@ input[type="submit"] {
   border: 1px solid #51924c;
   width: 110px;
   padding-left: 5px;
+  cursor: pointer;
 }
 
 .input-wrapper {

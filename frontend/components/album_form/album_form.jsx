@@ -17,6 +17,7 @@ class AlbumForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.album || BLANK_ALBUM;
+    this.state.formType = this.props.formType;
     this.handleSubmit = this.handleSubmit.bind(this);
     if (this.state.title === '') {
       this.state.titleDisplay = 'Untitled Album';
@@ -27,7 +28,22 @@ class AlbumForm extends React.Component {
 
   componentDidMount() {
     this.props.fetchAlbums();
-    this.props.fetchAlbum(this.props.match.params.albumId);
+    if (typeof this.props.match.params.albumId !== "undefined") {
+      this.props.fetchAlbum(this.props.match.params.albumId)
+        .then(() => {this.setState(this.props.album);});
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.albumId !== this.props.match.params.albumId) {
+      if (typeof this.props.match.params.albumId === "undefined") {
+        this.clearForm();
+        this.state.formType = 'Save Draft';
+      } else {      
+        this.props.fetchAlbum(this.props.match.params.albumId)
+        .then(() => { this.setState(this.props.album); });
+      }
+    }
   }
 
   clearForm() {
@@ -49,7 +65,7 @@ class AlbumForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.action(this.state).then(this.clearForm.bind(this));
+    this.props.action(this.state);
   }
 
   renderErrors() {
@@ -114,7 +130,6 @@ class AlbumForm extends React.Component {
                 id="album-form-catalog-number" />
             </div>
             <div className="input-wrapper">
-              <label htmlFor="album-form-submit">&nbsp;</label>
               <input type="submit" value={this.state.formType}
                 id="album-form-submit" />
             </div>

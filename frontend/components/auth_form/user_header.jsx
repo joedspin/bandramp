@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 
@@ -31,10 +31,16 @@ class UserHeader extends React.Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    history: ownProps.history
+  }
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(logout())
   };
 };
 
-export default connect(null, mapDispatchToProps)(UserHeader);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserHeader));
