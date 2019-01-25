@@ -12,7 +12,8 @@ export const BLANK_ALBUM = {
     catalog_number: '',
     published: false,
     photoFile: null,
-    photoUrl: null
+    photoUrl: null,
+    photo: null
   };
 
 class AlbumForm extends React.Component {
@@ -106,7 +107,29 @@ class AlbumForm extends React.Component {
   }
 
   render() {
-    const preview = this.state.photoUrl ? <img src={this.state.photoUrl} /> : null;
+    let coverArt;
+    if (this.state.photoUrl) {
+      coverArt = (
+        <div className="album-image-thumb">
+          <img className="album-image-1" src={this.state.photoUrl} />
+        </div>
+      );
+    } else if (this.state.photo) {
+      coverArt = (
+        <div className="album-image-thumb">
+          <img className="album-image-1" src={this.state.photo} />
+        </div>
+      );
+    } else {
+      coverArt = (
+        <div className="input-wrapper">
+          <label htmlFor="album-cover-art">cover art:</label>
+          <input type="file"
+            onChange={this.handleFile.bind(this)}
+            id="album-cover-art" />
+        </div>
+      );
+    }
     return (
       <div className="album-page">
         <UserHeader />
@@ -155,13 +178,7 @@ class AlbumForm extends React.Component {
                 placeholder="(optional)"
                 id="album-form-catalog-number" />
             </div>
-            <div className="input-wrapper">
-              <label htmlFor="album-cover-art">cover art:</label>
-              <input type="file"
-                onChange={this.handleFile.bind(this)} 
-                id="album-cover-art"/>
-            </div>
-            {preview}
+            {coverArt}
             <div className="input-wrapper">
               <input type="submit" value={this.state.formType}
                 id="album-form-submit" />
