@@ -9,7 +9,7 @@ class AuthHeader extends React.Component {
           <div className="flex-container">
             <div className="flex-12-12">
               <div className="head-brand auth">
-                <Link to="/" className="header-link">
+                <Link to="/">
                   <img src={window.bandrampLogoURL} />
                 </Link>
               </div>

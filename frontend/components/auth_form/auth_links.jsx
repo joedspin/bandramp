@@ -8,7 +8,7 @@ class AuthLinks extends React.Component {
         <div className="flex-container">
           <div className="flex-7-12">
             <div className="head-brand">
-              <Link to="/" className="header-link">
+              <Link to="/">
                 <img src={window.bandrampLogoURL} />
               </Link>
               <div className="head-statement">
