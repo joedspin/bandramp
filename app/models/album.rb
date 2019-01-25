@@ -22,4 +22,6 @@ class Album < ApplicationRecord
     class_name: 'User',
     foreign_key: :administrator_id
 
+    has_one_attached :photo
+
 end

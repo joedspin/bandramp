@@ -14,16 +14,28 @@ export const fetchAlbum = (id) => {
 
 export const createAlbum = (album) => {
   return $.ajax({
-    method: 'POST',
+    // method: 'POST',
+    // url: 'api/albums',
+    // data: { album }
     url: 'api/albums',
-    data: { album }
+    method: 'POST',
+    data: album,
+    contentType: false,
+    processData: false
   });
 };
 
-export const updateAlbum = (album) => {
+
+
+export const updateAlbum = (album, albumId) => {
   return $.ajax({
+    // method: 'PATCH',
+    // url: `/api/albums/${album.id}`,
+    // data: { album }
+    url: `/api/albums/${albumId}`,
     method: 'PATCH',
-    url: `/api/albums/${album.id}`,
-    data: { album }
+    data: album,
+    contentType: false,
+    processData: false
   });
 };

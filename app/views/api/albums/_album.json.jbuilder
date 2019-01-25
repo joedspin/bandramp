@@ -7,4 +7,5 @@ json.extract! album,
   :upc_ean,
   :catalog_number,
   :published,
-  :administrator_id
+  :administrator_id,
+  :photo

@@ -10,7 +10,9 @@ export const BLANK_ALBUM = {
     description: '',
     upc_ean: '',
     catalog_number: '',
-    published: false
+    published: false,
+    photoFile: null,
+    photoUrl: null
   };
 
 class AlbumForm extends React.Component {
@@ -63,9 +65,32 @@ class AlbumForm extends React.Component {
     };
   }
 
+  handleFile(e) {
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({ photoFile: file, photoUrl: fileReader.result });
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    this.props.action(this.state);
+    const formData = new FormData();
+    formData.append('album[title]', this.state.title);
+    formData.append('album[artist_name]', this.state.artist_name);
+    formData.append('album[release_date]', this.state.release_date);
+    formData.append('album[description]', this.state.description);
+    formData.append('album[upc_ean]', this.state.upc_ean);
+    formData.append('album[catalog_number]', this.state.catalog_number);
+    formData.append('album[published]', this.state.published);
+    if (this.state.photoFile) {
+
+      formData.append('album[photo]', this.state.photoFile);
+    }
+    this.props.action(formData);
   }
 
   renderErrors() {
@@ -81,6 +106,7 @@ class AlbumForm extends React.Component {
   }
 
   render() {
+    const preview = this.state.photoUrl ? <img src={this.state.photoUrl} /> : null;
     return (
       <div className="album-page">
         <UserHeader />
@@ -129,6 +155,13 @@ class AlbumForm extends React.Component {
                 placeholder="(optional)"
                 id="album-form-catalog-number" />
             </div>
+            <div className="input-wrapper">
+              <label htmlFor="album-cover-art">cover art:</label>
+              <input type="file"
+                onChange={this.handleFile.bind(this)} 
+                id="album-cover-art"/>
+            </div>
+            {preview}
             <div className="input-wrapper">
               <input type="submit" value={this.state.formType}
                 id="album-form-submit" />

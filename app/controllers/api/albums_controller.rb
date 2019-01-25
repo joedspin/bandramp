@@ -40,8 +40,8 @@ class Api::AlbumsController < ApplicationController
       :upc_ean,
       :catalog_number,
       :published,
-      :administrator_id
-      # , :cover_art
+      :administrator_id,
+      :photo
     )
   end
 

@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   let action = (album) => dispatch(createAlbum(album));
   if (typeof ownProps.match.params.albumId !== "undefined") {
-    action = (album) => dispatch(updateAlbum(album));
+    action = (album) => dispatch(updateAlbum(album, ownProps.match.params.albumId));
   }
   return {
     fetchAlbum: (albumId) => dispatch(fetchAlbum(albumId)),

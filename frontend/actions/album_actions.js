@@ -24,8 +24,8 @@ export const createAlbum = (album) => dispatch => {
     );
 };
 
-export const updateAlbum = (album) => dispatch => {
-  return PostApiUtil.updateAlbum(album).then(album => 
+export const updateAlbum = (album, albumId) => dispatch => {
+  return PostApiUtil.updateAlbum(album, albumId).then(album => 
     dispatch(
       receiveAlbum(album)),
       err => (dispatch(receiveErrors(err.responseJSON)))
