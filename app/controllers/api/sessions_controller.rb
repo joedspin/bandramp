@@ -15,7 +15,6 @@ class Api::SessionsController < ApplicationController
 
   def destroy
     signout
-    # render "api/users/show"
   end
 
 end

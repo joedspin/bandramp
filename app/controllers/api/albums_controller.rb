@@ -20,12 +20,17 @@ class Api::AlbumsController < ApplicationController
   end
 
   def update
+    # debugger
     @album = current_user.administered_albums.find(params[:id])
-    if @album.update(album_params)
+    if @album.photo.attached? && album_params['photo'] === 'delete'
+      @album.photo.purge
       render json: @album
-      # will want to add , include: :tracks once we implement those
     else
-      render json: @album.errors.full_messages, status: 422
+      if @album.update(album_params)
+        render json: @album
+      else
+        render json: @album.errors.full_messages, status: 422
+      end
     end
   end
 
