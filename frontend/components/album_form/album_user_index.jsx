@@ -1,6 +1,5 @@
 import React from 'react';
 import AlbumItemLink from './album_item_link';
-import UserHeader from '../auth_form/user_header.jsx';
 
 class AlbumUserList extends React.Component {
 

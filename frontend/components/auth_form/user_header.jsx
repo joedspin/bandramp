@@ -24,6 +24,9 @@ class UserHeader extends React.Component {
                 <button className="logout" onClick={logout}>log out</button>
               </div>
             </div>
+            <div className="flex-5-12">
+              <Link to="/user"><div className="user-global-link"></div></Link>
+            </div>
           </div>
         </header>
       </div>

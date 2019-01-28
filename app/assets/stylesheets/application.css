@@ -108,6 +108,14 @@ body {
       min-width: 100%;
 }
 
+a:visited, a:hover, a:active {
+  color: #C32056;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .header-container {
   width: 100%;
   background-color: #DDD;
@@ -174,6 +182,18 @@ header {
 .user img {
   margin: 0 20px 0 20px;
   height: 17px;
+}
+
+.user-global-link {
+  background-color: #C32056;
+  background: -webkit-linear-gradient(left, #6046FE, #C32056);
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  width: 29px;
+  height: 29px;
+  margin-right: 20px;
 }
 
 .logout, .header-link {
@@ -428,19 +448,18 @@ input[type="submit"] {
 }
 
 .album-thumb {
+  align: center;
+  font-size: 10px;
   margin: 5px;
-  border: 1px #333 solid;
-  width: 150px;
-  height: 150px;
-  background-color: #DDD;
+  width: 112px;
+  height: 112px;
 }
 
 .album-image-thumb {
   width: 212px;
   height: 212px;
-  /* display: flex;
-  justify-content: center; */
   position: relative;
+  background-color: #DDD;
 }
 
 .album-image-1 {
@@ -568,4 +587,11 @@ input[type="submit"] {
 }
 .album-title-menu strong {
   font-weight: 700;
+}
+
+.album-list-thumb {
+  width: 112px;
+  height: 112px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
 }

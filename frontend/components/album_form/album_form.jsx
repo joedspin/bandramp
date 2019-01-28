@@ -1,6 +1,7 @@
 import React from 'react';
 import UserHeader from '../auth_form/user_header';
 import AlbumUserIndex from './album_user_index_container';
+import { convertDate } from '../../util/album_api_util';
 
 export const BLANK_ALBUM = {
     title: '',
@@ -14,9 +15,6 @@ export const BLANK_ALBUM = {
     photoUrl: null,
     photo: null
   };
-
-const MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"];
 
 class AlbumForm extends React.Component {
   constructor(props) {
@@ -58,7 +56,6 @@ class AlbumForm extends React.Component {
 
   fillFormData(photoDelete = false) {
     const formData = new FormData();
-    // const rDate = this.convertDate(this.state.release_date, 2);
     formData.append('album[title]', this.state.title);
     formData.append('album[artist_name]', this.state.artist_name);
     formData.append('album[release_date]', this.state.release_date);
@@ -114,28 +111,14 @@ class AlbumForm extends React.Component {
     );
   }
 
-  convertDate(rawDate, outputType) {
-    // outputType 1 = yyyy-mm-dd; outputType 2 = mm/dd/yyyy; outputType 3 = Mmm dd, yyyy
-    const relDate = new Date(rawDate);
-    let rDateMonth = ("0" + (relDate.getMonth() + 1));
-    rDateMonth = rDateMonth.substring(rDateMonth.length - 2);
-    let rDateDay = ("0" + (relDate.getDate() + 1));
-    rDateDay = rDateDay.substring(rDateDay.length - 2);
-    let rDateYear = relDate.getFullYear();
-    if (outputType === 1) {
-      return rDateYear + "-" + rDateMonth + "-" + rDateDay;
-    } else if (outputType === 2) {
-      return rDateMonth + "/" + rDateDay + "/" + rDateYear;
-    }
-    return MONTH_NAMES[relDate.getMonth()] + " " + rDateDay + ", " + rDateYear;
-  }
+
 
   render() {
     let rDate;
     let rDateString;
     if (this.state.release_date.length) {
-      rDate = this.convertDate(this.state.release_date, 1);
-      rDateString = this.convertDate(this.state.release_date, 3);
+      rDate = convertDate(this.state.release_date, 1);
+      rDateString = convertDate(this.state.release_date, 3);
     } else {
       rDate = '';
       rDateString = '';
@@ -241,6 +224,19 @@ class AlbumForm extends React.Component {
                 <p>by <strong>{this.state.artist_name}</strong></p>
                 <p>{rDateString}</p>
               </div>
+            </div>
+            <div className="album-publish-menu">
+              <h4 className="album-publish-head">Publish</h4>
+              <ul>
+                <li><input onChange={this.update('published')} 
+                  type="radio" 
+                  value="true" 
+                  checked={String(this.state.published) === "true"} /> public</li>
+                <li><input onChange={this.update('published')} 
+                  type="radio" 
+                  value="false" 
+                  checked={String(this.state.published) === "false"} /> private</li>
+              </ul>
             </div>
           </div>
         </div>
