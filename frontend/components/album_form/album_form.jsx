@@ -58,6 +58,7 @@ class AlbumForm extends React.Component {
 
   fillFormData(photoDelete = false) {
     const formData = new FormData();
+    // const rDate = this.convertDate(this.state.release_date, 2);
     formData.append('album[title]', this.state.title);
     formData.append('album[artist_name]', this.state.artist_name);
     formData.append('album[release_date]', this.state.release_date);
@@ -65,10 +66,11 @@ class AlbumForm extends React.Component {
     formData.append('album[upc_ean]', this.state.upc_ean);
     formData.append('album[catalog_number]', this.state.catalog_number);
     formData.append('album[published]', this.state.published);
+    const photoInfo = this.state.photo;
     if (photoDelete) {
       formData.append('album[photo]', 'delete');
     } else {
-      formData.append('album[photo]', this.state.photoFile);
+      // formData.append('album[photo]', photoInfo);
     }
     return formData;
   }
@@ -113,18 +115,28 @@ class AlbumForm extends React.Component {
     );
   }
 
+  convertDate(rawDate, outputType) {
+    // outputType 1 = yyyy-mm-dd; outputType 2 = mm/dd/yyyy; outputType 3 = Mmm dd, yyyy
+    const relDate = new Date(rawDate);
+    let rDateMonth = ("0" + (relDate.getMonth() + 1));
+    rDateMonth = rDateMonth.substring(rDateMonth.length - 2);
+    let rDateDay = ("0" + (relDate.getDate() + 1));
+    rDateDay = rDateDay.substring(rDateDay.length - 2);
+    let rDateYear = relDate.getFullYear();
+    if (outputType === 1) {
+      return rDateYear + "-" + rDateMonth + "-" + rDateDay;
+    } else if (outputType === 2) {
+      return rDateMonth + "/" + rDateDay + "/" + rDateYear;
+    }
+    return MONTH_NAMES[relDate.getMonth()] + " " + rDateDay + ", " + rDateYear;
+  }
+
   render() {
     let rDate;
     let rDateString;
     if (this.state.release_date.length) {
-      const relDate = new Date(this.state.release_date);
-      let rDateMonth = ("0" + (relDate.getMonth() + 1));
-      rDateMonth = rDateMonth.substring(rDateMonth.length-2);
-      let rDateDay = ("0" + (relDate.getDate() + 1));
-      rDateDay = rDateDay.substring(rDateDay.length-2);
-      let rDateYear = relDate.getFullYear();
-      rDate = relDate.getFullYear() + "-" + rDateMonth + "-" + rDateDay;
-      rDateString = MONTH_NAMES[relDate.getMonth()]+" "+rDateDay+", "+relDate.getFullYear();
+      rDate = this.convertDate(this.state.release_date, 1);
+      rDateString = this.convertDate(this.state.release_date, 3);
     } else {
       rDate = '';
       rDateString = '';
@@ -163,13 +175,10 @@ class AlbumForm extends React.Component {
         <div className="album-image-blank"></div>
       );
     }
-    // const dateField = new Date(this.state.release_date);
-    // debugger
     return (
       <div className="album-page">
         <UserHeader />
-        <div className='album-form-container'>
-         
+        <div className='album-form-container'>  
           <div className="album-info-column">
             <form onSubmit={this.handleSubmit} className="album-form-box">
               <div className="input-wrapper">
@@ -182,9 +191,12 @@ class AlbumForm extends React.Component {
                 <label className="album-form-label" htmlFor="album-form-release-date">release date:</label>
                 <input type="date" value={rDate}
                   onChange={this.update('release_date')}
-                    id="album-form-release-date" /> <label>(optional)</label>
+                    id="album-form-release-date" /> <label className="album-form-label"> &nbsp;(optional)</label>
                 </div>
               </div>
+              <div className="album-rule"></div>
+              {coverArt}
+              <div className="album-rule"></div>
               <div className="input-wrapper">
                 <label className="album-form-label" htmlFor="album-form-artist-name">artist:</label>
                 <input type="text" value={this.state.artist_name}
@@ -199,6 +211,7 @@ class AlbumForm extends React.Component {
                   placeholder="(optional)"
                   id="album-form-description" rows="6" />
               </div>
+              <div className="album-rule"></div>
               <div className="input-wrapper">
                 <label className="album-form-label" htmlFor="album-form-description">album UPC/EAN code:</label>
                 <input type="text" value={this.state.upc_ean}
@@ -213,7 +226,6 @@ class AlbumForm extends React.Component {
                   placeholder="(optional)"
                   id="album-form-catalog-number" />
               </div>
-              {coverArt}
               <div className="input-wrapper">
                 <input type="submit" value={this.state.formType}
                   id="album-form-submit" />
@@ -226,14 +238,12 @@ class AlbumForm extends React.Component {
               {coverThumb}
               <div>
                 <h3 className="album-head">{this.state.title || 'Untitled Album'}</h3>
-                <p>by <strong>{this.state.artistDisplay}</strong></p>
+                <p>by <strong>{this.state.artist_name}</strong></p>
                 <p>{rDateString}</p>
               </div>
             </div>
           </div>
-          
         </div>
-        <AlbumUserIndex />
       </div>
     );
   }

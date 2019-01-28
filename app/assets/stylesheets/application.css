@@ -309,7 +309,7 @@ header {
   flex-flow: column;
 }
 
-.login-form-box input, .album-form-box input, .album-form-box textarea {
+.login-form-box input, .album-form-box input{
   line-height: normal;
   width: 300px;
   height: 35px;
@@ -320,11 +320,6 @@ header {
   border: 1px solid #ccc;
   padding-top: 0px;
   margin-right: 155px;
-}
-
-.album-form-box textarea {
-  height: 48px;
-  resize: auto;
 }
 
 .login-form-box p {
@@ -502,22 +497,37 @@ input[type="submit"] {
 .album-form-box .input-wrapper input {
   width: 405px;
   height: 22px;
-  padding: 5px 10px;
   margin: 10px 0 10px 0;
   border-color: #9c9c9c #9c9c9c #ccc #ccc;
-  font-size: 12px;
+  font-size: 11px;
   color: #333;
+  padding: 3px;
+}
+
+.album-form-box textarea {
+  font-size: 11px;
+  resize: auto;
+  width: 405px;
+  margin: 10px 0 10px 0;
+  border-color: #9c9c9c #9c9c9c #ccc #ccc;
+  color: #333;
+  padding: 3px;
+  min-height: inherit;
+  height: auto;
 }
 
 #album-form-title {
   font-size: 22px;
   border: 1px solid #9c9c9c;
   height: 39px;
+  padding: 5px 10px;
 }
 
 .album-form-date {
   display: flex;
   flex-direction: row;
+  align-items: baseline;
+
 }
 
 #album-form-release-date {
@@ -546,4 +556,14 @@ input[type="submit"] {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
   padding-left: 10px;
+}
+
+.album-rule {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px dotted #ccc;
+  width: 95%;
+}
+.album-title-menu strong {
+  font-weight: 700;
 }
