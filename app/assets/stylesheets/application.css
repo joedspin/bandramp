@@ -116,6 +116,7 @@ body {
 .user-header-container {
   width: 100%;
   background-color: #fff;
+  border-bottom: 1px solid #ccc;
 }
 
 header {
@@ -129,6 +130,7 @@ header {
 .user-header {
   width: 100%;
   height: 50px;
+  padding-bottom: 0px;
 }
 
 .flex-container {
@@ -166,7 +168,7 @@ header {
   background-color: #fff;
   display: flex;
   align-items: center;
-  height: 100%;
+  height: 50px;
 }
 
 .user img {
@@ -279,7 +281,7 @@ header {
   /* background-color: #DDD; */
 }
 
-.login-form-container, .album-form-container {
+.login-form-container {
   padding-top: 25px;
   display: flex;
   flex-flow: column;
@@ -288,11 +290,23 @@ header {
   margin: auto;
 }
 
-.login-form-box, .album-form-box {
+.album-form-container {
+  display: flex;
+  flex-flow: column-reverse;
+  align-items: center;
+  margin: auto;
+}
+
+.login-form-box {
   display: flex;
   flex-flow: column;
   width: 650px;
   margin: auto;
+}
+
+.album-form-box {
+  display: flex;
+  flex-flow: column;
 }
 
 .login-form-box input, .album-form-box input, .album-form-box textarea {
@@ -311,7 +325,6 @@ header {
 .album-form-box textarea {
   height: 48px;
   resize: auto;
-
 }
 
 .login-form-box p {
@@ -339,13 +352,6 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-#album-form-submit {
-  background-color: #0ec200;
-  border: 1px solid #51924c;
-  width: 110px;
-  padding-left: 5px;
-  cursor: pointer;
-}
 
 .input-wrapper {
   width: 650px;
@@ -355,7 +361,7 @@ input[type="submit"] {
 }
 
 .user {
-  height: 55px;
+  height: 50px;
 }
 
 .form-errors {
@@ -366,17 +372,53 @@ input[type="submit"] {
   margin-top: 20px;
 }
 
-.form-album-title {
-  font-size: 22px;
-  width: 427px;
-  height: 42px;
+.album-form-container {
+  width: 960px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  justify-content: flex-end;
+  background-color: #f7f7f7;
+}
+.album-menu-column {
+  min-width: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 25px;
 }
 
-.album-head {
-  font-size: 28px;
-  position: absolute;
-  top: 90px;
-  left: 90px;
+.ablum-info-column {
+  width: 490px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #cccc;
+}
+
+.album-title-menu {
+  width: 440px;
+  background-color: white;
+  padding: 10px;
+  border-left: 1px solid #C32056;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
+  /* border-right: 4px solid #fff; */
+  display: flex;
+  border-radius: 0px;
+}
+
+.album-title-menu h3 {
+  font-size: 20px;
+  color: #363636;
+  margin-top: 4px;
+}
+
+.album-title-menu p {
+  font-size: 12px;
+  color: #363636;
+  margin-top: 3px;
 }
 
 .album-box {
@@ -396,4 +438,111 @@ input[type="submit"] {
   width: 150px;
   height: 150px;
   background-color: #DDD;
+}
+
+.album-image-thumb {
+  width: 212px;
+  height: 212px;
+  /* display: flex;
+  justify-content: center; */
+  position: relative;
+}
+
+.album-image-1 {
+  width: 212px;
+  height: 212px;
+  border: 1px solid #999;
+}
+
+.album-image-2, .album-image-blank {
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+}
+
+.album-image-blank {
+  border: 1px dashed #ccc;
+}
+
+.album-title-menu {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.delete {
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    right: 4px;
+    bottom: 5px;
+    margin: 0px;
+    width: 2em;
+    padding: 0.25em;
+    text-align: center;
+    border: 1px solid silver;
+    background: white;
+    color: #C32056;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.album-form-label {
+  font-size: 12px;
+  color: #333;
+  text-align: left;
+}
+
+.album-form-box .input-wrapper {
+  width: 490px;
+  display: flex;
+  flex-direction: column;
+}
+
+.album-form-box .input-wrapper input {
+  width: 405px;
+  height: 22px;
+  padding: 5px 10px;
+  margin: 10px 0 10px 0;
+  border-color: #9c9c9c #9c9c9c #ccc #ccc;
+  font-size: 12px;
+  color: #333;
+}
+
+#album-form-title {
+  font-size: 22px;
+  border: 1px solid #9c9c9c;
+  height: 39px;
+}
+
+.album-form-date {
+  display: flex;
+  flex-direction: row;
+}
+
+#album-form-release-date {
+  width: 100px;
+  padding-left: 5px;
+}
+
+.album-form-date .album-form-label {
+  width: auto;
+}
+
+#album-form-submit {
+  background-color: #0ec200;
+  border: 1px solid #51924c;
+  width: 110px;
+  height: 35px;
+  padding-left: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
+
+.album-info-column {
+  background-color: white;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  padding-left: 10px;
 }
