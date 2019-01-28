@@ -4,8 +4,6 @@ import AlbumUserIndex from './album_user_index_container';
 
 export const BLANK_ALBUM = {
     title: '',
-    titleDisplay: 'Untitled Album',
-    artistDisplay: '',
     artist_name: '',
     release_date: '',
     description: '',
@@ -26,12 +24,6 @@ class AlbumForm extends React.Component {
     this.state = this.props.album || BLANK_ALBUM;
     this.state.formType = this.props.formType;
     this.handleSubmit = this.handleSubmit.bind(this);
-    if (this.state.title === '') {
-      this.state.titleDisplay = 'Untitled Album';
-    } else {
-      this.state.titleDisplay = this.state.title;
-    }
-    this.state.artistDisplay = this.state.artist;
   }
 
   componentDidMount() {
@@ -40,13 +32,6 @@ class AlbumForm extends React.Component {
       this.props.fetchAlbum(this.props.match.params.albumId)
         .then(() => {this.setState(this.props.album);});
     }
-    if (this.state.title === '') {
-      debugger
-      this.state.titleDisplay = 'Untitled Album';
-    } else {
-      this.setState({ titleDisplay: this.state.title });
-    }
-    this.setState({ artistDisplay: this.state.artist_name });
   }
 
   componentDidUpdate(prevProps) {
@@ -57,12 +42,6 @@ class AlbumForm extends React.Component {
       } else {      
         this.props.fetchAlbum(this.props.match.params.albumId)
         .then(() => { this.setState(this.props.album); });
-        if (this.props.title === '') {
-          this.state.titleDisplay = 'Untitled Album';
-        } else {
-          this.setState({ titleDisplay: this.props.title });
-        }
-        this.setState({ artistDisplay: this.props.artist_name });
       }
     }
   }
@@ -74,20 +53,10 @@ class AlbumForm extends React.Component {
   update(field) {
     return (e) => {
       this.setState({ [field]: e.target.value });
-      if (field === 'title') {
-        if (e.target.value === '') {
-          this.setState({ titleDisplay: 'Untitled Album' });
-        } else {
-          this.setState({ titleDisplay: e.target.value });
-        }
-      }
-      if (field === 'artist_name') {
-        this.setState({ artistDisplay: e.target.value });
-      }
     };
   }
 
-  fillFormData() {
+  fillFormData(photoDelete = false) {
     const formData = new FormData();
     formData.append('album[title]', this.state.title);
     formData.append('album[artist_name]', this.state.artist_name);
@@ -96,20 +65,20 @@ class AlbumForm extends React.Component {
     formData.append('album[upc_ean]', this.state.upc_ean);
     formData.append('album[catalog_number]', this.state.catalog_number);
     formData.append('album[published]', this.state.published);
-    if (this.state.photoFile) {
-      formData.append('album[photo]', this.state.photoFile);
-    } else {
+    if (photoDelete) {
       formData.append('album[photo]', 'delete');
+    } else {
+      formData.append('album[photo]', this.state.photoFile);
     }
     return formData;
   }
 
   deleteCoverArt(e) {
     e.preventDefault();
-    this.setState({photo: null, photoFile: null, photoUrl: null});
-    const formData = this.fillFormData();
+    this.setState({photo: 'delete', photoFile: null, photoUrl: null});
+    const formData = this.fillFormData(true);
     if (this.state.formType === 'Update') {
-      this.props.action(formData);
+      this.props.action(formData).then(() => {this.setState({photo: ''});});
     }
   }
 
@@ -127,7 +96,9 @@ class AlbumForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const formData = this.fillFormData();
-    this.props.action(formData);
+    this.props.action(formData).then(() => { 
+      this.setState({ photo: this.state.photo || this.state.photoUrl, photoFile: null, photoUrl: null});
+    });
   }
 
   renderErrors() {
@@ -145,13 +116,14 @@ class AlbumForm extends React.Component {
   render() {
     let rDate;
     let rDateString;
-    if (this.state.release_date) {
+    if (this.state.release_date.length) {
       const relDate = new Date(this.state.release_date);
       let rDateMonth = ("0" + (relDate.getMonth() + 1));
       rDateMonth = rDateMonth.substring(rDateMonth.length-2);
-      let rDateDay = ("0" + (relDate.getDate()));
+      let rDateDay = ("0" + (relDate.getDate() + 1));
       rDateDay = rDateDay.substring(rDateDay.length-2);
-      rDate = rDateMonth + "/" + relDate.getDate() + "/" + relDate.getFullYear();
+      let rDateYear = relDate.getFullYear();
+      rDate = relDate.getFullYear() + "-" + rDateMonth + "-" + rDateDay;
       rDateString = MONTH_NAMES[relDate.getMonth()]+" "+rDateDay+", "+relDate.getFullYear();
     } else {
       rDate = '';
@@ -188,10 +160,11 @@ class AlbumForm extends React.Component {
         </div>
       );
       coverThumb = (
-        <img className="album-image-blank" />
+        <div className="album-image-blank"></div>
       );
     }
-    
+    // const dateField = new Date(this.state.release_date);
+    // debugger
     return (
       <div className="album-page">
         <UserHeader />
@@ -207,10 +180,9 @@ class AlbumForm extends React.Component {
               <div className="input-wrapper">
                 <div className="album-form-date">
                 <label className="album-form-label" htmlFor="album-form-release-date">release date:</label>
-                <input type="text" value={rDate}
+                <input type="date" value={rDate}
                   onChange={this.update('release_date')}
-                  required placeholder="mm/dd/yyyy"
-                    id="album-form-release-date" />  (optional)
+                    id="album-form-release-date" /> <label>(optional)</label>
                 </div>
               </div>
               <div className="input-wrapper">
@@ -253,7 +225,7 @@ class AlbumForm extends React.Component {
             <div className="album-title-menu">
               {coverThumb}
               <div>
-                <h3 className="album-head">{this.state.titleDisplay}</h3>
+                <h3 className="album-head">{this.state.title || 'Untitled Album'}</h3>
                 <p>by <strong>{this.state.artistDisplay}</strong></p>
                 <p>{rDateString}</p>
               </div>

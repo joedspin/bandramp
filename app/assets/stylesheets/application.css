@@ -521,8 +521,9 @@ input[type="submit"] {
 }
 
 #album-form-release-date {
-  width: 100px;
+  width: 170px;
   padding-left: 5px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .album-form-date .album-form-label {

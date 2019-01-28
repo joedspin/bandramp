@@ -20,7 +20,6 @@ class Api::AlbumsController < ApplicationController
   end
 
   def update
-    # debugger
     @album = current_user.administered_albums.find(params[:id])
     if @album.photo.attached? && album_params['photo'] === 'delete'
       @album.photo.purge
