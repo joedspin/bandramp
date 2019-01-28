@@ -66,11 +66,10 @@ class AlbumForm extends React.Component {
     formData.append('album[upc_ean]', this.state.upc_ean);
     formData.append('album[catalog_number]', this.state.catalog_number);
     formData.append('album[published]', this.state.published);
-    const photoInfo = this.state.photo;
     if (photoDelete) {
       formData.append('album[photo]', 'delete');
-    } else {
-      // formData.append('album[photo]', photoInfo);
+    } else if (this.state.photoFile) {
+      formData.append('album[photo]', this.state.photoFile);
     }
     return formData;
   }
@@ -204,9 +203,10 @@ class AlbumForm extends React.Component {
                   required
                   id="album-form-artist-name" />
               </div>
-              <div className="input-wrapper">
+              <div>
                 <label className="album-form-label" htmlFor="album-form-description">about:</label>
-                <textarea value={this.state.description}
+                <textarea className="album-textarea"
+                  value={this.state.description}
                   onChange={this.update('description')}
                   placeholder="(optional)"
                   id="album-form-description" rows="6" />
@@ -244,6 +244,7 @@ class AlbumForm extends React.Component {
             </div>
           </div>
         </div>
+        <AlbumUserIndex/>
       </div>
     );
   }

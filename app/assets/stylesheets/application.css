@@ -504,17 +504,19 @@ input[type="submit"] {
   padding: 3px;
 }
 
-.album-form-box textarea {
+.album-textarea {
   font-size: 11px;
-  resize: auto;
+  resize: vertical;
   width: 405px;
   margin: 10px 0 10px 0;
   border-color: #9c9c9c #9c9c9c #ccc #ccc;
   color: #333;
   padding: 3px;
-  min-height: inherit;
-  height: auto;
+  /* min-height: inherit;
+  height: auto; */
 }
+
+
 
 #album-form-title {
   font-size: 22px;

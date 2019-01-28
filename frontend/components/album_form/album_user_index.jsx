@@ -20,7 +20,6 @@ class AlbumUserList extends React.Component {
 
     return (
       <div>
-        <UserHeader />
         <div className="album-box">
           <ul className="album-thumb-container">
             {userAlbumsIndex}

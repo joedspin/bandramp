@@ -12,7 +12,7 @@ import AuthLinks from './auth_form/auth_links';
 import SignUpFormContainer from './auth_form/signup_form_container';
 import LogInFormContainer from './auth_form/login_form_container';
 import DemoLogInFormContainer from './auth_form/demo_login_form_container';
-import AlbumUserList from './album_form/album_user_index_container';
+import UserHome from './auth_form/user_index';
 import AlbumForm from './album_form/album_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
@@ -26,7 +26,7 @@ const App = () => (
       <AuthRoute exact path="/login/demo" component={DemoLogInFormContainer} />
       <ProtectedRoute path="/albums/new" component={AlbumForm} />
       <ProtectedRoute path="/albums/:albumId/edit" component={AlbumForm} />
-      <ProtectedRoute path="/" component={AlbumUserList} />
+      <ProtectedRoute path="/" component={UserHome} />
     </Switch>
   </div>
 );
