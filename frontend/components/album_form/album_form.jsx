@@ -157,6 +157,12 @@ class AlbumForm extends React.Component {
         <div className="album-image-blank"></div>
       );
     }
+    let privateLabel = '';
+    if (!this.state.published) {
+      privateLabel = (
+        <p>Private albums are not visible to fans</p>
+      );
+    }
     return (
       <div className="album-page">
         <UserHeader />
@@ -176,6 +182,7 @@ class AlbumForm extends React.Component {
                     id="album-form-release-date" /> <label className="album-form-label"> &nbsp;(optional)</label>
                 </div>
               </div>
+              {privateLabel}
               <div className="album-rule"></div>
               {coverArt}
               <div className="album-rule"></div>

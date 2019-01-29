@@ -571,6 +571,11 @@ input[type="submit"] {
   color: white;
   font-size: 16px;
   align: left;
+  margin-left: 20px;
+}
+
+.album-menu-column .input-wrapper {
+  width: auto;
 }
 
 .album-info-column {
@@ -628,4 +633,42 @@ input[type="submit"] {
     bottom: 0;
     left: 0;
     text-align: center;
+}
+
+.album-link {
+  width: 103px;
+  height: 188px;
+  margin-bottom: 32px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 6px;
+}
+
+.album-link:hover {
+  background-color: #edf1f2;
+}
+
+.album-link strong {
+  font-weight: 700;
+}
+
+.album-link-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 11px;
+  color: #333;
+  margin-bottom: 3px;
+}
+
+.album-link-title:hover, .album-link-title:active, .album-linktitle:visited {
+  text-decoration: none;
+  color: #333;
+}
+
+.album-thumb, .album-thumb img {
+  width: 103px;
+  height: 103px;
+  margin: 0 0 7px 0;
+  padding: 0;
 }

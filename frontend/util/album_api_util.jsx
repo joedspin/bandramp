@@ -36,7 +36,10 @@ const MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
 
 export const convertDate = (rawDate, outputType) => {
-  // outputType 1 = yyyy-mm-dd; outputType 2 = mm/dd/yyyy; outputType 3 = Mmm dd, yyyy
+  // outputType 
+  // 1 = yyyy-mm-dd; outputType 
+  // 2 = mm/dd/yyyy; outputType 
+  // 3 (default) = Mmm dd, yyyy
   const relDate = new Date(rawDate);
   let rDateMonth = ("0" + (relDate.getMonth() + 1));
   rDateMonth = rDateMonth.substring(rDateMonth.length - 2);
