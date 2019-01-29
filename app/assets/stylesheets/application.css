@@ -419,7 +419,6 @@ input[type="submit"] {
   border-left: 1px solid #C32056;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ddd;
-  /* border-right: 4px solid #fff; */
   display: flex;
   border-radius: 0px;
 }
@@ -531,11 +530,7 @@ input[type="submit"] {
   border-color: #9c9c9c #9c9c9c #ccc #ccc;
   color: #333;
   padding: 3px;
-  /* min-height: inherit;
-  height: auto; */
 }
-
-
 
 #album-form-title {
   font-size: 22px;
@@ -548,7 +543,6 @@ input[type="submit"] {
   display: flex;
   flex-direction: row;
   align-items: baseline;
-
 }
 
 #album-form-release-date {
@@ -601,11 +595,13 @@ input[type="submit"] {
   border: 1px solid #ccc;
   background-color: #f8f8f8;
   position: relative;
+  font-size: 11px;
+  line-height: 155%;
 }
 
 .album-list-thumb img {
-  width: 111px;
-  height: 111px;
+  width: 112px;
+  height: 112px;
 }
 
 .album-publish-head {
@@ -646,6 +642,8 @@ input[type="submit"] {
 
 .album-link:hover {
   background-color: #edf1f2;
+  text-decoration: none;
+  color: #333;
 }
 
 .album-link strong {
@@ -671,4 +669,169 @@ input[type="submit"] {
   height: 103px;
   margin: 0 0 7px 0;
   padding: 0;
+}
+
+.splash-box {
+  width: 1180px;
+  display: flex;
+  margin: auto;
+}
+
+.splash-big-feature {
+  width: 870px;
+  height: 442px;
+  overflow: hidden;
+  position: relative;
+  margin-right: 2px;
+}
+
+.splash-big-image {
+  width: 870px;
+  top: -216px;
+  position: absolute;
+}
+
+.splash-big-labels, .splash-side-labels {
+  display: flex;
+  flex-direction: column;
+  align-items: bottom;
+  width: 826px;
+  position: absolute;
+  bottom: 0;
+  left: 100px;
+  padding-bottom: 24px;
+}
+
+.splash-side-feature {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 9x;
+  margin-bottom: 2px;
+}
+
+.splash-side-labels {
+  width: 290px;
+  left: 12px;
+  bottom: -162px;
+  position: absolute;
+  color: white;
+}
+
+.splash-side-labels:hover .splash-side-labels:active, .splash-side-labels:visited
+.splash-big-labels:hover .splash-big-labels:active, .splash-big-labels:visited  {
+  text-decoration: none;
+  color: white;
+}
+
+.splash-big-title {
+  color: white;
+  font-size: 32px;
+  line-height: 37px;
+}
+
+.splash-side-feature {
+  width: 310px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.splash-side-image {
+  width: 310px;
+  top: -82px;
+  position: absolute;
+}
+
+.splash-side-container {
+  position: relative;
+}
+
+.splash-link-side {
+  height: 146px;
+  overflow: hidden;
+  margin-bottom: 2px;
+}
+
+.splash-side-subtitle, .splash-big-subtitle {
+  font-size: 12px;
+  color: white;
+}
+
+.splash-big-subtitle {
+  font-size: 14px;
+  color: white;
+  margin-top: 10px;
+}
+
+.splash-side-linktext {
+  margin-top: 4px;
+  font-size: 70%;
+  text-transform: uppercase;
+}
+
+.splash-big-linktext {
+  color: white;
+  margin-top: 14px;
+  font-size: 12px;
+  padding: 12px;
+  border: 1px solid white;
+  border-radius: 8px;
+  width: max-content;
+  text-align: left;
+}
+
+.splash-big-linktext:hover::after {
+  content: ' →'
+}
+
+.home-message {
+  font-size:18px;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.album-box-head {
+  color: #C32056;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  margin-left: 12px;
+}
+
+.splash-side-play {
+  box-sizing: border-box;
+  font-size: 26px;
+  color: white;
+  background-color: #C32056;
+  width: 90px;
+  height: 65px;
+  content: 'BBB';
+  vertical-align: middle;
+  text-align: center;
+  position: absolute;
+  bottom: 0px;
+  right: -10px;
+  padding-top: 20px;
+}
+
+.splash-side-play::after {
+  content: '▶';
+}
+
+.splash-side-container .splash-side-play {
+  visibility: hidden;
+}
+
+.splash-side-container:hover .splash-side-play {
+  visibility: visible;
+}
+
+.splash-link:hover, .splash-big-image:hover {
+  filter: brightness(110%);
 }

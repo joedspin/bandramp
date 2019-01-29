@@ -4,13 +4,13 @@ import { fetchAlbums } from '../../actions/album_actions';
 
 const mapStateToProps = (state) => {
   const publicAlbums = [];
-  Object.keys(state.albums).forEach ((albumId) => {
-    if (state.albums[albumId].published) {
-      publicAlbums.push(state.albums[albumId]);
+  Object.keys(state.entities.albums).forEach ((albumId) => {
+    if (state.entities.albums[albumId].published) {
+      publicAlbums.push(state.entities.albums[albumId]);
     }
   });
   return {
-    publicAlbums    
+    publicAlbums
   };
 };
 

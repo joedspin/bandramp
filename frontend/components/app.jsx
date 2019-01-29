@@ -8,12 +8,11 @@ import {
   // HashRouter
 } from 'react-router-dom';
 
-import AuthLinks from './auth_form/auth_links';
 import SignUpFormContainer from './auth_form/signup_form_container';
 import LogInFormContainer from './auth_form/login_form_container';
 import DemoLogInFormContainer from './auth_form/demo_login_form_container';
 import UserHome from './auth_form/user_index';
-import Home from './auth_form/home';
+import Home from './auth_form/home_container';
 import AlbumForm from './album_form/album_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 

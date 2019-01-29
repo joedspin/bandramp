@@ -2,6 +2,7 @@ import React from 'react';
 import UserHeader from '../auth_form/user_header';
 import AlbumUserIndex from './album_user_index_container';
 import { convertDate } from '../../util/album_api_util';
+import { clearCreatedAlbumId } from '../../actions/ui_actions';
 
 export const BLANK_ALBUM = {
     title: '',
@@ -25,21 +26,32 @@ class AlbumForm extends React.Component {
   }
 
   componentDidMount() {
+    debugger
     this.props.fetchAlbums();
     if (typeof this.props.match.params.albumId !== "undefined") {
       this.props.fetchAlbum(this.props.match.params.albumId)
-        .then(() => {this.setState(this.props.album);});
+        .then(() => {
+          this.setState(this.props.album);
+        });
+    } else {
+      this.setState({formType: 'Save Draft'});
     }
   }
 
   componentDidUpdate(prevProps) {
+    debugger
     if (prevProps.match.params.albumId !== this.props.match.params.albumId) {
       if (typeof this.props.match.params.albumId === "undefined") {
         this.clearForm();
-        this.state.formType = 'Save Draft';
-      } else {      
+        this.setState({ formType: 'Save Draft' });
+      } else {
+        this.setState({ formType: 'Update' });
         this.props.fetchAlbum(this.props.match.params.albumId)
-        .then(() => { this.setState(this.props.album); });
+        .then(() => { this.setState(this.props.album); }).then(() => {
+          if (prevProps.match.path === '/albums/new') {
+            this.props.clearCreatedAlbumId();
+          }
+        });
       }
     }
   }
@@ -80,6 +92,8 @@ class AlbumForm extends React.Component {
     }
   }
 
+
+
   handleFile(e) {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
@@ -92,11 +106,15 @@ class AlbumForm extends React.Component {
   }
 
   handleSubmit(e) {
+    
     e.preventDefault();
     const formData = this.fillFormData();
     this.props.action(formData).then(() => { 
-      this.setState({ photo: this.state.photo || this.state.photoUrl, photoFile: null, photoUrl: null});
-    });
+      this.setState({ photo: this.state.photo || this.state.photoUrl, 
+        photoFile: null, 
+        photoUrl: null,
+        formType: 'Update'});
+    }).then(() => {this.props.history.push(`/albums/${this.props.createdAlbumId}/edit`)});
   }
 
   renderErrors() {
@@ -193,7 +211,7 @@ class AlbumForm extends React.Component {
                   required
                   id="album-form-artist-name" />
               </div>
-              <div class="input-wrapper with-textarea">
+              <div className="input-wrapper with-textarea">
                 <label className="album-form-label" htmlFor="album-form-description">about:</label>
                 <textarea className="album-textarea"
                   value={this.state.description}

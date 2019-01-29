@@ -30,9 +30,9 @@ class AlbumItemLink extends React.Component {
       );
     }
     return (
-      <li className="album-thumb">
+      <li className="album-list-thumb">
         {thumbImage}
-        <h3 className="album-thumb-title">
+        <h3 className="album-list-title">
           <Link to={`/albums/${this.props.album.id}/edit`}>
             {this.props.album.title}
           </Link><br/>

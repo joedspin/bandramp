@@ -19,6 +19,16 @@ class Api::AlbumsController < ApplicationController
     end
   end
 
+  def destroy 
+    @album = current_user.administered_albums.find(params[:id])
+    if @album
+      @album.destroy
+      render "api/albums"
+    else
+      render json: @album.errors.full_messages, status: 422
+    end
+  end
+
   def update
     @album = current_user.administered_albums.find(params[:id])
     if @album.photo.attached? && album_params['photo'] === 'delete'

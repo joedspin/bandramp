@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { fetchAlbums } from '../../actions/album_actions';
 
 const mapStateToProps = (state) => {
-  const userAlbumIds = state.users[state.session.id].administered_album_ids;
+  const userAlbumIds = state.entities.users[state.session.id].administered_album_ids;
   const userAlbums = [];
   userAlbumIds.forEach ((albumId) => {
-    if (state.albums[albumId]) {
-      userAlbums.push(state.albums[albumId]);
+    if (state.entities.albums[albumId]) {
+      userAlbums.push(state.entities.albums[albumId]);
     }
   });
   return {

@@ -18,8 +18,8 @@ class AlbumLink extends React.Component {
       );
     }
     return (
-      <Link to={`/albums/${this.props.album.id}/edit`}>
-        <li className="album-link">
+      <Link className="album-link" to={`/albums/${this.props.album.id}/edit`}>
+        <li>
           {thumbImage}
           <h3 className="album-link-title">
           <strong>{this.props.album.title}</strong></h3>
