@@ -437,7 +437,7 @@ input[type="submit"] {
 }
 
 .album-box {
-  width: auto;
+  width: 960px;
   margin: auto;
 }
 
@@ -570,6 +570,7 @@ input[type="submit"] {
   cursor: pointer;
   color: white;
   font-size: 16px;
+  align: left;
 }
 
 .album-info-column {
@@ -594,4 +595,37 @@ input[type="submit"] {
   height: 112px;
   border: 1px solid #ccc;
   background-color: #f8f8f8;
+  position: relative;
+}
+
+.album-list-thumb img {
+  width: 111px;
+  height: 111px;
+}
+
+.album-publish-head {
+  margin-bottom: 10px;
+}
+
+.album-publish-menu {
+  margin: 30px;
+  font-size: 11px;
+}
+
+.with-textarea {
+  height: auto;
+}
+
+.label-private {
+    font-size: 10px;
+    color: red;
+    padding: 0.2em 0.3em;
+    border: 1px solid red;
+    background: white;
+    width: 36px;
+    height: 14px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
 }

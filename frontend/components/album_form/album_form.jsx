@@ -186,7 +186,7 @@ class AlbumForm extends React.Component {
                   required
                   id="album-form-artist-name" />
               </div>
-              <div>
+              <div class="input-wrapper with-textarea">
                 <label className="album-form-label" htmlFor="album-form-description">about:</label>
                 <textarea className="album-textarea"
                   value={this.state.description}
@@ -209,11 +209,6 @@ class AlbumForm extends React.Component {
                   placeholder="(optional)"
                   id="album-form-catalog-number" />
               </div>
-              <div className="input-wrapper">
-                <input type="submit" value={this.state.formType}
-                  id="album-form-submit" />
-              </div>
-              {this.renderErrors()}
             </form>
           </div>
           <div className="album-menu-column">
@@ -238,6 +233,12 @@ class AlbumForm extends React.Component {
                   checked={String(this.state.published) === "false"} /> private</li>
               </ul>
             </div>
+            <div className="input-wrapper">
+              <input onClick={this.handleSubmit}
+                type="submit" value={this.state.formType}
+                id="album-form-submit" />
+            </div>
+            {this.renderErrors()}
           </div>
         </div>
         <AlbumUserIndex/>
