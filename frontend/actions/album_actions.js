@@ -39,10 +39,12 @@ const receiveAllAlbums = (albums) => {
   };
 };
 
-const receiveAlbum = (album) => {
+const receiveAlbum = ({album, tracks}) => {
+  debugger
   return {
     type: RECEIVE_ALBUM,
-    album
+    album,
+    tracks
   };
 };
 
