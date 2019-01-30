@@ -130,6 +130,12 @@ class AlbumForm extends React.Component {
 
 
   render() {
+    let artistString ='';
+    if (this.state.artist_name) {
+      artistString = (
+        <p>by <strong>{this.state.artist_name}</strong></p>
+      );
+    }
     let rDate;
     let rDateString;
     if (this.state.release_date.length) {
@@ -138,6 +144,12 @@ class AlbumForm extends React.Component {
     } else {
       rDate = '';
       rDateString = '';
+    }
+    let privateTag = '';
+    if (!this.state.published) {
+      privateTag = (
+        <p><span className="album-private">private</span></p>
+      );
     }
     let coverArt;
     let coverThumb;
@@ -239,8 +251,9 @@ class AlbumForm extends React.Component {
               {coverThumb}
               <div>
                 <h3 className="album-head">{this.state.title || 'Untitled Album'}</h3>
-                <p>by <strong>{this.state.artist_name}</strong></p>
-                <p>{rDateString}</p>
+                {artistString}
+                {rDateString}
+                {privateTag}
               </div>
             </div>
             <div className="album-publish-menu">

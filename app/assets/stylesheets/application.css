@@ -616,6 +616,11 @@ input[type="submit"] {
   height: auto;
 }
 
+.album-private {
+  color: #f00;
+  font-size: 10px;
+}
+
 .label-private {
     font-size: 10px;
     color: red;
