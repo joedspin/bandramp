@@ -839,3 +839,68 @@ strong {
 .splash-link:hover, .splash-big-image:hover {
   filter: brightness(110%);
 }
+
+.track-title-menu {
+  width: 440px;
+  background-color: white;
+  padding: 10px;
+  border-left: 1px solid #C32056;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  border-radius: 0px;
+  position: relative;
+}
+
+.tracks-section-head {
+  color: #808080;
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.track-feature-on, .track-feature-off {
+  position: absolute;
+  width: 18px;
+  height: 14px;
+  left: 24px;
+  font-size: 22px;
+}
+
+.track-feature-on::after {
+  color: #68d277;
+  content: '★';
+}
+
+.track-feature-off::after {
+  color: #bbb;
+  content: '☆';
+}
+
+.track-delete-button {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  color: #333;
+  font-size: 14px;
+}
+
+.track-order {
+  position: absolute;
+  width: 23px;
+  text-align: right;
+  color: #666;
+  font-size: 15px;
+}
+
+.track-head {
+  margin-right: 20px;
+  font-size: 5px;
+  color: #363636;
+}
+
+.track-feature-description {
+  color: #68d277;
+  font-size: 10px;
+  margin: 4px 0 4px 0;
+}

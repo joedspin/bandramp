@@ -2,7 +2,9 @@ import AlbumUserList from './album_user_index';
 import { connect } from 'react-redux';
 import { fetchAlbums } from '../../actions/album_actions';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  debugger
+  const activeAlbumId = ownProps.match.params.albumId;
   const userAlbumIds = state.entities.users[state.session.id].administered_album_ids;
   const userAlbums = [];
   userAlbumIds.forEach ((albumId) => {
@@ -11,7 +13,8 @@ const mapStateToProps = (state) => {
     }
   });
   return {
-    userAlbums    
+    userAlbums,
+    activeAlbumId
   };
 };
 
