@@ -26,7 +26,6 @@ class AlbumForm extends React.Component {
   }
 
   componentDidMount() {
-    debugger
     this.props.fetchAlbums();
     if (typeof this.props.match.params.albumId !== "undefined") {
       this.props.fetchAlbum(this.props.match.params.albumId)
@@ -39,7 +38,6 @@ class AlbumForm extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    debugger
     if (prevProps.match.params.albumId !== this.props.match.params.albumId) {
       if (typeof this.props.match.params.albumId === "undefined") {
         this.clearForm();
