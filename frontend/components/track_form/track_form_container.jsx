@@ -3,18 +3,14 @@ import { createTrack, updateTrack, fetchTrack, fetchTracks } from '../../actions
 import { TrackForm, BLANK_TRACK } from './track_form';
 
 const mapStateToProps = (state, ownProps) => {
-  let album = BLANK_TRACK;
-  let formType = 'Save Draft';
+  let track = BLANK_TRACK;
   if (typeof ownProps.match.params.trackId !== "undefined" &&
     typeof state.entities.tracks !== "undefined") {
-    album = state.entities.tracks[ownProps.match.params.trackId];
-    // formType = 'Update';
+    track = state.entities.albums[ownProps.match.params.trackId];
   }
   return {
     errors: state.errors.track,
-    track,
-    formType,
-    createdAlbumId: state.ui.createdAlbumId
+    track
   };
 };
 
