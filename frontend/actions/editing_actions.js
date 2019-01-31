@@ -6,5 +6,5 @@ export const editAlbum = (album) => {
 };
 
 export const editTrack = (track) => {
-  return { type: EDIT_TRACK, trackId: track.id, track };
+  return { type: EDIT_TRACK, trackId: parseInt(Object.keys(track)), track };
 };

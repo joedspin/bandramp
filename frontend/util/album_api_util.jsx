@@ -42,12 +42,11 @@ export const createAlbumAndTracks = (editing) => {
   });
 };
 
-export const updateAlbumAndTracks = (editing) => {
-  const albumId = editing.album.id;
+export const updateAlbumAndTracks = (album, albumId) => {
   return $.ajax({
     url: `/api/albums/${albumId}`,
     method: 'PATCH',
-    data: editing,
+    data: album,
     contentType: false,
     processData: false
   });

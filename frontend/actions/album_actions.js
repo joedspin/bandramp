@@ -36,20 +36,25 @@ export const updateAlbum = (album, albumId) => dispatch => {
 export const createAlbumAndTracks = (album) => dispatch => {
   return AlbumApiUtil.createAlbumAndTracks(album).then(album =>
     dispatch(
-      receiveAlbum(album, album.tracks)),
-    err => {
-      return dispatch(receiveErrors(err.responseJSON));
-    }
+      receiveAlbum(album, album.tracks),
+      err => {
+        return dispatch(receiveErrors(err.responseJSON));
+      }
+    )
   );
 };
 
-export const updateAlbumAndTracks = (album, albumId) => dispatch => {
+
+export const updateAlbumAndTracks = ((album, albumId) => dispatch => {
   return AlbumApiUtil.updateAlbumAndTracks(album, albumId).then(album =>
     dispatch(
-      receiveAlbum(album, album.tracks)),
-    err => (dispatch(receiveErrors(err.responseJSON)))
+      receiveAlbum(album, album.tracks),
+      err => {
+        return dispatch(receiveErrors(err.responseJSON));
+      }
+    )
   );
-};
+});
 
 const receiveAllAlbums = (albums) => {
   return {

@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
   let formType = 'Save Draft';
   let editingAlbum = BLANK_ALBUM;
   let editingTracks = {};
+  let changes = {albumChanged: false, tracksChanged: []};
   if (typeof ownProps.match.params.albumId !== "undefined" &&
       typeof state.entities.albums !== "undefined") {
     album = state.entities.albums[ownProps.match.params.albumId] || BLANK_ALBUM;
@@ -27,20 +28,24 @@ const mapStateToProps = (state, ownProps) => {
   if (typeof state.editing.tracks !== "undefined") {
     editingTracks = state.editing.tracks;
   }
+  if (typeof state.editing.changes !== "undefined") {
+    changes = state.editing.changes;
+  }
   return {
     errors: state.errors.album,
     album,
     tracks,
     formType,
     createdAlbumId: state.ui.createdAlbumId,
-    editing: {album: editingAlbum, tracks: editingTracks}
+    editing: {album: editingAlbum, tracks: editingTracks, changes: changes}
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  let action = (album) => dispatch(createAlbum(album));
-  if (typeof ownProps.match.params.albumId !== "undefined") {
-    action = (album) => dispatch(updateAlbum(album, ownProps.match.params.albumId));
+  let action = (editing) => dispatch(createAlbumAndTracks(editing));
+  const albumId = ownProps.match.params.albumId;
+  if (typeof albumId !== "undefined") {
+    action = (editing) => dispatch(updateAlbumAndTracks(editing, albumId));
   }
   return {
     fetchAlbum: (albumId) => dispatch(fetchAlbum(albumId)),
@@ -48,8 +53,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     editAlbum: (album) => dispatch(editAlbum(album)),
     editTrack: (track) => dispatch(editTrack(track)),
     clearCreatedAlbumId: () => dispatch(clearCreatedAlbumId()),
-    createAlbumAndTracks: (editing) => dispatch(createAlbumAndTracks(editing)),
-    updateAlbumAndTracks: (editing) => dispatch(updateAlbumAndTracks(editing)),
     action
   };
 };

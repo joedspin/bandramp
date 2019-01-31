@@ -31,38 +31,61 @@ class Api::AlbumsController < ApplicationController
   end
 
   def update
-    debugger
-    return
+    albumErrors = []
+    savedAlbum = true
+    savedTracks = true
     @album = current_user.administered_albums.find(params[:id])
     if @album.photo.attached? && album_params['photo'] === 'delete'
       @album.photo.purge
-      render json: @album
-    else
-      if @album.update(album_params)
-        render json: @album
-      else
-        render json: @album.errors.full_messages, status: 422
+      render :show
+    end
+    if params[:album][:changed] === 'true'
+      unless @album.update(album_params)
+        albumErrors.push(@album.errors.full_messages)
+        savedAlbum = false
       end
+    end
+    params[:album][:changedTrackIds].split(",").each do |trackId|
+      if trackId.include?('add')
+        track = Track.new(track_params[trackId.to_s])
+        unless track.save
+          albumErrors.push(track.errors.full_messages)
+          savedTracks = false
+        end
+      else
+        track = Track.find(trackId)
+        unless (track && track.update(track_params[trackId.to_s]))
+          albumErrors.push(track.errors.full_messages)
+          savedTracks = false
+        end
+      end
+    end
+    if savedAlbum && savedTracks
+      @tracks = @album.tracks
+      render :show
+    else
+      render json: albumErrors, status: 422
     end
   end
 
   private
 
   def album_params
-    params.require(:album).permit(:album, :tracks)
+    params.require(:album).permit(
+      :title,
+      :artist_name,
+      :release_date,
+      :description,
+      :upc_ean,
+      :catalog_number,
+      :published,
+      :administrator_id,
+      :photo
+    )
   end
-  # def album_params
-  #   params.require(:album).permit(
-  #     :title,
-  #     :artist_name,
-  #     :release_date,
-  #     :description,
-  #     :upc_ean,
-  #     :catalog_number,
-  #     :published,
-  #     :administrator_id,
-  #     :photo
-  #   )
-  # end
+
+  def track_params
+    JSON.parse(params[:tracks])
+  end
 
 end

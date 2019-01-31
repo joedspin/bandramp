@@ -1,4 +1,5 @@
 import React from 'react';
+import { handleFile } from './track_form';
 
 class TrackNewForm extends React.Component {
 
@@ -6,7 +7,7 @@ class TrackNewForm extends React.Component {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      this.setState({ photoFile: file, photoUrl: fileReader.result });
+      this.setState({ audioFile: file, audioUrl: fileReader.result });
     };
     if (file) {
       fileReader.readAsDataURL(file);

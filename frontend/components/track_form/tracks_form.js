@@ -13,7 +13,7 @@ class TracksForm extends React.Component {
           track={track} />
       );
     });
-    
+
     return (
       <div className="tracks-module">
         <h3 className="tracks-section-head">TRACKS</h3>
