@@ -13,7 +13,7 @@ class SplashFeatureList extends React.Component {
     if (this.props.bigFeature) {
       splashBigFeature = (
         <Link className="splash-link" to={`/albums/${this.props.bigFeature.id}`}>
-          <div classname="splash-big-container">
+          <div className="splash-big-container">
             <img className="splash-big-image" src={this.props.bigFeature.photo} />
             <div className="splash-big-labels">
               <h3 className="splash-big-title">

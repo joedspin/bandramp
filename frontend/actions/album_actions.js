@@ -1,35 +1,54 @@
-import * as PostApiUtil from '../util/album_api_util';
+import * as AlbumApiUtil from '../util/album_api_util';
 
 export const RECEIVE_ALL_ALBUMS = 'RECEIVE_ALL_ALBUMS';
 export const RECEIVE_ALBUM = 'RECEIVE_ALBUM';
 export const RECEIVE_ALBUM_ERRORS = 'RECEIVE_ALBUM_ERRORS';
 
 export const fetchAlbums = () => dispatch => {
-  return PostApiUtil.fetchAlbums().then(albums => 
+  return AlbumApiUtil.fetchAlbums().then(albums => 
     dispatch(receiveAllAlbums(albums)));
 };
 
 export const fetchAlbum = (id) => dispatch => {
-  return PostApiUtil.fetchAlbum(id).then(album => 
+  return AlbumApiUtil.fetchAlbum(id).then(album => 
     dispatch(receiveAlbum(album)));
 };
 
 export const createAlbum = (album) => dispatch => {
-  return PostApiUtil.createAlbum(album).then(album => 
+  return AlbumApiUtil.createAlbum(album).then(album => 
     dispatch(
-      receiveAlbum(album)),
+      receiveAlbum(album, album.tracks)),
       err => {
         return dispatch(receiveErrors(err.responseJSON));
       }
     );
 };
 
+
 export const updateAlbum = (album, albumId) => dispatch => {
-  return PostApiUtil.updateAlbum(album, albumId).then(album => 
+  return AlbumApiUtil.updateAlbum(album, albumId).then(album => 
     dispatch(
-      receiveAlbum(album)),
+      receiveAlbum(album, album.tracks)),
       err => (dispatch(receiveErrors(err.responseJSON)))
     );
+};
+
+export const createAlbumAndTracks = (album) => dispatch => {
+  return AlbumApiUtil.createAlbumAndTracks(album).then(album =>
+    dispatch(
+      receiveAlbum(album, album.tracks)),
+    err => {
+      return dispatch(receiveErrors(err.responseJSON));
+    }
+  );
+};
+
+export const updateAlbumAndTracks = (album, albumId) => dispatch => {
+  return AlbumApiUtil.updateAlbumAndTracks(album, albumId).then(album =>
+    dispatch(
+      receiveAlbum(album, album.tracks)),
+    err => (dispatch(receiveErrors(err.responseJSON)))
+  );
 };
 
 const receiveAllAlbums = (albums) => {
@@ -39,8 +58,7 @@ const receiveAllAlbums = (albums) => {
   };
 };
 
-const receiveAlbum = ({album, tracks}) => {
-  debugger
+const receiveAlbum = ({album, tracks = null}) => {
   return {
     type: RECEIVE_ALBUM,
     album,

@@ -1,16 +1,11 @@
 
 import { connect } from 'react-redux';
-import { TrackForm, BLANK_TRACK } from './track_form';
+import TracksForm from './tracks_form';
 
-const mapStateToProps = (state, ownProps) => {
-  const tracks = [];
-  if (state.entities.albums[ownProps.match.params.albumId].tracks) {
-    tracks = state.entities.albums[ownProps.match.params.albumId].tracks;
-  }
+const mapStateToProps = (state) => {
   return {
-    tracks
+    tracks: state.editing.tracks || {}
   };
 };
 
-
-export default connect(mapStateToProps)(TrackForm);
+export default connect(mapStateToProps)(TracksForm);

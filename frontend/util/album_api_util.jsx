@@ -32,6 +32,27 @@ export const updateAlbum = (album, albumId) => {
   });
 };
 
+export const createAlbumAndTracks = (editing) => {
+  return $.ajax({
+    url: `/api/albums`,
+    method: 'POST',
+    data: editing,
+    contentType: false,
+    processData: false
+  });
+};
+
+export const updateAlbumAndTracks = (editing) => {
+  const albumId = editing.album.id;
+  return $.ajax({
+    url: `/api/albums/${albumId}`,
+    method: 'PATCH',
+    data: editing,
+    contentType: false,
+    processData: false
+  });
+};
+
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
 

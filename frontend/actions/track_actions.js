@@ -1,18 +1,19 @@
 import * as PostApiUtil from '../util/track_api_util';
 
-export const RECEIVE_ALL_TRACKS = 'RECEIVE_ALL_TRACKS';
-export const RECEIVE_TRACK = 'RECEIVE_TRACK';
+// export const RECEIVE_ALL_TRACKS = 'RECEIVE_ALL_TRACKS';
+// export const RECEIVE_TRACK = 'RECEIVE_TRACK';
 export const RECEIVE_TRACK_ERRORS = 'RECEIVE_TRACK_ERRORS';
+export const UPDATE_TRACK = 'UPDATE_TRACK';
 
-export const fetchTracks = () => dispatch => {
-  return PostApiUtil.fetchTracks().then(track =>
-    dispatch(receiveAllTracks(track)));
-};
+// export const fetchTracks = () => dispatch => {
+//   return PostApiUtil.fetchTracks().then(track =>
+//     dispatch(receiveAllTracks(track)));
+// };
 
-export const fetchTrack = (id) => dispatch => {
-  return PostApiUtil.fetchTrack(id).then(track =>
-    dispatch(receiveTrack(track)));
-};
+// export const fetchTrack = (id) => dispatch => {
+//   return PostApiUtil.fetchTrack(id).then(track =>
+//     dispatch(receiveTrack(track)));
+// };
 
 export const createTrack = (track) => dispatch => {
   return PostApiUtil.createTrack(track).then(track =>
@@ -32,12 +33,20 @@ export const updateTrack = (track, trackId) => dispatch => {
   );
 };
 
-const receiveAllTracks = (tracks) => {
-  return {
-    type: RECEIVE_ALL_TRACKS,
-    tracks
-  };
-};
+// export const updateTracks = (tracks) => dispatch => {
+//   return PostApiUtil.updateTracks(tracks).then(tracks =>
+//     dispatch(null,
+//     err => (dispatch(receiveErrors(err.responseJSON)))
+//   );
+  
+// };
+
+// const receiveAllTracks = (tracks) => {
+//   return {
+//     type: RECEIVE_ALL_TRACKS,
+//     tracks
+//   };
+// };
 
 const receiveTrack = (track) => {
   return {

@@ -31,6 +31,8 @@ class Api::AlbumsController < ApplicationController
   end
 
   def update
+    debugger
+    return
     @album = current_user.administered_albums.find(params[:id])
     if @album.photo.attached? && album_params['photo'] === 'delete'
       @album.photo.purge
@@ -47,17 +49,20 @@ class Api::AlbumsController < ApplicationController
   private
 
   def album_params
-    params.require(:album).permit(
-      :title,
-      :artist_name,
-      :release_date,
-      :description,
-      :upc_ean,
-      :catalog_number,
-      :published,
-      :administrator_id,
-      :photo
-    )
+    params.require(:album).permit(:album, :tracks)
   end
+  # def album_params
+  #   params.require(:album).permit(
+  #     :title,
+  #     :artist_name,
+  #     :release_date,
+  #     :description,
+  #     :upc_ean,
+  #     :catalog_number,
+  #     :published,
+  #     :administrator_id,
+  #     :photo
+  #   )
+  # end
 
 end

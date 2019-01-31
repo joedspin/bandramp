@@ -1,11 +1,11 @@
-export const fetchTracks = () => {
-  return $.ajax({
-    method: 'GET',
-    url: '/api/tracks'
-  });
-};
+// export const fetchTracks = () => {
+//   return $.ajax({
+//     method: 'GET',
+//     url: '/api/tracks'
+//   });
+// };
 
-export const fetchTracks = (id) => {
+export const fetchTrack = (id) => {
   return $.ajax({
     method: 'GET',
     url: `/api/tracks/${id}`
@@ -31,3 +31,13 @@ export const updateTrack = (track, trackId) => {
     processData: false
   });
 };
+
+// export const updateTracks = (tracks) => {
+//   return $.ajax({
+//     url: `/api/tracks/${trackId}`,
+//     method: 'PATCH',
+//     data: track,
+//     contentType: false,
+//     processData: false
+//   });
+// };

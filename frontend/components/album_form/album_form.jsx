@@ -2,7 +2,8 @@ import React from 'react';
 import UserHeader from '../auth_form/user_header';
 import AlbumUserIndex from './album_user_index_container';
 import { convertDate } from '../../util/album_api_util';
-import { clearCreatedAlbumId } from '../../actions/ui_actions';
+import TracksForm from '../track_form/tracks_form_container';
+import { merge } from 'lodash';
 
 export const BLANK_ALBUM = {
     title: '',
@@ -12,6 +13,7 @@ export const BLANK_ALBUM = {
     upc_ean: '',
     catalog_number: '',
     published: false,
+    trackIds: [],
     photoFile: null,
     photoUrl: null,
     photo: null
@@ -54,14 +56,31 @@ class AlbumForm extends React.Component {
     }
   }
 
+  // if it exists, get the album data from the Redux state
+  getAlbum() {
+    let editingAlbum = BLANK_ALBUM;
+    if (this.props.editing && this.props.editing.album) {
+      editingAlbum = merge({}, editingAlbum, this.props.editing.album);
+    }
+    return editingAlbum
+  }
+
   clearForm() {
     this.setState(BLANK_ALBUM);
   }
 
-  update(field) {
+  editAlbum(field) {
     return (e) => {
-      this.setState({ [field]: e.target.value });
+      this.props.editAlbum({ [field]: e.target.value });
     };
+  }
+
+  editAlbumPhoto(photo, photoUrl, photoFile) {
+    this.props.editAlbum({ 
+      [photo]: photo,
+      [photoUrl]: photoUrl,
+      [photoFile]: photoFile
+    });
   }
 
   fillFormData(photoDelete = false) {
@@ -90,13 +109,15 @@ class AlbumForm extends React.Component {
     }
   }
 
-
-
   handleFile(e) {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       this.setState({ photoFile: file, photoUrl: fileReader.result });
+      this.editAlbumPhoto(
+        this.state.photo || this.state.photoUrl, 
+        file,
+        fileReader.result);
     };
     if (file) {
       fileReader.readAsDataURL(file);
@@ -104,15 +125,28 @@ class AlbumForm extends React.Component {
   }
 
   handleSubmit(e) {
-    
     e.preventDefault();
-    const formData = this.fillFormData();
-    this.props.action(formData).then(() => { 
-      this.setState({ photo: this.state.photo || this.state.photoUrl, 
-        photoFile: null, 
-        photoUrl: null,
-        formType: 'Update'});
-    }).then(() => {this.props.history.push(`/albums/${this.props.createdAlbumId}/edit`)});
+    this.props.updateAlbumAndTracks(this.props.editing);
+    // let editedAlbum = this.getAlbum();
+    // this.setState(editedAlbum);
+    // const formData = this.fillFormData();
+    // const albumChanged = this.props.editing.changes.albumChanged;
+    // const tracksChanged = this.props.editing.changes.tracksChanged;
+    // if (tracksChanged.length > 0) {
+    //   const changedTracks = [];
+    //   tracksChanged.forEach((trackId) => {
+    //     changedTracks.push(this.props.editing.tracks[trackId]);
+    //   });
+    //   this.props.updateTracks(changedTracks);
+    // }
+    // if (this.state.formType === 'Save Draft' || albumChanged) {
+    //   this.props.action(formData).then(() => { 
+    //     // this.setState({ photo: this.state.photo || this.state.photoUrl, 
+    //     //   photoFile: null, 
+    //     //   photoUrl: null,
+    //     //   formType: 'Update'});
+    //   }).then(() => {this.props.history.push(`/albums/${this.props.createdAlbumId}/edit`)});
+    // }
   }
 
   renderErrors() {
@@ -127,50 +161,49 @@ class AlbumForm extends React.Component {
     );
   }
 
-
-
   render() {
+    let editingAlbum = this.getAlbum();
     let artistString ='';
-    if (this.state.artist_name) {
+    if (editingAlbum.artist_name) {
       artistString = (
-        <p>by <strong>{this.state.artist_name}</strong></p>
+        <p>by <strong>{editingAlbum.artist_name}</strong></p>
       );
     }
     let rDate;
     let rDateString;
-    if (this.state.release_date.length) {
-      rDate = convertDate(this.state.release_date, 1);
-      rDateString = convertDate(this.state.release_date, 3);
+    if (editingAlbum.release_date.length) {
+      rDate = convertDate(editingAlbum.release_date, 1);
+      rDateString = convertDate(editingAlbum.release_date, 3);
     } else {
       rDate = '';
       rDateString = '';
     }
     let privateTag = '';
-    if (!this.state.published) {
+    if (!editingAlbum.published) {
       privateTag = (
         <p><span className="album-private">private</span></p>
       );
     }
     let coverArt;
     let coverThumb;
-    if (this.state.photoUrl) {
+    if (editingAlbum.photoUrl) {
       coverArt = (
         <div className="album-image-thumb">
-          <img className="album-image-1" src={this.state.photoUrl} />
+          <img className="album-image-1" src={editingAlbum.photoUrl} />
         </div>
       );
       coverThumb = (
-        <img className="album-image-2" src={this.state.photoUrl} />
+        <img className="album-image-2" src={editingAlbum.photoUrl} />
       );
-    } else if (this.state.photo) {
+    } else if (editingAlbum.photo) {
       coverArt = (
         <div className="album-image-thumb">
-          <img className="album-image-1" src={this.state.photo} />
+          <img className="album-image-1" src={editingAlbum.photo} />
           <button onClick={this.deleteCoverArt.bind(this)} className="delete">X</button>
         </div>
       );
       coverThumb = (
-        <img className="album-image-2" src={this.state.photo} />
+        <img className="album-image-2" src={editingAlbum.photo} />
       );
     } else {
       coverArt = (
@@ -186,7 +219,7 @@ class AlbumForm extends React.Component {
       );
     }
     let privateLabel = '';
-    if (!this.state.published) {
+    if (!editingAlbum.published) {
       privateLabel = (
         <p>Private albums are not visible to fans</p>
       );
@@ -198,15 +231,15 @@ class AlbumForm extends React.Component {
           <div className="album-info-column">
             <form onSubmit={this.handleSubmit} className="album-form-box">
               <div className="input-wrapper">
-                <input type="text" value={this.state.title}
-                  onChange={this.update('title')}
+                <input type="text" value={editingAlbum.title}
+                  onChange={this.editAlbum('title')}
                   id="album-form-title" required placeholder='album name' />
               </div>
               <div className="input-wrapper">
                 <div className="album-form-date">
                 <label className="album-form-label" htmlFor="album-form-release-date">release date:</label>
                 <input type="date" value={rDate}
-                  onChange={this.update('release_date')}
+                  onChange={this.editAlbum('release_date')}
                     id="album-form-release-date" /> <label className="album-form-label"> &nbsp;(optional)</label>
                 </div>
               </div>
@@ -216,31 +249,31 @@ class AlbumForm extends React.Component {
               <div className="album-rule"></div>
               <div className="input-wrapper">
                 <label className="album-form-label" htmlFor="album-form-artist-name">artist:</label>
-                <input type="text" value={this.state.artist_name}
-                  onChange={this.update('artist_name')}
+                <input type="text" value={editingAlbum.artist_name}
+                  onChange={this.editAlbum('artist_name')}
                   required
                   id="album-form-artist-name" />
               </div>
               <div className="input-wrapper with-textarea">
                 <label className="album-form-label" htmlFor="album-form-description">about:</label>
                 <textarea className="album-textarea"
-                  value={this.state.description}
-                  onChange={this.update('description')}
+                  value={editingAlbum.description}
+                  onChange={this.editAlbum('description')}
                   placeholder="(optional)"
                   id="album-form-description" rows="6" />
               </div>
               <div className="album-rule"></div>
               <div className="input-wrapper">
                 <label className="album-form-label" htmlFor="album-form-description">album UPC/EAN code:</label>
-                <input type="text" value={this.state.upc_ean}
-                  onChange={this.update('upc_ean')}
+                <input type="text" value={editingAlbum.upc_ean}
+                  onChange={this.editAlbum('upc_ean')}
                   placeholder="(optional)"
                   id="album-form-upc-ean" />
               </div>
               <div className="input-wrapper">
                 <label className="album-form-label" htmlFor="album-form-catalog-number">catalog number:</label>
-                <input type="text" value={this.state.catalog_number}
-                  onChange={this.update('catalog_number')}
+                <input type="text" value={editingAlbum.catalog_number}
+                  onChange={this.editAlbum('catalog_number')}
                   placeholder="(optional)"
                   id="album-form-catalog-number" />
               </div>
@@ -250,28 +283,29 @@ class AlbumForm extends React.Component {
             <div className="album-title-menu">
               {coverThumb}
               <div>
-                <h3 className="album-head">{this.state.title || 'Untitled Album'}</h3>
+                <h3 className="album-head">{editingAlbum.title || 'Untitled Album'}</h3>
                 {artistString}
                 {rDateString}
                 {privateTag}
               </div>
             </div>
+            <TracksForm />
             <div className="album-publish-menu">
               <h4 className="album-publish-head">Publish</h4>
               <ul>
-                <li><input onChange={this.update('published')} 
+                <li><input onChange={this.editAlbum('published')} 
                   type="radio" 
                   value="true" 
-                  checked={String(this.state.published) === "true"} /> public</li>
-                <li><input onChange={this.update('published')} 
+                  checked={String(editingAlbum.published) === "true"} /> public</li>
+                <li><input onChange={this.editAlbum('published')} 
                   type="radio" 
                   value="false" 
-                  checked={String(this.state.published) === "false"} /> private</li>
+                  checked={String(editingAlbum.published) === "false"} /> private</li>
               </ul>
             </div>
             <div className="input-wrapper">
               <input onClick={this.handleSubmit}
-                type="submit" value={this.state.formType}
+                type="submit" value={editingAlbum.formType}
                 id="album-form-submit" />
             </div>
             {this.renderErrors()}
