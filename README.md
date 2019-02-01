@@ -10,7 +10,7 @@ bandramp&rsqo;s frontend is dynamically generated using React, Redux, and ES6. T
 ### User Authentication
 Users can securely sign up, log in, and log out with an email address and password.
 
-![user auth](https://github.com/joedspin/bandramp/blob/master/app/assets/images/bandramp-signup-screengrab.png?raw=true)
+![user auth](https://github.com/joedspin/bandramp/blob/master/app/assets/images/bandramp-signup-screengrab.png)
 
 ### Site Outline
 bandramp&rsquo;s main components are:
@@ -27,16 +27,12 @@ bandramp&rsquo;s main components are:
 ### Asset Manager
 bandramp uses a single-page admin page for album content that allows pro users to upload images and audio files as well as edit fine-grained details for the artistic works. 
 
-A tab structure allows a data-heavy page to be visually graceful and nimble. 
+A tab structure on the frontend allows a data-heavy page to be visually graceful, nimble, and intuitive. React and Redux architecture keeps the administrator on on page while working on the asset.
 
-### Easy UI
-React and redux architecture provide a simple and intuitive interface.  The UI id present and recognizable throughout the entire application and gives users the ability to navigate to any organizational component from any other organizational component.
-
-![ui-tags](https://github.com/BCrawfordScott/aeterNote/blob/master/%C3%A6terNote_readme_images%20/tag-index.png)
-![ui-new-notebook](https://github.com/BCrawfordScott/aeterNote/blob/master/%C3%A6terNote_readme_images%20/create_notebook.png)
+![asset manager](https://github.com/joedspin/bandramp/blob/master/app/assets/images/bandramp-album-edit-screengrab.png)
 
 #### Future Features
 
-1. Audio player
+1. Audio players and additional data points for tracks
 2. Artist follows
 3. Robust album pages with header image and embedded lyrics and credits
