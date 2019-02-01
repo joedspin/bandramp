@@ -131,6 +131,7 @@ class AlbumForm extends React.Component {
 
   formatTrackData(track) {
     const editingAlbum = this.getAlbum();
+    debugger
     const trackObject = 
       {[track.id]: {
         "album_id": `${editingAlbum.id}`,
@@ -138,8 +139,7 @@ class AlbumForm extends React.Component {
         "bonus_track": `${track.bonus_track}`,
         "lyrics": `${track.lyrics}`,
         "release_date": `${track.release_date}`,
-        "track_order": `${track.track_order}`,
-        "audio_file": `${track.audio_file}`
+        "track_order": `${track.track_order}`
       }};
     return trackObject;
   }
@@ -159,7 +159,7 @@ class AlbumForm extends React.Component {
     if (tracksChanged.length > 0) {
       tracksChanged.forEach((trackId) => {
         changedTracks = merge({}, changedTracks, this.formatTrackData(this.props.editing.tracks[trackId]));
-        formData.append('track[audio_file]', this.props.editing.tracks[trackId].audio_file);
+        // formData.append('track[audio_file]', this.props.editing.tracks[trackId].audio_file);
       });
     }
     formData.append('tracks', JSON.stringify(changedTracks));

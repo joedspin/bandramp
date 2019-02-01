@@ -8,35 +8,26 @@ bandramp&rsqo;s frontend is dynamically generated using React, Redux, and ES6. T
 ## Features
 
 ### User Authentication
-Users can securely sign up, log in, and log out simply by setting an email address and password for their account.
+Users can securely sign up, log in, and log out with an email address and password.
 
-![user auth](https://github.com/BCrawfordScott/aeterNote/blob/master/%C3%A6terNote_readme_images%20/session_forms.png)
+![user auth](https://github.com/joedspin/bandramp/blob/master/app/assets/images/bandramp-signup-screengrab.png?raw=true)
 
-### Structure
-æterNote's main components are as follows:
+### Site Outline
+bandramp&rsquo;s main components are:
 
-1. Sidenav
-  - Main navigation for the application
-2. Note Show
-  - Serves as both the creator and editor of a users notes
-  - Implemented through [React Quill](https://github.com/zenoamaro/react-quill)
-3. Notebooks
-  - Lists all notebooks
-  - Shows associated notes
-4. Tags
-  - Lists all tags
-  - Shows associated notes
+1. Splash Page
+  - Highlights four albums
+  - Carousel of recent additions
+2. Label admin
+  - Pro users can add and edit album content
+  - Easy-to-user interface for providing robust song and album details
+  - Media assets hosted on amazon S3
+  - Complex data structure managed through custom Redux state
 
-### Rich Text Editing
-æterNote implements React-Quill, a react component version of the popular Quill.js
+### Asset Manager
+bandramp uses a single-page admin page for album content that allows pro users to upload images and audio files as well as edit fine-grained details for the artistic works. 
 
-![text-editor](https://github.com/BCrawfordScott/aeterNote/blob/master/%C3%A6terNote_readme_images%20/text_editor.png)
-
-The editor serves as both a create and/or an update form for notes.  It gives the user the ability to assign and re-assign the current note to notebooks, and assign tags to the current note.
-
-Notebooks are listed via dropdown at the top of the editor. Users can also create a new notebook through the dropdown.
-
-Tags are listed as clickable buttons in a list at the top of the editor.
+A tab structure allows a data-heavy page to be visually graceful and nimble. 
 
 ### Easy UI
 React and redux architecture provide a simple and intuitive interface.  The UI id present and recognizable throughout the entire application and gives users the ability to navigate to any organizational component from any other organizational component.
@@ -46,6 +37,6 @@ React and redux architecture provide a simple and intuitive interface.  The UI i
 
 #### Future Features
 
-1. Auto-save
-2. Image uploading
-3. Google maps integration
+1. Audio player
+2. Artist follows
+3. Robust album pages with header image and embedded lyrics and credits
