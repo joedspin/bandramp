@@ -1,4 +1,4 @@
-# bandramp
+![bandramp logo](https://github.com/joedspin/bandramp/blob/master/app/assets/images/bandramp-logo.png)
 
 [brandramp](https://bandramp.herokuapp.com/) is a single-page clone of [bandcamp](https://bandcamp.com/), a music  platform for artists and labels to share and monetize their work and for fans to discover and enjoy it.
 
@@ -35,8 +35,6 @@ A tab structure on the frontend allows a data-heavy page to be visually graceful
 
 By managing the data-heavy album information in the Redux state, bandramp efficiently passes back to the server only those data records that have been added or modified by the user during each page session.
 
-Nest track details are passed back using `JSON.stringify` and `parse`d on the backend.
-
 ```handleSubmit(e) {
   e.preventDefault();
   let formData = new FormData(); 
@@ -56,6 +54,22 @@ Nest track details are passed back using `JSON.stringify` and `parse`d on the ba
   }
   formData.append('tracks', JSON.stringify(changedTracks));
   this.props.action(formData);
+  }```
+
+Nested track details bundled up into a custom object-like strcture and passed back using `JSON.stringify` to be reassembled on the backed with `JSON.parse`.
+
+```formatTrackData(track) {
+    const editingAlbum = this.getAlbum();
+    const trackObject = 
+      {[track.id]: {
+        "album_id": `${editingAlbum.id}`,
+        "title": `${track.title}`,
+        "bonus_track": `${track.bonus_track}`,
+        "lyrics": `${track.lyrics}`,
+        "release_date": `${track.release_date}`,
+        "track_order": `${track.track_order}`
+      }};
+    return trackObject;
   }```
 
 #### Future Features
