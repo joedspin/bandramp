@@ -1,9 +1,9 @@
 # bandramp
 
-[brandramp](https://bandramp.herokuapp.com/) is a single-page clone of [bandcamp] (https://bandcamp.com/), a music  platform for artists and labels to share and monetize their work and for fans to discover and enjoy it.
+[brandramp](https://bandramp.herokuapp.com/) is a single-page clone of [bandcamp](https://bandcamp.com/), a music  platform for artists and labels to share and monetize their work and for fans to discover and enjoy it.
 
 ### Technologies
-bandramp&rsqo;s frontend is dynamically generated using React, Redux, and ES6. The backed data interaction is build in Ruby on Rails with some jQuery to generate ajax requests to the Rails backend.
+bandramp’s frontend is dynamically generated using React, Redux, and ES6. The backed data interaction is build in Ruby on Rails with some jQuery to generate ajax requests to the Rails backend.
 
 ## Features
 
@@ -13,7 +13,7 @@ Users can securely sign up, log in, and log out with an email address and passwo
 ![user auth](https://github.com/joedspin/bandramp/blob/master/app/assets/images/bandramp-signup-screengrab.png)
 
 ### Site Outline
-bandramp&rsquo;s main components are:
+bandramp’s main components are:
 
 1. Splash Page
   - Highlights four albums

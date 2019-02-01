@@ -131,7 +131,6 @@ class AlbumForm extends React.Component {
 
   formatTrackData(track) {
     const editingAlbum = this.getAlbum();
-    debugger
     const trackObject = 
       {[track.id]: {
         "album_id": `${editingAlbum.id}`,
