@@ -1,40 +1,51 @@
-# README
+# bandramp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[brandramp](https://bandramp.herokuapp.com/) is a single-page clone of [bandcamp] (https://bandcamp.com/), a music  platform for artists and labels to share and monetize their work and for fans to discover and enjoy it.
 
-Things you may want to cover:
+### Technologies
+bandramp&rsqo;s frontend is dynamically generated using React, Redux, and ES6. The backed data interaction is build in Ruby on Rails with some jQuery to generate ajax requests to the Rails backend.
 
-* Ruby version
+## Features
 
-* System dependencies
+### User Authentication
+Users can securely sign up, log in, and log out simply by setting an email address and password for their account.
 
-* Configuration
+![user auth](https://github.com/BCrawfordScott/aeterNote/blob/master/%C3%A6terNote_readme_images%20/session_forms.png)
 
-* Database creation
+### Structure
+æterNote's main components are as follows:
 
-* Database initialization
+1. Sidenav
+  - Main navigation for the application
+2. Note Show
+  - Serves as both the creator and editor of a users notes
+  - Implemented through [React Quill](https://github.com/zenoamaro/react-quill)
+3. Notebooks
+  - Lists all notebooks
+  - Shows associated notes
+4. Tags
+  - Lists all tags
+  - Shows associated notes
 
-* How to run the test suite
+### Rich Text Editing
+æterNote implements React-Quill, a react component version of the popular Quill.js
 
-* Services (job queues, cache servers, search engines, etc.)
+![text-editor](https://github.com/BCrawfordScott/aeterNote/blob/master/%C3%A6terNote_readme_images%20/text_editor.png)
 
-* Deployment instructions
+The editor serves as both a create and/or an update form for notes.  It gives the user the ability to assign and re-assign the current note to notebooks, and assign tags to the current note.
 
-* ...
+Notebooks are listed via dropdown at the top of the editor. Users can also create a new notebook through the dropdown.
 
-For possible further development
+Tags are listed as clickable buttons in a list at the top of the editor.
 
-## `artists`
-| column name       | data type | details                        |
-|:------------------|:---------:|:-------------------------------|
-| `id`              | integer   | not null, primary key          |
-| `name`            | integer   | not null, indexed              |
-| `img_url`         | string    |                                |
-| `fb_url`          | string    |                                | 
-| `twitter_url`     | string    |                                |
-| `vimeo_url`       | string    |                                |            
-| `created_at`      | datetime  | not null                       |
-| `updated_at`      | datetime  | not null                       |
+### Easy UI
+React and redux architecture provide a simple and intuitive interface.  The UI id present and recognizable throughout the entire application and gives users the ability to navigate to any organizational component from any other organizational component.
 
-+ index on `:name, unique: true`
+![ui-tags](https://github.com/BCrawfordScott/aeterNote/blob/master/%C3%A6terNote_readme_images%20/tag-index.png)
+![ui-new-notebook](https://github.com/BCrawfordScott/aeterNote/blob/master/%C3%A6terNote_readme_images%20/create_notebook.png)
+
+#### Future Features
+
+1. Auto-save
+2. Image uploading
+3. Google maps integration
