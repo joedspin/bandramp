@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     delete window['currentUser'];
   }
   const store = configureStore(preloadedState);
-  window.store = store;
+  // window.store = store;
   // window.logout = logout;
-  window.dispatch = store.dispatch;
+  // window.dispatch = store.dispatch;
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);
 });

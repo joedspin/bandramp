@@ -48,7 +48,6 @@ class TrackForm extends React.Component {
   render() {
     let featureTag;
     let featureDescription = '';
-    let featureClass = 'track-title-input';
     if (this.props.track.track_order === 1) {
       featureTag = <div className="track-feature-on"></div>
       featureDescription = (
@@ -58,7 +57,6 @@ class TrackForm extends React.Component {
           album, and it's also the track that will play in Discover.
       </div>
       );
-      featureClass = 'track-title-input feature-class';
     } else {
       featureTag = <div className="track-feature-off"></div>
     }
@@ -95,12 +93,12 @@ class TrackForm extends React.Component {
           <h3 className="track-head">{this.props.track.title || 'Untitled Track'}</h3>
           {featureDescription}
           {this.props.track.duration}
-          <div className="input-wrapper track-title">
-            <input className={featureClass} type="text" value={this.props.track.title}
+          <div className="input-wrapper">
+            <input type="text" value={this.props.track.title}
               onChange={this.editTrack(this.props.track.id, 'title')}
               id="track-form-title" required placeholder='track name' />
           </div>
-          {/* <div className="input-wrapper">
+          <div className="input-wrapper">
             <label className="album-form-label" htmlFor="track-form-duration">duration:</label>
             <input type="text" value={this.props.track.duration}
               onChange={this.editTrack(this.props.track.id, 'duration')}
@@ -114,7 +112,7 @@ class TrackForm extends React.Component {
               placeholder="(optional)"
               id="album-form-description" rows="6" />
           </div>
-          {audioFile} */}
+          {audioFile}
         </div>
       </div>
     );

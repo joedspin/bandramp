@@ -842,6 +842,7 @@ strong {
 
 .track-title-menu {
   width: 440px;
+  height: 65px;
   background-color: white;
   padding: 10px;
   border-left: 1px solid #C32056;
@@ -850,6 +851,7 @@ strong {
   display: flex;
   border-radius: 0px;
   position: relative;
+  margin-bottom: 2px;
 }
 
 .tracks-section-head {
@@ -864,8 +866,8 @@ strong {
   position: absolute;
   width: 18px;
   height: 14px;
-  left: 24px;
-  font-size: 22px;
+  left: 11px;
+  font-size: 17px;
 }
 
 .track-feature-on::after {
@@ -888,6 +890,7 @@ strong {
 
 .track-order {
   position: absolute;
+  left: 23px;
   width: 23px;
   text-align: right;
   color: #666;
@@ -895,13 +898,36 @@ strong {
 }
 
 .track-head {
+  position: absolute;
+  width: 350px;
+  left: 53px;
+  top: 10px;
   margin-right: 20px;
-  font-size: 5px;
+  font-size: 15px;
   color: #363636;
 }
 
 .track-feature-description {
+  position: absolute;
   color: #68d277;
   font-size: 10px;
-  margin: 4px 0 4px 0;
+  margin: 4px 18px 4px 0;
+  top: 50px;
+  left: 53px;
+  line-height: 120%;
+}
+
+.track-title {
+  position: absolute;
+  left: 53px;
+  top: 27px;
+}
+
+.track-title-input {
+  width: 380px;
+  height: 15px;
+}
+
+.feature-class {
+  top: 40px;
 }

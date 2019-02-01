@@ -1,6 +1,8 @@
 import { RECEIVE_ALBUM } from '../actions/album_actions';
 import { EDIT_ALBUM } from '../actions/editing_actions';
 import { EDIT_TRACK } from '../actions/editing_actions';
+import { ADD_TRACK } from '../actions/editing_actions';
+import { CLEAR_FORM } from '../actions/editing_actions';
 import { merge } from 'lodash';
 
 const EditingReducer = (state = {}, action) => {
@@ -8,7 +10,13 @@ const EditingReducer = (state = {}, action) => {
   let newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_ALBUM:
-      return {albumChanged: false, tracksChanged: []}
+      const prevTrackCount = action.album.track_ids.length || 0;
+      return {
+        albumChanged: false, 
+        tracksChanged: [], 
+        newTracks: 0,
+        prevTrackCount: prevTrackCount
+      };
     case EDIT_ALBUM:
       newState = Object.assign({}, newState, { albumChanged: true });
       return newState;
@@ -19,6 +27,12 @@ const EditingReducer = (state = {}, action) => {
         newState.tracksChanged.push(action.trackId);
         return newState;
       }
+    case ADD_TRACK:
+      newState = Object.assign({}, newState, {newTracks: action.newTrackNum});
+      return newState;
+    case CLEAR_FORM:
+      return {albumChanged: false, tracksChanged: [], 
+          newTracks: 0, prevTrackCount: 0}
     default:
       return state;
   }

@@ -63,7 +63,7 @@ const receiveAllAlbums = (albums) => {
   };
 };
 
-const receiveAlbum = ({album, tracks = null}) => {
+export const receiveAlbum = ({album, tracks = null}) => {
   return {
     type: RECEIVE_ALBUM,
     album,

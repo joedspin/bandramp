@@ -14,6 +14,7 @@ class Api::AlbumsController < ApplicationController
     @album = Album.new(album_params)
     @album.administrator_id = current_user.id
     if @album.save
+      @tracks = @album.tracks
       render "api/albums/show"
     else
       render json: @album.errors.full_messages, status: 422
@@ -37,34 +38,36 @@ class Api::AlbumsController < ApplicationController
     @album = current_user.administered_albums.find(params[:id])
     if @album.photo.attached? && album_params['photo'] === 'delete'
       @album.photo.purge
-      render :show
-    end
-    if params[:album][:changed] === 'true'
-      unless @album.update(album_params)
-        albumErrors.push(@album.errors.full_messages)
-        savedAlbum = false
-      end
-    end
-    params[:album][:changedTrackIds].split(",").each do |trackId|
-      if trackId.include?('add')
-        track = Track.new(track_params[trackId.to_s])
-        unless track.save
-          albumErrors.push(track.errors.full_messages)
-          savedTracks = false
-        end
-      else
-        track = Track.find(trackId)
-        unless (track && track.update(track_params[trackId.to_s]))
-          albumErrors.push(track.errors.full_messages)
-          savedTracks = false
-        end
-      end
-    end
-    if savedAlbum && savedTracks
       @tracks = @album.tracks
       render :show
     else
-      render json: albumErrors, status: 422
+      if params[:album][:changed] === 'true'
+        unless @album.update(album_params)
+          albumErrors.push(@album.errors.full_messages)
+          savedAlbum = false
+        end
+      end
+      params[:album][:changedTrackIds].split(",").each do |trackId|
+        if trackId.include?('add')
+          track = Track.new(track_params[trackId.to_s])
+          unless track.save
+            albumErrors.push(track.errors.full_messages)
+            savedTracks = false
+          end
+        else
+          track = Track.find(trackId)
+          unless (track && track.update(track_params[trackId.to_s]))
+            albumErrors.push(track.errors.full_messages)
+            savedTracks = false
+          end
+        end
+      end
+      if savedAlbum && savedTracks
+        @tracks = @album.tracks
+        render :show
+      else
+        render json: albumErrors, status: 422
+      end
     end
   end
 

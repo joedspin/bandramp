@@ -42,7 +42,7 @@ class AlbumForm extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.albumId !== this.props.match.params.albumId) {
       if (typeof this.props.match.params.albumId === "undefined") {
-        this.clearForm();
+        this.props.clearForm();
         this.setState({ formType: 'Save Draft' });
       } else {
         this.setState({ formType: 'Update' });
@@ -50,6 +50,7 @@ class AlbumForm extends React.Component {
         .then(() => { this.setState(this.props.album); }).then(() => {
           if (prevProps.match.path === '/albums/new') {
             this.props.clearCreatedAlbumId();
+            this.setState({ formType: 'Update' });
           }
         });
       }
@@ -77,10 +78,26 @@ class AlbumForm extends React.Component {
 
   editAlbumPhoto(photo, photoUrl, photoFile) {
     this.props.editAlbum({ 
-      [photo]: photo,
-      [photoUrl]: photoUrl,
-      [photoFile]: photoFile
+      photo: photo,
+      photoUrl: photoUrl,
+      photoFile: photoFile
     });
+  }
+
+  handleFile(e) {
+    e.preventDefault();
+    let editingAlbum = this.getAlbum();
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.editAlbumPhoto(
+        fileReader.result,
+        fileReader.result,
+        file);
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
   }
 
   fillFormData(photoDelete = false) {
@@ -107,33 +124,22 @@ class AlbumForm extends React.Component {
     this.editAlbumPhoto('delete', '', '');
     const formData = this.fillFormData(true);
     if (this.state.formType === 'Update') {
-      this.props.action(formData).then(() => {this.setState({photo: ''});});
+      this.props.action(formData).then(() => {this.editAlbum({photo: ''});});
     }
   }
 
-  handleFile(e) {
-    let editingAlbum = this.getAlbum();
-    const file = e.currentTarget.files[0];
-    const fileReader = new FileReader();
-    fileReader.onloadend = () => {
-       this.editAlbumPhoto(
-        editingAlbum.photo || editingAlbum.photoUrl, 
-        file,
-        fileReader.result);
-    };
-    if (file) {
-      fileReader.readAsDataURL(file);
-    }
-  }
 
   formatTrackData(track) {
+    const editingAlbum = this.getAlbum();
     const trackObject = 
       {[track.id]: {
+        "album_id": `${editingAlbum.id}`,
         "title": `${track.title}`,
         "bonus_track": `${track.bonus_track}`,
         "lyrics": `${track.lyrics}`,
         "release_date": `${track.release_date}`,
-        "track_order": `${track.track_order}`
+        "track_order": `${track.track_order}`,
+        "audio_file": `${track.audio_file}`
       }};
     return trackObject;
   }
@@ -153,15 +159,15 @@ class AlbumForm extends React.Component {
     if (tracksChanged.length > 0) {
       tracksChanged.forEach((trackId) => {
         changedTracks = merge({}, changedTracks, this.formatTrackData(this.props.editing.tracks[trackId]));
+        formData.append('track[audio_file]', this.props.editing.tracks[trackId].audio_file);
       });
     }
     formData.append('tracks', JSON.stringify(changedTracks));
-    this.props.action(formData).then(() => { 
-      // this.setState({ photo: this.state.photo || this.state.photoUrl, 
-      //   photoFile: null, 
-      //   photoUrl: null,
-      //   formType: 'Update'});
-    }).then(() => {this.props.history.push(`/albums/${this.props.createdAlbumId}/edit`)});
+
+    this.props.action(formData).then(() => 
+      {
+        this.props.history.push(`/albums/${this.props.createdAlbumId}/edit`);
+      });
   }
 
   renderErrors() {
@@ -178,6 +184,7 @@ class AlbumForm extends React.Component {
 
   render() {
     let editingAlbum = this.getAlbum();
+    editingAlbum.formType = this.state.formType;
     let artistString ='';
     if (editingAlbum.artist_name) {
       artistString = (

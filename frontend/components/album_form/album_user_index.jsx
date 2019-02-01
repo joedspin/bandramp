@@ -7,6 +7,10 @@ class AlbumUserList extends React.Component {
     this.props.fetchAlbums();
   }
 
+  componentDidMount() {
+    this.render();
+  }
+
   render() {
     let userAlbumsIndex = null;
     userAlbumsIndex = this.props.userAlbums.map ((album) => {
