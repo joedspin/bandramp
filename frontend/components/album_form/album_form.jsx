@@ -163,10 +163,13 @@ class AlbumForm extends React.Component {
       });
     }
     formData.append('tracks', JSON.stringify(changedTracks));
-
+    let pageAfter = `/albums/${this.props.createdAlbumId}/edit`;
+    if (this.state.formType === 'Update') {
+      pageAfter = "/user";
+    }
     this.props.action(formData).then(() => 
       {
-        this.props.history.push(`/albums/${this.props.createdAlbumId}/edit`);
+        this.props.history.push(pageAfter);
       });
   }
 
