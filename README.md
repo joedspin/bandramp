@@ -31,6 +31,33 @@ A tab structure on the frontend allows a data-heavy page to be visually graceful
 
 ![asset manager](https://github.com/joedspin/bandramp/blob/master/app/assets/images/bandramp-album-edit-screengrab.png)
 
+### Efficient Data Handling
+
+By managing the data-heavy album information in the Redux state, bandramp efficiently passes back to the server only those data records that have been added or modified by the user during each page session.
+
+Nest track details are passed back using `JSON.stringify` and `parse`d on the backend.
+
+```handleSubmit(e) {
+  e.preventDefault();
+  let formData = new FormData(); 
+  const albumChanged = this.props.editing.changes.albumChanged;
+  const changedTrackIds = this.props.editing.changes.tracksChanged;
+  if (albumChanged) {
+    formData = this.fillFormData();
+  }
+  formData.append('album[changed]', albumChanged);
+  formData.append('album[changedTrackIds]', changedTrackIds);
+  const tracksChanged = this.props.editing.changes.tracksChanged;
+  let changedTracks = {};
+  if (tracksChanged.length > 0) {
+    tracksChanged.forEach((trackId) => {
+      changedTracks = merge({}, changedTracks, this.formatTrackData(this.props.editing.tracks[trackId]));
+    });
+  }
+  formData.append('tracks', JSON.stringify(changedTracks));
+  this.props.action(formData);
+  }```
+
 #### Future Features
 
 1. Audio players and additional data points for tracks
