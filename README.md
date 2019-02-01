@@ -1,4 +1,4 @@
-![bandramp logo](https://github.com/joedspin/bandramp/blob/master/app/assets/images/bandramp-logo.png)
+![bandramp logo](https://github.com/joedspin/bandramp/blob/master/app/assets/images/bandramp_logo.png)
 
 [brandramp](https://bandramp.herokuapp.com/) is a single-page clone of [bandcamp](https://bandcamp.com/), a music  platform for artists and labels to share and monetize their work and for fans to discover and enjoy it.
 
