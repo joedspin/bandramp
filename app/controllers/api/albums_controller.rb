@@ -49,14 +49,12 @@ class Api::AlbumsController < ApplicationController
       end
       params[:album][:changedTrackIds].split(",").each do |trackId|
         if trackId.include?('add')
-          debugger
           track = Track.new(track_params[trackId.to_s])
           unless track.save
             albumErrors.push(track.errors.full_messages)
             savedTracks = false
           end
         else
-          debugger
           track = Track.find(trackId)
           unless (track && track.update(track_params[trackId.to_s]))
             albumErrors.push(track.errors.full_messages)
