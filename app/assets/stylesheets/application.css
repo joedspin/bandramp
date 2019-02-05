@@ -277,8 +277,10 @@ header {
 
 .auth-footer {
   background-color: #C32056;
-  margin-top: 220px;
-  height: 320px;
+  /* margin-top: 220px;
+  height: 320px; */
+  margin: 0;
+  height: 0;
   width: 100%;
 }
 
@@ -299,7 +301,9 @@ header {
   width: 100%;
   /* background-color: #DDD; */
 }
-
+.demo-login-link {
+  margin: auto;
+}
 .login-form-container {
   padding-top: 25px;
   display: flex;
@@ -930,4 +934,44 @@ strong {
 
 .feature-class {
   top: 40px;
+}
+
+.tracks-add-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.tracks-add-button {
+  font-size: 20px;
+  margin: 0;
+  color: #C32056;
+  border: none;
+  background: none;
+  text-decoration: none;
+}
+
+.tracks-add-button:hover {
+  text-decoration: underline;
+}
+
+.tracks-add-arrow {
+  color: #C32056;
+  font-size: 16px;
+  margin: 0;
+}
+
+.tracks-add-info {
+  font-size: 12px;
+  color: #909090;
+  margin-left: 30px;
+}
+
+.site-color {
+  color: #C32056;
+}
+
+.audio-file {
+  position: absolute;
+  left: 50px;
+  top: 50px;
 }

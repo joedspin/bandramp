@@ -24,9 +24,10 @@ class TrackForm extends React.Component {
   editTrackAudio(audio_file, audioUrl, audioFile) {
     this.props.editTrack({
       [this.props.track.id]: {
-      audio_file: audio_file,
-      audioUrl: audioUrl,
-      audioFile: audioFile}
+        audio_file: audio_file,
+        audioUrl: audioUrl,
+        audioFile: audioFile
+      }
     });
   }
 
@@ -55,7 +56,7 @@ class TrackForm extends React.Component {
         <div className="track-feature-description">
           <strong>Featured: </strong>
           this is the track that will be cued up when fans visit or embed the&nbsp;
-          album, and it's also the track that will play in Discover.
+          album, and it's also the track that will play in Discover.
       </div>
       );
       featureClass = 'track-title-input feature-class';
@@ -66,18 +67,18 @@ class TrackForm extends React.Component {
     let audioFile;
     if (this.props.track.audioUrl) {
       audioFile = (
-        <div>track ready to load</div>
+        <div className="audio-file">track ready to load</div>
       );
     } else if (this.props.track.audio_file) {
       audioFile = (
-        <div>{this.props.track.audio_file}
+        <div className="audio-file">{this.props.track.audio_file}
           track loaded
           {/* <button onClick={this.deleteCoverArt.bind(this)} className="delete">X</button> */}
         </div>
       );
     } else {
       audioFile = (
-        <div className="input-wrapper">
+        <div className="input-wrapper audio-file">
           <label htmlFor="track-audio-file">audio file:</label>
           <input type="file"
             onChange={this.handleFile.bind(this)}
@@ -113,8 +114,8 @@ class TrackForm extends React.Component {
               onChange={this.editTrack(this.props.track.id, 'lyrics')}
               placeholder="(optional)"
               id="album-form-description" rows="6" />
-          </div>
-          {audioFile} */}
+          </div> */}
+          {audioFile}
         </div>
       </div>
     );

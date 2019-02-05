@@ -48,17 +48,36 @@ class Api::AlbumsController < ApplicationController
         end
       end
       params[:album][:changedTrackIds].split(",").each do |trackId|
+        tData = track_params[trackId.to_s]
+        tParams = {}
+        tParams[:id] = trackId
+        tParams[:album_id] = tData["album_id"]
+        tParams[:title] = tData["title"]
+        tParams[:release_date] = tData["release_date"]
+        tParams[:bonus_track] = tData["bonus_track"]
+        tParams[:track_order] = tData["track_order"]
+        tParams[:lyrics] = tData["lyrics"]
+        newAudio = ''
+        unless audio_params[:audio_file][trackId.to_s] === '' ||
+            audio_params[:audio_file][trackId.to_s] === "null"
+          newAudio = audio_params[:audio_file][trackId.to_s]
+        end
         if trackId.include?('add')
-          track = Track.new(track_params[trackId.to_s])
+          tParams.delete(:id)
+          track = Track.new(tParams)
           unless track.save
             albumErrors.push(track.errors.full_messages)
             savedTracks = false
           end
         else
+          tParams[:id] = tParams[:id].to_i
           track = Track.find(trackId)
-          unless (track && track.update(track_params[trackId.to_s]))
+          unless (track && track.update(tParams))
             albumErrors.push(track.errors.full_messages)
             savedTracks = false
+          end
+          unless newAudio === ''
+            track.audio_file.attach(newAudio)
           end
         end
       end
@@ -89,6 +108,11 @@ class Api::AlbumsController < ApplicationController
 
   def track_params
     JSON.parse(params[:tracks])
+
+  end
+
+  def audio_params
+    params.require(:track)
   end
 
 end

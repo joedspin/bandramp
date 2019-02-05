@@ -6,18 +6,18 @@ import TracksForm from '../track_form/tracks_form_container';
 import { merge } from 'lodash';
 
 export const BLANK_ALBUM = {
-    title: '',
-    artist_name: '',
-    release_date: '',
-    description: '',
-    upc_ean: '',
-    catalog_number: '',
-    published: false,
-    trackIds: [],
-    photoFile: null,
-    photoUrl: null,
-    photo: null
-  };
+  title: '',
+  artist_name: '',
+  release_date: '',
+  description: '',
+  upc_ean: '',
+  catalog_number: '',
+  published: false,
+  trackIds: [],
+  photoFile: null,
+  photoUrl: null,
+  photo: null
+};
 
 class AlbumForm extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class AlbumForm extends React.Component {
           this.setState(this.props.album);
         });
     } else {
-      this.setState({formType: 'Save Draft'});
+      this.setState({ formType: 'Save Draft' });
     }
   }
 
@@ -47,12 +47,12 @@ class AlbumForm extends React.Component {
       } else {
         this.setState({ formType: 'Update' });
         this.props.fetchAlbum(this.props.match.params.albumId)
-        .then(() => { this.setState(this.props.album); }).then(() => {
-          if (prevProps.match.path === '/albums/new') {
-            this.props.clearCreatedAlbumId();
-            this.setState({ formType: 'Update' });
-          }
-        });
+          .then(() => { this.setState(this.props.album); }).then(() => {
+            if (prevProps.match.path === '/albums/new') {
+              this.props.clearCreatedAlbumId();
+              this.setState({ formType: 'Update' });
+            }
+          });
       }
     }
   }
@@ -77,7 +77,7 @@ class AlbumForm extends React.Component {
   }
 
   editAlbumPhoto(photo, photoUrl, photoFile) {
-    this.props.editAlbum({ 
+    this.props.editAlbum({
       photo: photo,
       photoUrl: photoUrl,
       photoFile: photoFile
@@ -124,28 +124,30 @@ class AlbumForm extends React.Component {
     this.editAlbumPhoto('delete', '', '');
     const formData = this.fillFormData(true);
     if (this.state.formType === 'Update') {
-      this.props.action(formData).then(() => {this.editAlbum({photo: ''});});
+      this.props.action(formData).then(() => { this.editAlbum({ photo: '' }); });
     }
   }
 
 
   formatTrackData(track) {
     const editingAlbum = this.getAlbum();
-    const trackObject = 
-      {[track.id]: {
+    const trackObject =
+    {
+      [track.id]: {
         "album_id": `${editingAlbum.id}`,
         "title": `${track.title}`,
         "bonus_track": `${track.bonus_track}`,
         "lyrics": `${track.lyrics}`,
         "release_date": `${track.release_date}`,
         "track_order": `${track.track_order}`
-      }};
+      }
+    };
     return trackObject;
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    let formData = new FormData(); 
+    let formData = new FormData();
     const albumChanged = this.props.editing.changes.albumChanged;
     const changedTrackIds = this.props.editing.changes.tracksChanged;
     if (albumChanged) {
@@ -158,7 +160,7 @@ class AlbumForm extends React.Component {
     if (tracksChanged.length > 0) {
       tracksChanged.forEach((trackId) => {
         changedTracks = merge({}, changedTracks, this.formatTrackData(this.props.editing.tracks[trackId]));
-        // formData.append('track[audio_file]', this.props.editing.tracks[trackId].audio_file);
+        formData.append(`track[audio_file][${trackId}]`, this.props.editing.tracks[trackId].audio_file);
       });
     }
     formData.append('tracks', JSON.stringify(changedTracks));
@@ -166,10 +168,9 @@ class AlbumForm extends React.Component {
     if (this.state.formType === 'Update') {
       pageAfter = "/user";
     }
-    this.props.action(formData).then(() => 
-      {
-        this.props.history.push(pageAfter);
-      });
+    this.props.action(formData).then(() => {
+      this.props.history.push(pageAfter);
+    });
   }
 
   renderErrors() {
@@ -187,7 +188,7 @@ class AlbumForm extends React.Component {
   render() {
     let editingAlbum = this.getAlbum();
     editingAlbum.formType = this.state.formType;
-    let artistString ='';
+    let artistString = '';
     if (editingAlbum.artist_name) {
       artistString = (
         <p>by <strong>{editingAlbum.artist_name}</strong></p>
@@ -251,7 +252,7 @@ class AlbumForm extends React.Component {
     return (
       <div className="album-page">
         <UserHeader />
-        <div className='album-form-container'>  
+        <div className='album-form-container'>
           <div className="album-info-column">
             <form onSubmit={this.handleSubmit} className="album-form-box">
               <div className="input-wrapper">
@@ -261,9 +262,9 @@ class AlbumForm extends React.Component {
               </div>
               <div className="input-wrapper">
                 <div className="album-form-date">
-                <label className="album-form-label" htmlFor="album-form-release-date">release date:</label>
-                <input type="date" value={rDate}
-                  onChange={this.editAlbum('release_date')}
+                  <label className="album-form-label" htmlFor="album-form-release-date">release date:</label>
+                  <input type="date" value={rDate}
+                    onChange={this.editAlbum('release_date')}
                     id="album-form-release-date" /> <label className="album-form-label"> &nbsp;(optional)</label>
                 </div>
               </div>
@@ -317,13 +318,13 @@ class AlbumForm extends React.Component {
             <div className="album-publish-menu">
               <h4 className="album-publish-head">Publish</h4>
               <ul>
-                <li><input onChange={this.editAlbum('published')} 
-                  type="radio" 
-                  value="true" 
+                <li><input onChange={this.editAlbum('published')}
+                  type="radio"
+                  value="true"
                   checked={String(editingAlbum.published) === "true"} /> public</li>
-                <li><input onChange={this.editAlbum('published')} 
-                  type="radio" 
-                  value="false" 
+                <li><input onChange={this.editAlbum('published')}
+                  type="radio"
+                  value="false"
                   checked={String(editingAlbum.published) === "false"} /> private</li>
               </ul>
             </div>
@@ -335,7 +336,7 @@ class AlbumForm extends React.Component {
             {this.renderErrors()}
           </div>
         </div>
-        <AlbumUserIndex/>
+        <AlbumUserIndex />
       </div>
     );
   }

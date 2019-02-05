@@ -1,5 +1,6 @@
 import React from 'react';
 import AuthHeader from './auth_header';
+import { Link } from 'react-router-dom'
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -11,6 +12,10 @@ class SignupForm extends React.Component {
       emailConfirm: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidUpdate() {
+    this.props.clearErrors();
   }
 
   update(field) {
@@ -73,6 +78,9 @@ class SignupForm extends React.Component {
                 <label htmlFor="login-form-submit">&nbsp;</label>
                 <input type="submit" value={this.props.formType}
                   id="login-form-submit" />
+              </div>
+              <div className="demo-login-link">
+                <Link to="/login/demo"><span className="head-highlight">Demo log in!</span></Link>
               </div>
               {this.renderErrors()}
               {this.props.navLink}

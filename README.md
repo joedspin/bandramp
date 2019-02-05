@@ -1,6 +1,6 @@
 ![bandramp logo](https://github.com/joedspin/bandramp/blob/master/app/assets/images/bandramp_logo.png)
 
-[brandramp](https://bandramp.herokuapp.com/) is a single-page clone of [bandcamp](https://bandcamp.com/), a music  platform for artists and labels to share and monetize their work and for fans to discover and enjoy it.
+[bandramp](https://bandramp.herokuapp.com/) is a single-page clone of [bandcamp](https://bandcamp.com/), a music  platform for artists and labels to share and monetize their work and for fans to discover and enjoy it.
 
 ### Technologies
 bandramp’s frontend is dynamically generated using React, Redux, and ES6. The backed data interaction is build in Ruby on Rails with some jQuery to generate ajax requests to the Rails backend.
@@ -35,7 +35,8 @@ A tab structure on the frontend allows a data-heavy page to be visually graceful
 
 By managing the data-heavy album information in the Redux state, bandramp efficiently passes back to the server only those data records that have been added or modified by the user during each page session.
 
-```handleSubmit(e) {
+```javascript
+handleSubmit(e) {
   e.preventDefault();
   let formData = new FormData(); 
   const albumChanged = this.props.editing.changes.albumChanged;
@@ -54,11 +55,13 @@ By managing the data-heavy album information in the Redux state, bandramp effici
   }
   formData.append('tracks', JSON.stringify(changedTracks));
   this.props.action(formData);
-  }```
+  }
+```
 
 Nested track details bundled up into a custom object-like strcture and passed back using `JSON.stringify` to be reassembled on the backed with `JSON.parse`.
 
-```formatTrackData(track) {
+```javascript
+formatTrackData(track) {
     const editingAlbum = this.getAlbum();
     const trackObject = 
       {[track.id]: {
@@ -70,7 +73,8 @@ Nested track details bundled up into a custom object-like strcture and passed ba
         "track_order": `${track.track_order}`
       }};
     return trackObject;
-  }```
+  }
+```
 
 #### Future Features
 
