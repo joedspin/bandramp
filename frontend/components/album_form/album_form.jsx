@@ -160,7 +160,7 @@ class AlbumForm extends React.Component {
     if (tracksChanged.length > 0) {
       tracksChanged.forEach((trackId) => {
         changedTracks = merge({}, changedTracks, this.formatTrackData(this.props.editing.tracks[trackId]));
-        formData.append(`track[audio_file][${trackId}]`, this.props.editing.tracks[trackId].audio_file);
+        formData.append(`track[audio_file][${trackId}]`, this.props.editing.tracks[trackId].audioFile);
       });
     }
     formData.append('tracks', JSON.stringify(changedTracks));

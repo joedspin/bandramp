@@ -23,7 +23,9 @@ class LoginForm extends React.Component {
   }
 
   componentDidMount() {
-    this.props.clearErrors();
+    if (!this.props.demoCredentials) {
+      this.props.clearErrors();
+    }
   }
 
   update(field) {

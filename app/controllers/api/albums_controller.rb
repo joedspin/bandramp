@@ -61,6 +61,7 @@ class Api::AlbumsController < ApplicationController
         unless audio_params[:audio_file][trackId.to_s] === '' ||
             audio_params[:audio_file][trackId.to_s] === "null"
           newAudio = audio_params[:audio_file][trackId.to_s]
+          # tParams[:audio_file] = newAudio;
         end
         if trackId.include?('add')
           tParams.delete(:id)
@@ -72,11 +73,13 @@ class Api::AlbumsController < ApplicationController
         else
           tParams[:id] = tParams[:id].to_i
           track = Track.find(trackId)
+          debugger
           unless (track && track.update(tParams))
             albumErrors.push(track.errors.full_messages)
             savedTracks = false
           end
           unless newAudio === ''
+            debugger
             track.audio_file.attach(newAudio)
           end
         end
