@@ -71,25 +71,21 @@ class TrackForm extends React.Component {
       );
     } else if (this.props.track.audio_file) {
       audioFile = (
-        <div className="audio-file">{this.props.track.audio_file}
+        <div className="audio-file">{this.props.track.audio_file.size}
           track loaded
           {/* <button onClick={this.deleteCoverArt.bind(this)} className="delete">X</button> */}
         </div>
       );
     } else {
+
       audioFile = (
-        <div className="input-wrapper audio-file">
-          <label htmlFor="track-audio-file">audio file:</label>
-          <input type="file"
-            onChange={this.handleFile.bind(this)}
-            id="track-audio-file" />
-        </div>
+        <div>nope</div>
       );
     }
 
     return (
 
-      <div className="track-title-menu">
+      <div className="track-title-menu tab-off">
         <div>
           {featureTag}
           <div className="track-order">{this.props.track.track_order}</div>
@@ -101,20 +97,6 @@ class TrackForm extends React.Component {
               onChange={this.editTrack(this.props.track.id, 'title')}
               id="track-form-title" required placeholder='track name' />
           </div>
-          {/* <div className="input-wrapper">
-            <label className="album-form-label" htmlFor="track-form-duration">duration:</label>
-            <input type="text" value={this.props.track.duration}
-              onChange={this.editTrack(this.props.track.id, 'duration')}
-              id="track-form-duration" />
-          </div>
-          <div className="input-wrapper with-textarea">
-            <label className="album-form-label" htmlFor="album-form-description">lyrics:</label>
-            <textarea className="album-textarea"
-              value={this.props.track.lyrics}
-              onChange={this.editTrack(this.props.track.id, 'lyrics')}
-              placeholder="(optional)"
-              id="album-form-description" rows="6" />
-          </div> */}
           {audioFile}
         </div>
       </div>

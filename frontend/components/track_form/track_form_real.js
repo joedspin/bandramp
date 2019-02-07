@@ -70,7 +70,7 @@ class TrackForm extends React.Component {
       audioFile = (
         <div>{this.props.track.audio_file}
           track loaded
-          {/* <button onClick={this.deleteCoverArt.bind(this)} className="delete">X</button> */}
+          <button onClick={this.deleteCoverArt.bind(this)} className="delete">X</button>
         </div>
       );
     } else {

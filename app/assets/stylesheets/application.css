@@ -847,20 +847,29 @@ strong {
 .track-title-menu {
   width: 440px;
   height: 65px;
-  background-color: white;
   padding: 10px;
-  border-left: 1px solid #C32056;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ddd;
   display: flex;
   border-radius: 0px;
   position: relative;
-  margin-bottom: 2px;
+  cursor: pointer;
+}
+
+.tab-off {
+  background-color: none;
+  border-top: 1px dotted #ccc;
+}
+
+.tab-on {
+  background-color: white;
+  border-left: 1px solid #C32056;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
 }
 
 .tracks-section-head {
   color: #808080;
-  font-size: 11px;
+  font-size: 10px;
+  font-weight: bold;
   text-transform: uppercase;
   margin-top: 20px;
   margin-bottom: 16px;
@@ -937,33 +946,47 @@ strong {
 }
 
 .tracks-add-wrapper {
+  margin-top: 10px;
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
 }
 
 .tracks-add-button {
-  font-size: 20px;
-  margin: 0;
+  font-size: 19px;
+  font-weight: normal;
+  margin: 0 0 0 10px;
   color: #C32056;
   border: none;
   background: none;
   text-decoration: none;
+  width: 80px;
+  text-align: left;
 }
 
 .tracks-add-button:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .tracks-add-arrow {
   color: #C32056;
-  font-size: 16px;
-  margin: 0;
+  font-size: 13px;
+  margin: 0 0 0 5px;
+}
+
+.tracks-add-arrow::after {
+  content: '▾';
 }
 
 .tracks-add-info {
   font-size: 12px;
   color: #909090;
   margin-left: 30px;
+}
+
+.track-load-hidden {
+  visibility: hidden;
+  width: 5px;
 }
 
 .site-color {

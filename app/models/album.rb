@@ -23,15 +23,13 @@ class Album < ApplicationRecord
     class_name: 'User',
     foreign_key: :administrator_id
 
+    # 
     has_many :tracks, 
-      -> { order(:track_order) },
+      -> { order('track_order') },
       class_name: 'Track',
       foreign_key: :album_id
 
     has_one_attached :photo
 
-    # def tracks
-    #   Track.select(*).joins("albums ON albums.id = tracks.album_id").order(:track_order)
-    # end
 
 end

@@ -61,7 +61,6 @@ class Api::AlbumsController < ApplicationController
         unless audio_params[:audio_file][trackId.to_s] === '' ||
             audio_params[:audio_file][trackId.to_s] === "null"
           newAudio = audio_params[:audio_file][trackId.to_s]
-          # tParams[:audio_file] = newAudio;
         end
         if trackId.include?('add')
           tParams.delete(:id)
