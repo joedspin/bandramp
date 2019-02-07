@@ -7,8 +7,8 @@ import TracksReducer from './tracks_reducer';
 const EntitiesReducer = combineReducers(
   {
     users: UsersReducer,
-    albums: AlbumsReducer,
-    tracks: TracksReducer
+    tracks: TracksReducer,
+    albums: AlbumsReducer
   });
 
 export default EntitiesReducer;

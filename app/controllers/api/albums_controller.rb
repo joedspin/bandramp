@@ -69,16 +69,17 @@ class Api::AlbumsController < ApplicationController
             albumErrors.push(track.errors.full_messages)
             savedTracks = false
           end
+          unless newAudio === ''
+            track.audio_file.attach(newAudio)
+          end
         else
           tParams[:id] = tParams[:id].to_i
           track = Track.find(trackId)
-          debugger
           unless (track && track.update(tParams))
             albumErrors.push(track.errors.full_messages)
             savedTracks = false
           end
           unless newAudio === ''
-            debugger
             track.audio_file.attach(newAudio)
           end
         end

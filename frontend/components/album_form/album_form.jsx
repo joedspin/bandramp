@@ -2,7 +2,7 @@ import React from 'react';
 import UserHeader from '../auth_form/user_header';
 import AlbumUserIndex from './album_user_index_container';
 import { convertDate } from '../../util/album_api_util';
-import TracksForm from '../track_form/tracks_form_container';
+import TracksMenu from '../track_form/tracks_form_container';
 import { merge } from 'lodash';
 
 export const BLANK_ALBUM = {
@@ -63,7 +63,7 @@ class AlbumForm extends React.Component {
     if (this.props.editing && this.props.editing.album) {
       editingAlbum = merge({}, editingAlbum, this.props.editing.album);
     }
-    return editingAlbum
+    return editingAlbum;
   }
 
   clearForm() {
@@ -86,7 +86,6 @@ class AlbumForm extends React.Component {
 
   handleFile(e) {
     e.preventDefault();
-    let editingAlbum = this.getAlbum();
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
@@ -314,7 +313,7 @@ class AlbumForm extends React.Component {
                 {privateTag}
               </div>
             </div>
-            <TracksForm />
+            <TracksMenu />
             <div className="album-publish-menu">
               <h4 className="album-publish-head">Publish</h4>
               <ul>

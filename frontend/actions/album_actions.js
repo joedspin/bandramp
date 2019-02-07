@@ -24,7 +24,6 @@ export const createAlbum = (album) => dispatch => {
     );
 };
 
-
 export const updateAlbum = (album, albumId) => dispatch => {
   return AlbumApiUtil.updateAlbum(album, albumId).then(album => 
     dispatch(

@@ -1,10 +1,8 @@
 import merge from 'lodash/merge';
 
-import {
-  RECEIVE_ALL_ALBUMS,
-  RECEIVE_ALBUM
-} from '../actions/album_actions';
+import { RECEIVE_ALL_ALBUMS, RECEIVE_ALBUM } from '../actions/album_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { ADD_TRACK } from '../actions/editing_actions';
 
 const AlbumReducer = (state = {}, action) => {
   Object.freeze(state);

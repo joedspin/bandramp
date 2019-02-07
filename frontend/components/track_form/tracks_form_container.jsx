@@ -1,7 +1,6 @@
 
 import { connect } from 'react-redux';
-import TracksForm from './tracks_form';
-import { addTrack } from '../../actions/editing_actions';
+import TracksMenu from './tracks_menu';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,10 +11,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addTrack: (track, newTrackId) => dispatch(addTrack(track, newTrackId))
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TracksForm);
+export default connect(mapStateToProps)(TracksMenu);

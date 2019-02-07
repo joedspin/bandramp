@@ -1,18 +1,18 @@
 import React from 'react';
 import { BLANK_TRACK } from './track_form';
+import { merge } from 'lodash';
+
 class TrackNewForm extends React.Component {
 
   addTrack() {
     let track = merge({}, BLANK_TRACK,
       { track_order: this.props.prevTrackCount + this.props.newTracks + 1 });
-    return (e) => {
-      this.props.addTrack(track, (this.props.newTracks + 1));
-    };
+    this.props.addTrack(track, (this.props.newTracks + 1));
   }
 
   editTrackAudio(audio_file, audioUrl, audioFile) {
     this.props.editTrack({
-      [this.props.newTracks + 1]: {
+      ['add'+(this.props.newTracks)]: {
         audio_file: audio_file,
         audioUrl: audioUrl,
         audioFile: audioFile
@@ -40,6 +40,8 @@ class TrackNewForm extends React.Component {
     if (file) {
       fileReader.readAsDataURL(file);
     }
+    let trackLoad = document.getElementById('track-audio-file');
+    trackLoad.value = '';
   }
 
   render() {
@@ -48,8 +50,8 @@ class TrackNewForm extends React.Component {
         <label onClick={this.popTrackLoadWindow} className="tracks-add-button"
           htmlFor="track-audio-file">add track</label>
         <div className="tracks-add-arrow"></div>
-        <div className="tracks-add-info">291MB
-          <span className="site-color">max </span> per track, lossless
+        <div className="tracks-add-info">291MB&nbsp;
+          <span className="site-color">max </span> per track, lossless&nbsp;
           <span className="site-color">.wav, .aif or .flac </span></div>
         <input type="file" className="track-load-hidden"
           onChange={this.handleFile.bind(this)}

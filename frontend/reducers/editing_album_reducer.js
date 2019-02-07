@@ -1,6 +1,5 @@
 import { RECEIVE_ALBUM } from '../actions/album_actions';
-import { EDIT_ALBUM } from '../actions/editing_actions';
-import { CLEAR_FORM } from '../actions/editing_actions';
+import { EDIT_ALBUM , CLEAR_FORM, ADD_TRACK } from '../actions/editing_actions';
 import { merge } from 'lodash';
 
 const EditingReducer = (state = {}, action) => {
@@ -24,6 +23,11 @@ const EditingReducer = (state = {}, action) => {
         photoUrl: null,
         photo: null
       }
+    case ADD_TRACK:
+      const newTrackId = ['add' + action.newTrackNum];
+      let newTrackIds = state.track_ids || []
+      newTrackIds = newTrackIds.concat(newTrackId);
+      return merge({}, state, { track_ids: newTrackIds });
     default:
       return state;
     }
