@@ -63,7 +63,7 @@ class LoginForm extends React.Component {
               <div className="input-wrapper">
                 <label htmlFor="login-form-username">Username</label>
                 <input type="text" value={this.state.username} 
-                  onChange={this.update('username')} 
+                  onChange={this.update('username')} required
                   id="login-form-username" disabled={this.state.disabled}/>
               </div>
               <div className="input-wrapper">

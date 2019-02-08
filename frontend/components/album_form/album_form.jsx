@@ -84,6 +84,15 @@ class AlbumForm extends React.Component {
     });
   }
 
+  deleteCoverArt(e) {
+    e.preventDefault();
+    this.editAlbumPhoto('delete', '', '');
+    const formData = this.fillFormData(true);
+    if (this.state.formType === 'Update') {
+      this.props.action(formData).then(() => { this.editAlbum({ photo: '' }); });
+    }
+  }
+
   handleFile(e) {
     e.preventDefault();
     const file = e.currentTarget.files[0];
@@ -116,17 +125,6 @@ class AlbumForm extends React.Component {
     }
     return formData;
   }
-
-  deleteCoverArt(e) {
-    let editingAlbum = this.getAlbum();
-    e.preventDefault();
-    this.editAlbumPhoto('delete', '', '');
-    const formData = this.fillFormData(true);
-    if (this.state.formType === 'Update') {
-      this.props.action(formData).then(() => { this.editAlbum({ photo: '' }); });
-    }
-  }
-
 
   formatTrackData(track) {
     const editingAlbum = this.getAlbum();

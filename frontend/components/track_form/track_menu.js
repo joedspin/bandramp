@@ -1,4 +1,6 @@
 import React from 'react';
+import { AudioKey } from './audio_key';
+import { FeatureKey, FeatureDescription } from './feature_key';
 
 export const BLANK_TRACK = {
   title: '',
@@ -13,7 +15,7 @@ export const BLANK_TRACK = {
   audio_file: null
 };
 
-class TrackForm extends React.Component {
+class TrackMenu extends React.Component {
 
   editTrack(trackId, field) {
     return (e) => {
@@ -31,6 +33,15 @@ class TrackForm extends React.Component {
     });
   }
 
+  deleteTrackAudio(e) {
+    e.preventDefault();
+    this.editTrackAudio('delete', '', '');
+    const formData = this.fillFormData(true);
+    if (this.state.formType === 'Update') {
+      this.props.action(formData).then(() => { this.editTrack({ audio_file: '' }); });
+    }
+  }
+
   handleFile(e) {
     e.preventDefault();
     const file = e.currentTarget.files[0];
@@ -46,62 +57,26 @@ class TrackForm extends React.Component {
     }
   }
 
+  asMb(file_size) {
+    let mb = Math.ceil(file_size / 1000000);
+    return `${mb}mb`;
+  }
+
   render() {
-    let featureTag;
-    let featureDescription = '';
-    let featureClass = 'track-title-input';
-    if (this.props.track.track_order === 1) {
-      featureTag = <div className="track-feature-on"></div>
-      featureDescription = (
-        <div className="track-feature-description">
-          <strong>Featured: </strong>
-          this is the track that will be cued up when fans visit or embed the&nbsp;
-          album, and it's also the track that will play in Discover.
-      </div>
-      );
-      featureClass = 'track-title-input feature-class';
-    } else {
-      featureTag = <div className="track-feature-off"></div>
-    }
-
-    let audioFile;
-    if (this.props.track.audioUrl) {
-      audioFile = (
-        <div className="audio-file">track ready to load</div>
-      );
-    } else if (this.props.track.audio_file) {
-      audioFile = (
-        <div className="audio-file">{this.props.track.audio_file.size}
-          track loaded
-          {/* <button onClick={this.deleteCoverArt.bind(this)} className="delete">X</button> */}
-        </div>
-      );
-    } else {
-
-      audioFile = (
-        <div>nope</div>
-      );
-    }
-
     return (
-
       <div className="track-title-menu tab-off">
         <div>
-          {featureTag}
+          <FeatureKey track_order={this.props.track.track_order} />
           <div className="track-order">{this.props.track.track_order}</div>
           <h3 className="track-head">{this.props.track.title || 'Untitled Track'}</h3>
-          {featureDescription}
-          {this.props.track.duration}
-          <div className="input-wrapper track-title">
-            <input className={featureClass} type="text" value={this.props.track.title}
-              onChange={this.editTrack(this.props.track.id, 'title')}
-              id="track-form-title" required placeholder='track name' />
-          </div>
-          {audioFile}
+          <FeatureDescription track_order={this.props.track.track_order} /><br />
+          {this.props.track.duration} | {this.asMb(this.props.track.audio_size)}<br />
+          <AudioKey track={this.props.track} deleteAudio={this.props.deleteTrackAudio} />
         </div>
+        <div style="display: box; width: 50px; height: 50px; border: 1px solid black; box-shadow: 1px 0 black;"></div>
       </div>
     );
   }
 }
 
-export default TrackForm;
+export default TrackMenu;

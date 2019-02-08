@@ -327,10 +327,6 @@ header {
   margin: auto;
 }
 
-.album-form-box {
-  display: flex;
-  flex-flow: column;
-}
 
 .login-form-box input, .album-form-box input{
   line-height: normal;
@@ -370,7 +366,6 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-
 .input-wrapper {
   width: 650px;
   display: flex;
@@ -390,6 +385,11 @@ input[type="submit"] {
   margin-top: 20px;
 }
 
+.album-form-box {
+  display: flex;
+  flex-flow: column;
+}
+
 .album-form-container {
   width: 960px;
   display: flex;
@@ -398,6 +398,7 @@ input[type="submit"] {
   justify-content: flex-end;
   background-color: #f7f7f7;
 }
+
 .album-menu-column {
   min-width: 460px;
   display: flex;
@@ -413,6 +414,7 @@ input[type="submit"] {
   flex-direction: column;
   background-color: white;
   border: 1px solid #cccc;
+  z-index: 1;
 }
 
 .album-title-menu {
@@ -424,6 +426,7 @@ input[type="submit"] {
   border-bottom: 1px solid #ddd;
   display: flex;
   border-radius: 0px;
+  z-index: 2;
 }
 
 .album-title-menu h3 {
@@ -580,6 +583,8 @@ input[type="submit"] {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
   padding-left: 10px;
+  z-index: 1;
+  box-shadow: 1px 0 #333;
 }
 
 .album-rule {
@@ -848,10 +853,16 @@ strong {
   width: 440px;
   height: 65px;
   padding: 10px;
+  padding-left: 50px;
   display: flex;
   border-radius: 0px;
   position: relative;
   cursor: pointer;
+  z-index: 0;
+}
+
+.track-title-menu:hover {
+  background-color: #fcfcfc;
 }
 
 .tab-off {

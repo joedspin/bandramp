@@ -1,9 +1,8 @@
 import React from 'react';
-// import TrackNewForm from './track_new_form';
-import TrackForm from './track_form_container';
+import { TrackMenu } from './track_form_container';
 import TrackNewForm from './track_new_form_container';
 
-class TracksForm extends React.Component {
+class TracksMenu extends React.Component {
 
   render() {
     let tracks = [];
@@ -11,7 +10,7 @@ class TracksForm extends React.Component {
     this.props.track_ids.forEach((trackId) => {
       track = this.props.tracks[trackId];
       tracks.push(
-        <TrackForm 
+        <TrackMenu
           key={track.id}
           track={track} />
       );
@@ -27,4 +26,4 @@ class TracksForm extends React.Component {
   }
 }
 
-export default TracksForm;
+export default TracksMenu;

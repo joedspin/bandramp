@@ -1,6 +1,5 @@
 import React from 'react';
-// import TrackNewForm from './track_new_form';
-import TrackForm from './track_form_container';
+import { TrackForm } from './track_form_container';
 import TrackNewForm from './track_new_form_container';
 
 class TracksForm extends React.Component {

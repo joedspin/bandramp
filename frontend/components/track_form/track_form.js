@@ -1,4 +1,5 @@
 import React from 'react';
+import AudioKey from './audio_key.js';
 
 export const BLANK_TRACK = {
   title: '',
@@ -29,6 +30,15 @@ class TrackForm extends React.Component {
         audioFile: audioFile
       }
     });
+  }
+
+  deleteTrackAudio(e) {
+    e.preventDefault();
+    this.editTrackAudio('delete', '', '');
+    const formData = this.fillFormData(true);
+    if (this.state.formType === 'Update') {
+      this.props.action(formData).then(() => { this.editTrack({ audio_file: '' }); });
+    }
   }
 
   handleFile(e) {
@@ -64,27 +74,7 @@ class TrackForm extends React.Component {
       featureTag = <div className="track-feature-off"></div>
     }
 
-    let audioFile;
-    if (this.props.track.audioUrl) {
-      audioFile = (
-        <div className="audio-file">track ready to load</div>
-      );
-    } else if (this.props.track.audio_file) {
-      audioFile = (
-        <div className="audio-file">{this.props.track.audio_file.size}
-          track loaded
-          {/* <button onClick={this.deleteCoverArt.bind(this)} className="delete">X</button> */}
-        </div>
-      );
-    } else {
-
-      audioFile = (
-        <div>nope</div>
-      );
-    }
-
     return (
-
       <div className="track-title-menu tab-off">
         <div>
           {featureTag}
@@ -97,7 +87,21 @@ class TrackForm extends React.Component {
               onChange={this.editTrack(this.props.track.id, 'title')}
               id="track-form-title" required placeholder='track name' />
           </div>
-          {audioFile}
+          <div className="input-wrapper">
+            <label className="album-form-label" htmlFor="track-form-duration">duration:</label>
+            <input type="text" value={this.props.track.duration}
+              onChange={this.editTrack(this.props.track.id, 'duration')}
+              id="track-form-duration" />
+          </div>
+          <div className="input-wrapper with-textarea">
+            <label className="album-form-label" htmlFor="album-form-description">lyrics:</label>
+            <textarea className="album-textarea"
+              value={this.props.track.lyrics}
+              onChange={this.editTrack(this.props.track.id, 'lyrics')}
+              placeholder="(optional)"
+              id="album-form-description" rows="6" />
+          </div>
+          <AudioKey track={this.props} />
         </div>
       </div>
     );
