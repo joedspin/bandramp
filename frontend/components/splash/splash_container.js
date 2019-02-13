@@ -1,4 +1,4 @@
-import SplashFeatureList from './splash';
+import SplashFeatureList from '../splash/splash';
 import { connect } from 'react-redux';
 import { fetchAlbums } from '../../actions/album_actions';
 import { sampleSize } from 'lodash';

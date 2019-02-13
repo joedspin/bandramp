@@ -1,5 +1,5 @@
 import React from 'react';
-import SplashSideFeature from './splash_side';
+import SplashSideFeature from '../splash/splash_side';
 import { Link } from 'react-router-dom';
 
 class SplashFeatureList extends React.Component {

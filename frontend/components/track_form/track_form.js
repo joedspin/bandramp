@@ -15,6 +15,9 @@ export const BLANK_TRACK = {
 };
 
 class TrackForm extends React.Component {
+  constructor(props) {
+    
+  }
 
   editTrack(trackId, field) {
     return (e) => {

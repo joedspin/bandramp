@@ -1,7 +1,7 @@
 import React from 'react';
 import UserHeader from './user_header';
 import AuthLinks from './auth_links';
-import SplashFeatureList from '../album_form/splash_container';
+import SplashFeatureList from '../splash/splash_container';
 import AlbumList from '../album_form/album_index_container';
  
 class Home extends React.Component {

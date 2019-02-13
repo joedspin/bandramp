@@ -1,6 +1,7 @@
 import React from 'react';
-import { AudioKey } from './audio_key';
+import AudioKey from './audio_key';
 import { FeatureKey, FeatureDescription } from './feature_key';
+import { selectPane } from '../../actions/track_actions';
 
 export const BLANK_TRACK = {
   title: '',
@@ -42,6 +43,11 @@ class TrackMenu extends React.Component {
     }
   }
 
+  popTrackLoadWindow(trackId) {
+    let trackLoad = document.getElementById(`track-audio-file-${trackId}`);
+    if (trackLoad) trackLoad.click();
+  }
+
   handleFile(e) {
     e.preventDefault();
     const file = e.currentTarget.files[0];
@@ -62,21 +68,41 @@ class TrackMenu extends React.Component {
     return `${mb}mb`;
   }
 
+  fileDetails() {
+    if (this.props.track.filename) {
+      return (
+        <p className="track-file-details">{this.props.track.filename} 
+          {this.props.track.duration} {this.asMb(this.props.track.audio_size)}
+          <span className="track-file-replace"><label onClick={this.popTrackLoadWindow(this.props.track.id)} 
+          className="tracks-replace-button"
+            htmlFor={`track-audio-file-${this.props.track.id}`}>replace</label></span>
+            <input type="file" className="track-load-hidden" onChange={this.handleFile.bind(this)}
+              id={`track-audio-file-${this.props.track.id}`} /></p>
+      );
+    }
+  }
+
   render() {
+    
     return (
-      <div className="track-title-menu tab-off">
+      <div className="track-title-menu tab-off" onClick={this.props.selectPane(this.props.key)}>
         <div>
           <FeatureKey track_order={this.props.track.track_order} />
           <div className="track-order">{this.props.track.track_order}</div>
           <h3 className="track-head">{this.props.track.title || 'Untitled Track'}</h3>
-          <FeatureDescription track_order={this.props.track.track_order} /><br />
-          {this.props.track.duration} | {this.asMb(this.props.track.audio_size)}<br />
+          <FeatureDescription track_order={this.props.track.track_order} />
+          {this.fileDetails()}
           <AudioKey track={this.props.track} deleteAudio={this.props.deleteTrackAudio} />
         </div>
-        <div style="display: box; width: 50px; height: 50px; border: 1px solid black; box-shadow: 1px 0 black;"></div>
       </div>
     );
   }
 }
 
-export default TrackMenu;
+const mapDispatchToProps = dispatch => {
+  return (    {
+    selectPane: (trackId) => dispatch(selectPane(trackId))
+  });
+};
+
+export default connect(null, mapDispatchToProps)(TrackMenu);

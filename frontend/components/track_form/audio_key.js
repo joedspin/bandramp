@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const AudioKey = (track, deleteAudio) => {
+const AudioKey = (track, deleteAudio) => {
   const { audioUrl } = track;
   const { audio_file } = track;
   const { audio_size } = track;
@@ -24,3 +24,5 @@ export const AudioKey = (track, deleteAudio) => {
   }
   return audioFile;
 };
+
+export default AudioKey;

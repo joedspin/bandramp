@@ -1,9 +1,12 @@
 import React from 'react';
 import UserHeader from '../auth_form/user_header';
+import AlbumData from './album_data';
 import AlbumUserIndex from './album_user_index_container';
 import { convertDate } from '../../util/album_api_util';
 import TracksMenu from '../track_form/tracks_form_container';
+import TrackForm from '../track_form/track_form';
 import { merge } from 'lodash';
+import { CoverThumb } from './album_cover';
 
 export const BLANK_ALBUM = {
   title: '',
@@ -24,6 +27,7 @@ class AlbumForm extends React.Component {
     super(props);
     this.state = this.props.album || BLANK_ALBUM;
     this.state.formType = this.props.formType;
+    this.state.selectedPane = 0;
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -182,6 +186,26 @@ class AlbumForm extends React.Component {
     );
   }
 
+  privateTag() {
+    let privateTag = '';
+    if (!this.getAlbum().published) {
+      privateTag = <p><span className="album-private">private</span></p>
+    }
+    return privateTag;
+  }
+
+  activePane(paneId) {
+    if (paneId === 0) {
+      return (
+        <AlbumData editingAlbum={editingAlbum} ctx={this} />
+      );
+    } else {
+      return (
+        <TrackForm trackId={paneId} ctx={this}/>
+      );
+    }
+  }
+
   render() {
     let editingAlbum = this.getAlbum();
     editingAlbum.formType = this.state.formType;
@@ -191,124 +215,32 @@ class AlbumForm extends React.Component {
         <p>by <strong>{editingAlbum.artist_name}</strong></p>
       );
     }
-    let rDate;
     let rDateString;
     if (editingAlbum.release_date.length) {
-      rDate = convertDate(editingAlbum.release_date, 1);
       rDateString = convertDate(editingAlbum.release_date, 3);
     } else {
-      rDate = '';
       rDateString = '';
     }
-    let privateTag = '';
-    if (!editingAlbum.published) {
-      privateTag = (
-        <p><span className="album-private">private</span></p>
-      );
-    }
-    let coverArt;
-    let coverThumb;
-    if (editingAlbum.photoUrl) {
-      coverArt = (
-        <div className="album-image-thumb">
-          <img className="album-image-1" src={editingAlbum.photoUrl} />
-        </div>
-      );
-      coverThumb = (
-        <img className="album-image-2" src={editingAlbum.photoUrl} />
-      );
-    } else if (editingAlbum.photo) {
-      coverArt = (
-        <div className="album-image-thumb">
-          <img className="album-image-1" src={editingAlbum.photo} />
-          <button onClick={this.deleteCoverArt.bind(this)} className="delete">X</button>
-        </div>
-      );
-      coverThumb = (
-        <img className="album-image-2" src={editingAlbum.photo} />
-      );
-    } else {
-      coverArt = (
-        <div className="input-wrapper">
-          <label htmlFor="album-cover-art">cover art:</label>
-          <input type="file"
-            onChange={this.handleFile.bind(this)}
-            id="album-cover-art" />
-        </div>
-      );
-      coverThumb = (
-        <div className="album-image-blank"></div>
-      );
-    }
-    let privateLabel = '';
-    if (!editingAlbum.published) {
-      privateLabel = (
-        <p>Private albums are not visible to fans</p>
-      );
-    }
+
+
+
     return (
       <div className="album-page">
         <UserHeader />
         <div className='album-form-container'>
           <div className="album-info-column">
-            <form onSubmit={this.handleSubmit} className="album-form-box">
-              <div className="input-wrapper">
-                <input type="text" value={editingAlbum.title}
-                  onChange={this.editAlbum('title')}
-                  id="album-form-title" required placeholder='album name' />
-              </div>
-              <div className="input-wrapper">
-                <div className="album-form-date">
-                  <label className="album-form-label" htmlFor="album-form-release-date">release date:</label>
-                  <input type="date" value={rDate}
-                    onChange={this.editAlbum('release_date')}
-                    id="album-form-release-date" /> <label className="album-form-label"> &nbsp;(optional)</label>
-                </div>
-              </div>
-              {privateLabel}
-              <div className="album-rule"></div>
-              {coverArt}
-              <div className="album-rule"></div>
-              <div className="input-wrapper">
-                <label className="album-form-label" htmlFor="album-form-artist-name">artist:</label>
-                <input type="text" value={editingAlbum.artist_name}
-                  onChange={this.editAlbum('artist_name')}
-                  required
-                  id="album-form-artist-name" />
-              </div>
-              <div className="input-wrapper with-textarea">
-                <label className="album-form-label" htmlFor="album-form-description">about:</label>
-                <textarea className="album-textarea"
-                  value={editingAlbum.description}
-                  onChange={this.editAlbum('description')}
-                  placeholder="(optional)"
-                  id="album-form-description" rows="6" />
-              </div>
-              <div className="album-rule"></div>
-              <div className="input-wrapper">
-                <label className="album-form-label" htmlFor="album-form-description">album UPC/EAN code:</label>
-                <input type="text" value={editingAlbum.upc_ean}
-                  onChange={this.editAlbum('upc_ean')}
-                  placeholder="(optional)"
-                  id="album-form-upc-ean" />
-              </div>
-              <div className="input-wrapper">
-                <label className="album-form-label" htmlFor="album-form-catalog-number">catalog number:</label>
-                <input type="text" value={editingAlbum.catalog_number}
-                  onChange={this.editAlbum('catalog_number')}
-                  placeholder="(optional)"
-                  id="album-form-catalog-number" />
-              </div>
+            <form className="album-form-box">
+              {this.activePane(this.state.selectedPane)}
             </form>
           </div>
           <div className="album-menu-column">
-            <div className="album-title-menu">
-              {coverThumb}
+            <div className="album-title-menu" onClick={this.props.selectPane}>
+              <CoverThumb photo={editingAlbum.photo} photoUrl={editingAlbum.photoUrl} ctx={this} />
               <div>
                 <h3 className="album-head">{editingAlbum.title || 'Untitled Album'}</h3>
                 {artistString}
                 {rDateString}
-                {privateTag}
+                {this.privateTag()}
               </div>
             </div>
             <TracksMenu />

@@ -28,6 +28,8 @@ const EditingReducer = (state = {}, action) => {
       let newTrackIds = state.track_ids || []
       newTrackIds = newTrackIds.concat(newTrackId);
       return merge({}, state, { track_ids: newTrackIds });
+    case SELECT_PANE:
+      return merge({}, state, {selectedPane: action.paneId})
     default:
       return state;
     }
