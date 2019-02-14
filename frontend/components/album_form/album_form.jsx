@@ -228,7 +228,7 @@ class AlbumFormComponent extends React.Component {
     }
     return (
       <div className="album-page">
-        <UserHeader />
+        <UserHeader theme="dark" />
         <div className='album-form-container'>
           <div className="album-info-column">
             <form className="album-form-box">

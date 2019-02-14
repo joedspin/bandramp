@@ -1,12 +1,5 @@
 import React from 'react';
-// import { Provider } from 'react-redux';
-import {
-  Route,
-  // Redirect,
-  Switch,
-  Link,
-  // HashRouter
-} from 'react-router-dom';
+import { Route, Switch, } from 'react-router-dom';
 
 import SignUpFormContainer from './auth_form/signup_form_container';
 import LogInFormContainer from './auth_form/login_form_container';

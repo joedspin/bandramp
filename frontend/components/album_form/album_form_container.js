@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { fetchAlbum, fetchAlbums,
   createAlbumAndTracks, updateAlbumAndTracks } from '../../actions/album_actions';
 import { editAlbum, editTrack, clearForm } from '../../actions/editing_actions';
@@ -7,7 +8,7 @@ import { AlbumFormComponent } from './album_form';
 import AlbumDataComponent from './album_data';
 import { CoverArtComponent, CoverThumbComponent } from './album_cover';
 
-const mapStateToProps = (state, ownProps, prevProps) => {
+const mapStateToProps = (state, ownProps) => {
   let editingAlbum = state.editing.album;
   let editingTracks = state.editing.tracks;
   let changes = state.editing.changes;
@@ -45,7 +46,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export const AlbumForm = connect(mapStateToProps, mapDispatchToProps)(AlbumFormComponent);
-export const AlbumData = connect(mapStateToProps, mapDispatchToProps)(AlbumDataComponent);
-export const CoverArt = connect(mapStateToProps, mapDispatchToProps)(CoverArtComponent);
-export const CoverThumb = connect(mapStateToProps, mapDispatchToProps)(CoverThumbComponent);
+export const AlbumForm = withRouter(connect(mapStateToProps, mapDispatchToProps)(AlbumFormComponent));
+export const AlbumData = withRouter(connect(mapStateToProps, mapDispatchToProps)(AlbumDataComponent));
+export const CoverArt = withRouter(connect(mapStateToProps, mapDispatchToProps)(CoverArtComponent));
+export const CoverThumb = withRouter(connect(mapStateToProps, mapDispatchToProps)(CoverThumbComponent));

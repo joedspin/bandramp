@@ -12,13 +12,13 @@ class UserHeader extends React.Component {
   render() {
     const { logout } = this.props;
     return (
-      <div className="user-header-container">
+      <div className="user-header-container dark-theme">
         <header className="user-header">
           <div className="flex-container">
             <div className="flex-7-12">
               <div className="head-brand user">
                 <Link to="/home">
-                  <img src={window.bandrampLogoURL} />
+                  <img src={this.props.theme === 'dark' ? window.bandrampLogoDarkUrl : window.bandrampLogoURL} />
                 </Link>
                 <button className="header-link" onClick={this.addAlbum.bind(this)}>+add</button>
                 <button className="logout" onClick={logout}>log out</button>
@@ -36,7 +36,8 @@ class UserHeader extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    history: ownProps.history
+    history: ownProps.history,
+    theme: ownProps.theme || ''
   }
 };
 
