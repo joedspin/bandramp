@@ -3,8 +3,9 @@ import { fetchAlbum, fetchAlbums,
   createAlbumAndTracks, updateAlbumAndTracks } from '../../actions/album_actions';
 import { editAlbum, editTrack, clearForm } from '../../actions/editing_actions';
 import { clearCreatedAlbumId } from '../../actions/ui_actions';
-import { AlbumForm, BLANK_ALBUM } from './album_form';
-import { selectPane } from '../../actions/track_actions';
+import { AlbumFormComponent } from './album_form';
+import AlbumDataComponent from './album_data';
+import { CoverArtComponent, CoverThumbComponent } from './album_cover';
 
 const mapStateToProps = (state, ownProps, prevProps) => {
   let editingAlbum = state.editing.album;
@@ -22,8 +23,7 @@ const mapStateToProps = (state, ownProps, prevProps) => {
     editing: {
       album: editingAlbum, 
       tracks: editingTracks, 
-      changes: changes, 
-      selectedPane: selectedPane
+      changes: changes
     }
   };
 };
@@ -41,9 +41,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     editTrack: (track) => dispatch(editTrack(track)),
     clearCreatedAlbumId: () => dispatch(clearCreatedAlbumId()),
     clearForm: () => dispatch(clearForm()),
-    selectPane: () => dispatch(selectPane(0)),
     action
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AlbumForm);
+export const AlbumForm = connect(mapStateToProps, mapDispatchToProps)(AlbumFormComponent);
+export const AlbumData = connect(mapStateToProps, mapDispatchToProps)(AlbumDataComponent);
+export const CoverArt = connect(mapStateToProps, mapDispatchToProps)(CoverArtComponent);
+export const CoverThumb = connect(mapStateToProps, mapDispatchToProps)(CoverThumbComponent);

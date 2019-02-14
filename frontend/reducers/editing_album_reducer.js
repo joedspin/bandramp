@@ -6,7 +6,7 @@ const EditingReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ALBUM:
-      return action.album;
+      return merge({}, action.album, { selectedPane: 0 });
     case EDIT_ALBUM:
       return merge({}, state, action.album);
     case CLEAR_FORM:
@@ -28,8 +28,6 @@ const EditingReducer = (state = {}, action) => {
       let newTrackIds = state.track_ids || []
       newTrackIds = newTrackIds.concat(newTrackId);
       return merge({}, state, { track_ids: newTrackIds });
-    case SELECT_PANE:
-      return merge({}, state, {selectedPane: action.paneId})
     default:
       return state;
     }

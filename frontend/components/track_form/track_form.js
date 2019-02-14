@@ -1,5 +1,4 @@
 import React from 'react';
-import AudioKey from './audio_key.js';
 
 export const BLANK_TRACK = {
   title: '',
@@ -15,12 +14,10 @@ export const BLANK_TRACK = {
 };
 
 class TrackForm extends React.Component {
-  constructor(props) {
-    
-  }
 
   editTrack(trackId, field) {
     return (e) => {
+      e.preventDefault();
       this.props.editTrack({ [trackId]: { [field]: e.target.value } });
     };
   }
@@ -60,33 +57,11 @@ class TrackForm extends React.Component {
   }
 
   render() {
-    let featureTag;
-    let featureDescription = '';
-    let featureClass = 'track-title-input';
-    if (this.props.track.track_order === 1) {
-      featureTag = <div className="track-feature-on"></div>
-      featureDescription = (
-        <div className="track-feature-description">
-          <strong>Featured: </strong>
-          this is the track that will be cued up when fans visit or embed the&nbsp;
-          album, and it's also the track that will play in Discover.
-      </div>
-      );
-      featureClass = 'track-title-input feature-class';
-    } else {
-      featureTag = <div className="track-feature-off"></div>
-    }
-
     return (
       <div className="track-title-menu tab-off">
         <div>
-          {featureTag}
-          <div className="track-order">{this.props.track.track_order}</div>
-          <h3 className="track-head">{this.props.track.title || 'Untitled Track'}</h3>
-          {featureDescription}
-          {this.props.track.duration}
           <div className="input-wrapper track-title">
-            <input className={featureClass} type="text" value={this.props.track.title}
+            <input type="text" value={this.props.track.title}
               onChange={this.editTrack(this.props.track.id, 'title')}
               id="track-form-title" required placeholder='track name' />
           </div>
@@ -104,7 +79,6 @@ class TrackForm extends React.Component {
               placeholder="(optional)"
               id="album-form-description" rows="6" />
           </div>
-          <AudioKey track={this.props} />
         </div>
       </div>
     );

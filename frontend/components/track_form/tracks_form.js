@@ -11,6 +11,7 @@ class TracksForm extends React.Component {
       track = this.props.tracks[trackId];
       tracks.push(
         <TrackForm 
+          id={track.id}
           key={track.id}
           track={track} />
       );

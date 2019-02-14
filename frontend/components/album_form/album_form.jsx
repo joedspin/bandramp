@@ -1,12 +1,11 @@
 import React from 'react';
 import UserHeader from '../auth_form/user_header';
-import AlbumData from './album_data';
+import { AlbumData, CoverThumb } from './album_form_container';
 import AlbumUserIndex from './album_user_index_container';
 import { convertDate } from '../../util/album_api_util';
 import TracksMenu from '../track_form/tracks_form_container';
 import TrackForm from '../track_form/track_form';
 import { merge } from 'lodash';
-import { CoverThumb } from './album_cover';
 
 export const BLANK_ALBUM = {
   title: '',
@@ -22,13 +21,14 @@ export const BLANK_ALBUM = {
   photo: null
 };
 
-class AlbumForm extends React.Component {
+class AlbumFormComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.album || BLANK_ALBUM;
     this.state.formType = this.props.formType;
     this.state.selectedPane = 0;
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.selectPane = this.selectPane.bind(this);
   }
 
   componentDidMount() {
@@ -76,6 +76,7 @@ class AlbumForm extends React.Component {
 
   editAlbum(field) {
     return (e) => {
+      e.preventDefault();
       this.props.editAlbum({ [field]: e.target.value });
     };
   }
@@ -197,13 +198,17 @@ class AlbumForm extends React.Component {
   activePane(paneId) {
     if (paneId === 0) {
       return (
-        <AlbumData editingAlbum={editingAlbum} ctx={this} />
+        <AlbumData editingAlbum={this.getAlbum()} ctx={this} />
       );
     } else {
       return (
-        <TrackForm trackId={paneId} ctx={this}/>
+        <TrackForm trackId={paneId} ctx={this} track={this.props.editing.tracks[paneId]} />
       );
     }
+  }
+
+  selectPane(paneId) {
+    this.setState({selectedPane: paneId});
   }
 
   render() {
@@ -221,9 +226,6 @@ class AlbumForm extends React.Component {
     } else {
       rDateString = '';
     }
-
-
-
     return (
       <div className="album-page">
         <UserHeader />
@@ -234,7 +236,7 @@ class AlbumForm extends React.Component {
             </form>
           </div>
           <div className="album-menu-column">
-            <div className="album-title-menu" onClick={this.props.selectPane}>
+            <div className="album-title-menu" onClick={() => this.selectPane(0)}>
               <CoverThumb photo={editingAlbum.photo} photoUrl={editingAlbum.photoUrl} ctx={this} />
               <div>
                 <h3 className="album-head">{editingAlbum.title || 'Untitled Album'}</h3>
@@ -243,7 +245,7 @@ class AlbumForm extends React.Component {
                 {this.privateTag()}
               </div>
             </div>
-            <TracksMenu />
+            <TracksMenu selectPane={this.selectPane}/>
             <div className="album-publish-menu">
               <h4 className="album-publish-head">Publish</h4>
               <ul>
@@ -271,4 +273,4 @@ class AlbumForm extends React.Component {
   }
 }
 
-export { AlbumForm };
+export { AlbumFormComponent };

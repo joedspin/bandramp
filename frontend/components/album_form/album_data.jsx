@@ -1,12 +1,11 @@
 import React from 'react';
-import { CoverArt } from './album_cover';
+import { CoverArt } from './album_form_container';
+import { convertDate } from '../../util/album_api_util';
 
-
-class AlbumData extends React.Component {
+class AlbumDataComponent extends React.Component {
   constructor(props) {
     super(props);
     this.album = props.editingAlbum;
-    this.ctx = props.ctx;
   }
 
   privateLabel() {
@@ -18,10 +17,9 @@ class AlbumData extends React.Component {
   }
 
   render() {
-
     let rDate;
     if (this.album.release_date.length) {
-      rDate = this.ctx.convertDate(this.album.release_date, 1);
+      rDate = convertDate(this.album.release_date, 1);
     } else {
       rDate = '';
     }
@@ -29,25 +27,25 @@ class AlbumData extends React.Component {
       <div>
         <div className="input-wrapper">
           <input type="text" value={this.album.title}
-            onChange={this.ctx.editAlbum('title')}
+            onChange={this.props.editAlbum('title')}
             id="album-form-title" required placeholder='album name' />
         </div>
         <div className="input-wrapper">
           <div className="album-form-date">
             <label className="album-form-label" htmlFor="album-form-release-date">release date:</label>
             <input type="date" value={rDate}
-              onChange={this.ctx.editAlbum('release_date')}
+              onChange={this.props.editAlbum('release_date')}
               id="album-form-release-date" /> <label className="album-form-label"> &nbsp;(optional)</label>
           </div>
         </div>
         <div>{this.privateLabel()}</div>
         <div className="album-rule"></div>
-        <CoverArt photo={this.album.photo} photoUrl={this.album.photoUrl} ctx={this.ctx} />
+        <CoverArt photo={this.album.photo} photoUrl={this.album.photoUrl} />
         <div className="album-rule"></div>
         <div className="input-wrapper">
           <label className="album-form-label" htmlFor="album-form-artist-name">artist:</label>
           <input type="text" value={this.album.artist_name}
-            onChange={this.ctx.editAlbum('artist_name')}
+            onChange={this.props.editAlbum('artist_name')}
             required
             id="album-form-artist-name" />
         </div>
@@ -55,7 +53,7 @@ class AlbumData extends React.Component {
           <label className="album-form-label" htmlFor="album-form-description">about:</label>
           <textarea className="album-textarea"
             value={this.album.description}
-            onChange={this.ctx.editAlbum('description')}
+            onChange={this.props.editAlbum('description')}
             placeholder="(optional)"
             id="album-form-description" rows="6" />
         </div>
@@ -63,14 +61,14 @@ class AlbumData extends React.Component {
         <div className="input-wrapper">
           <label className="album-form-label" htmlFor="album-form-description">album UPC/EAN code:</label>
           <input type="text" value={this.album.upc_ean}
-            onChange={this.ctx.editAlbum('upc_ean')}
+            onChange={this.props.editAlbum('upc_ean')}
             placeholder="(optional)"
             id="album-form-upc-ean" />
         </div>
         <div className="input-wrapper">
           <label className="album-form-label" htmlFor="album-form-catalog-number">catalog number:</label>
           <input type="text" value={this.album.catalog_number}
-            onChange={this.ctx.editAlbum('catalog_number')}
+            onChange={this.props.editAlbum('catalog_number')}
             placeholder="(optional)"
             id="album-form-catalog-number" />
         </div>
@@ -79,4 +77,4 @@ class AlbumData extends React.Component {
    }
   }
 
-  export default AlbumData;
+  export default AlbumDataComponent;

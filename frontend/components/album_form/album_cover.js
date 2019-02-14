@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const CoverArt = ({photoUrl, photo, ctx}) => {
+export const CoverArtComponent = ({photoUrl, photo, ctx}) => {
   let coverArt;
   if (photoUrl) {
     coverArt = (
@@ -12,7 +12,7 @@ export const CoverArt = ({photoUrl, photo, ctx}) => {
     coverArt = (
       <div className="album-image-thumb">
         <img className="album-image-1" src={photo} />
-        <button onClick={ctx.deleteCoverArt.bind(ctx)} className="delete">X</button>
+        <button onClick={this.props.deleteCoverArt.bind(this)} className="delete">X</button>
       </div>
     );
   } else {
@@ -20,7 +20,7 @@ export const CoverArt = ({photoUrl, photo, ctx}) => {
       <div className="input-wrapper">
         <label htmlFor="album-cover-art">cover art:</label>
         <input type="file"
-          onChange={ctx.handleFile.bind(ctx)}
+          onChange={this.props.handleFile.bind(this)}
           id="album-cover-art" />
       </div>
     );
@@ -28,7 +28,7 @@ export const CoverArt = ({photoUrl, photo, ctx}) => {
   return coverArt;
 }
 
-export const CoverThumb = ({ photoUrl, photo, ctx }) => {
+export const CoverThumbComponent = ({ photoUrl, photo }) => {
   let coverThumb;
   if (photoUrl) {
     coverThumb = (

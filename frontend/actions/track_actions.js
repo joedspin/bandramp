@@ -24,10 +24,3 @@ const receiveErrors = (errors) => {
     errors
   };
 };
-
-export const selectPane = (paneId) => {
-  return {
-    type: SELECT_PANE,
-    paneId
-  };
-};

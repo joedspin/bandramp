@@ -1,20 +1,6 @@
 import React from 'react';
 import AudioKey from './audio_key';
 import { FeatureKey, FeatureDescription } from './feature_key';
-import { selectPane } from '../../actions/track_actions';
-
-export const BLANK_TRACK = {
-  title: '',
-  track_order: '',
-  release_date: '',
-  lyrics: '',
-  duration: '',
-  album_id: ``,
-  bonus_track: false,
-  trackFile: null,
-  trackUrl: null,
-  audio_file: null
-};
 
 class TrackMenu extends React.Component {
 
@@ -83,9 +69,8 @@ class TrackMenu extends React.Component {
   }
 
   render() {
-    
     return (
-      <div className="track-title-menu tab-off" onClick={this.props.selectPane(this.props.key)}>
+      <div className="track-title-menu tab-off" onClick={()=>this.props.selectPane(this.props.id)}>
         <div>
           <FeatureKey track_order={this.props.track.track_order} />
           <div className="track-order">{this.props.track.track_order}</div>
@@ -99,10 +84,4 @@ class TrackMenu extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return (    {
-    selectPane: (trackId) => dispatch(selectPane(trackId))
-  });
-};
-
-export default connect(null, mapDispatchToProps)(TrackMenu);
+export default TrackMenu;
