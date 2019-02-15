@@ -78,25 +78,25 @@ button:active, button:focus, input:active, input:focus,
 }
 @font-face {
     font-family: 'FreeSans';
-    src:font-url('FreeSans.woff');
+    src: url('../fonts/FreeSans.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'FreeSans';
-    src:font-url('FreeSansBold.woff');
+    src: url('../fonts/FreeSansBold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
 }
 @font-face {
     font-family: 'FreeSans';
-    src:font-url('FreeSansBoldOblique.woff');
+    src: url('../fonts/FreeSansBoldOblique.woff') format('woff');
     font-weight: bold;
     font-style: italic;
 }
 @font-face {
     font-family: 'FreeSans';
-    src:font-url('FreeSansOblique.woff');
+    src: url('../fonts/FreeSansOblique.woff') format('woff');
     font-weight: normal;
     font-style: italic;
 }
