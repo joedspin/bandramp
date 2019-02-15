@@ -4,7 +4,7 @@ import { AlbumData, CoverThumb } from './album_form_container';
 import AlbumUserIndex from './album_user_index_container';
 import { convertDate } from '../../util/album_api_util';
 import TracksMenu from '../track_form/tracks_form_container';
-import TrackForm from '../track_form/track_form';
+import { TrackForm } from '../track_form/track_form_container';
 import { merge } from 'lodash';
 
 export const BLANK_ALBUM = {
@@ -249,11 +249,11 @@ class AlbumFormComponent extends React.Component {
             <div className="album-publish-menu">
               <h4 className="album-publish-head">Publish</h4>
               <ul>
-                <li><input onChange={this.editAlbum('published')}
+                <li><input onChange={() => this.editAlbum('published')}
                   type="radio"
                   value="true"
                   checked={String(editingAlbum.published) === "true"} /> public</li>
-                <li><input onChange={this.editAlbum('published')}
+                <li><input onChange={() => this.editAlbum('published')}
                   type="radio"
                   value="false"
                   checked={String(editingAlbum.published) === "false"} /> private</li>

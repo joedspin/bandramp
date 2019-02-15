@@ -59,10 +59,10 @@ class TrackMenu extends React.Component {
       return (
         <p className="track-file-details">{this.props.track.filename} 
           {this.props.track.duration} {this.asMb(this.props.track.audio_size)}
-          <span className="track-file-replace"><label onClick={this.popTrackLoadWindow(this.props.track.id)} 
+          <span className="track-file-replace"><label onClick={() => this.popTrackLoadWindow(this.props.track.id)} 
           className="tracks-replace-button"
             htmlFor={`track-audio-file-${this.props.track.id}`}>replace</label></span>
-            <input type="file" className="track-load-hidden" onChange={this.handleFile.bind(this)}
+            <input type="file" className="track-load-hidden" onClick={this.handleFile.bind(this)}
               id={`track-audio-file-${this.props.track.id}`} /></p>
       );
     }

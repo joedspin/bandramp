@@ -13,11 +13,12 @@ export const BLANK_TRACK = {
   audio_file: null
 };
 
-class TrackForm extends React.Component {
+class TrackFormComponent extends React.Component {
 
   editTrack(trackId, field) {
     return (e) => {
       e.preventDefault();
+      e.stopPropagation();
       this.props.editTrack({ [trackId]: { [field]: e.target.value } });
     };
   }
@@ -58,24 +59,25 @@ class TrackForm extends React.Component {
 
   render() {
     return (
-      <div className="track-title-menu tab-off">
+      <div>
         <div>
-          <div className="input-wrapper track-title">
+          <div className="input-wrapper">
             <input type="text" value={this.props.track.title}
-              onChange={this.editTrack(this.props.track.id, 'title')}
+              onChange={this.editTrack(this.props.track.id, 'title').bind(this)}
               id="track-form-title" required placeholder='track name' />
           </div>
           <div className="input-wrapper">
             <label className="album-form-label" htmlFor="track-form-duration">duration:</label>
             <input type="text" value={this.props.track.duration}
-              onChange={this.editTrack(this.props.track.id, 'duration')}
+              onChange={this.editTrack(this.props.track.id, 'duration').bind(this)}
               id="track-form-duration" />
           </div>
           <div className="input-wrapper with-textarea">
             <label className="album-form-label" htmlFor="album-form-description">lyrics:</label>
             <textarea className="album-textarea"
               value={this.props.track.lyrics}
-              onChange={this.editTrack(this.props.track.id, 'lyrics')}
+              onChange={(e) => this.props.editTrack({ [this.props.track.id]: 
+                { 'lyrics': e.target.value } })}
               placeholder="(optional)"
               id="album-form-description" rows="6" />
           </div>
@@ -85,4 +87,4 @@ class TrackForm extends React.Component {
   }
 }
 
-export default TrackForm;
+export default TrackFormComponent;

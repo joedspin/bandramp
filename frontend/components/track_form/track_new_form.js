@@ -47,7 +47,7 @@ class TrackNewForm extends React.Component {
   render() {
     return (
       <div className="tracks-add-wrapper">
-        <label onClick={this.popTrackLoadWindow} className="tracks-add-button"
+        <label onClick={() => this.popTrackLoadWindow} className="tracks-add-button"
           htmlFor="track-audio-file">add track</label>
         <div className="tracks-add-arrow"></div>
         <div className="tracks-add-info">291MB&nbsp;
