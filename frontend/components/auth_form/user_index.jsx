@@ -4,7 +4,7 @@ import AlbumUserList from '../album_form/album_user_index_container';
 
 const UserHome = () => (
   <div>
-    <UserHeader />
+    <UserHeader theme="light" />
     <AlbumUserList />
   </div>
 );

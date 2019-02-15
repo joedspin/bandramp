@@ -18,7 +18,7 @@ class UserHeader extends React.Component {
             <div className="flex-7-12">
               <div className="head-brand user">
                 <Link to="/home">
-                  <img src={this.props.theme === 'dark' ? window.bandrampLogoDarkUrl : window.bandrampLogoURL} />
+                  <img src={window.bandrampLogoURL} />
                 </Link>
                 <button className="header-link" onClick={this.addAlbum.bind(this)}>+add</button>
                 <button className="logout" onClick={logout}>log out</button>

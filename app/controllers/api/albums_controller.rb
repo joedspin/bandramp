@@ -80,7 +80,6 @@ class Api::AlbumsController < ApplicationController
             albumErrors.push(track.errors.full_messages)
             savedTracks = false
           end
-          debugger
           unless newAudio === '' || newAudio.nil? || newAudio === 'undefined'
             track.audio_file.attach(newAudio)
           end

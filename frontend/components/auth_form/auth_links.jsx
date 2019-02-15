@@ -9,7 +9,7 @@ class AuthLinks extends React.Component {
           <div className="flex-7-12">
             <div className="head-brand">
               <Link to="/">
-                <img src={window.bandrampLogoURL} />
+                <img src={this.props.theme === 'dark' ? window.bandrampLogoDarkUrl : window.bandrampLogoURL} />
               </Link>
               <div className="head-statement">
                 <h2>Discover amazing new music and&nbsp;
