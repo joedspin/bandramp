@@ -3,7 +3,7 @@ import UserHeader from '../auth_form/user_header';
 import { AlbumData, CoverThumb } from './album_form_container';
 import AlbumUserIndex from './album_user_index_container';
 import { convertDate } from '../../util/album_api_util';
-import TracksMenu from '../track_form/tracks_form_container';
+import TracksMenu from '../track_form/tracks_menu_container';
 import { TrackForm } from '../track_form/track_form_container';
 import { merge } from 'lodash';
 

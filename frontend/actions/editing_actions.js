@@ -8,7 +8,6 @@ export const editAlbum = (album) => {
 };
 
 export const editTrack = (track) => {
-  debugger
   return { type: EDIT_TRACK, trackId: Object.keys(track)[0], track };
 };
 

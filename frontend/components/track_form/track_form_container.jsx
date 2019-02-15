@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { updateTrack } from '../../actions/track_actions';
 import { editTrack } from '../../actions/editing_actions';
 import TrackFormComponent, { BLANK_TRACK }  from './track_form';
-import TrackMenuComponent from './track_menu';
+import TrackMenuComponent from './track_menu_item';
 
 const mapStateToProps = (state, ownProps) => {
   let albumId = state.editing.album.id;
