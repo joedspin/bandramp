@@ -1,6 +1,7 @@
 json.id track.id
 json.title track.title
 json.album_id track.album_id
+json.duration track.duration ? track.duration : ''
 json.release_date track.release_date.to_s
 json.bonus_track track.bonus_track
 json.track_order track.track_order

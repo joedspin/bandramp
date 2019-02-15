@@ -9,6 +9,7 @@ const EditingTracksReducer = (state = {}, action) => {
     case RECEIVE_ALBUM:
       return merge({}, action.tracks);
     case EDIT_TRACK:
+      debugger
       return merge({}, state, action.track);
     case ADD_TRACK:
       const newTrackId = 'add' + action.newTrackNum;

@@ -5,9 +5,12 @@ import { merge } from 'lodash';
 class TrackNewForm extends React.Component {
 
   addTrack() {
+    const newId = this.props.newTracks + 1;
     let track = merge({}, BLANK_TRACK,
-      { track_order: this.props.prevTrackCount + this.props.newTracks + 1 });
-    this.props.addTrack(track, (this.props.newTracks + 1));
+      { track_order: this.props.prevTrackCount + newId });
+    this.props.addTrack(track, (newId));
+    this.props.selectPane(`add${newId}`)
+
   }
 
   editTrackAudio(audio_file, audioUrl, audioFile) {

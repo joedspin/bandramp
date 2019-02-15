@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
   let albumId = state.editing.album.id;
   return {
     errors: state.errors.track || [],
-    track: state.entities.tracks[ownProps.trackId] || BLANK_TRACK,
+    track: state.editing.tracks[ownProps.trackId] || BLANK_TRACK,
     albumId: albumId || 0,
     id: ownProps.trackId || 0
   };

@@ -12,7 +12,7 @@ export const CoverArtComponent = ({photoUrl, photo, ctx}) => {
     coverArt = (
       <div className="album-image-thumb">
         <img className="album-image-1" src={photo} />
-        <button onClick={ctx.deleteCoverArt} className="delete">X</button>
+        <button onClick={ctx.deleteCoverArt.bind(ctx)} className="delete">X</button>
       </div>
     );
   } else {
@@ -20,7 +20,7 @@ export const CoverArtComponent = ({photoUrl, photo, ctx}) => {
       <div className="input-wrapper">
         <label htmlFor="album-cover-art">cover art:</label>
         <input type="file"
-          onChange={ctx.handleFile}
+          onChange={ctx.handleFile.bind(ctx)}
           id="album-cover-art" />
       </div>
     );

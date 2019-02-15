@@ -249,11 +249,11 @@ class AlbumFormComponent extends React.Component {
             <div className="album-publish-menu">
               <h4 className="album-publish-head">Publish</h4>
               <ul>
-                <li><input onChange={() => this.editAlbum('published')}
+                <li><input onChange={this.editAlbum('published')}
                   type="radio"
                   value="true"
                   checked={String(editingAlbum.published) === "true"} /> public</li>
-                <li><input onChange={() => this.editAlbum('published')}
+                <li><input onChange={this.editAlbum('published')}
                   type="radio"
                   value="false"
                   checked={String(editingAlbum.published) === "false"} /> private</li>

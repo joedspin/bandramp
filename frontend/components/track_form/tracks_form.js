@@ -21,7 +21,7 @@ class TracksForm extends React.Component {
       <div className="tracks-module">
         <h3 className="tracks-section-head">TRACKS</h3>
         {tracks}
-        <TrackNewForm />
+        <TrackNewForm selectPane={this.props.selectPane} />
       </div>
     );
   }

@@ -26,14 +26,14 @@ class AlbumDataComponent extends React.Component {
       <div>
         <div className="input-wrapper">
           <input type="text" value={this.props.editingAlbum.title}
-            onChange={() => this.props.editAlbum('title')}
+            onChange={this.props.ctx.editAlbum('title').bind(this.props.ctx)}
             id="album-form-title" required placeholder='album name' />
         </div>
         <div className="input-wrapper">
           <div className="album-form-date">
             <label className="album-form-label" htmlFor="album-form-release-date">release date:</label>
             <input type="date" value={rDate}
-              onChange={() => this.props.editAlbum('release_date')}
+              onChange={this.props.ctx.editAlbum('release_date').bind(this.props.ctx)}
               id="album-form-release-date" /> <label className="album-form-label"> &nbsp;(optional)</label>
           </div>
         </div>
@@ -44,7 +44,7 @@ class AlbumDataComponent extends React.Component {
         <div className="input-wrapper">
           <label className="album-form-label" htmlFor="album-form-artist-name">artist:</label>
           <input type="text" value={this.props.editingAlbum.artist_name}
-            onChange={() => this.props.editAlbum('artist_name')}
+            onChange={this.props.ctx.editAlbum('artist_name').bind(this.props.ctx)}
             required
             id="album-form-artist-name" />
         </div>
@@ -52,7 +52,7 @@ class AlbumDataComponent extends React.Component {
           <label className="album-form-label" htmlFor="album-form-description">about:</label>
           <textarea className="album-textarea"
             value={this.props.editingAlbum.description}
-            onChange={() => this.props.editAlbum('description')}
+            onChange={this.props.ctx.editAlbum('description').bind(this.props.ctx)}
             placeholder="(optional)"
             id="album-form-description" rows="6" />
         </div>
@@ -60,14 +60,14 @@ class AlbumDataComponent extends React.Component {
         <div className="input-wrapper">
           <label className="album-form-label" htmlFor="album-form-description">album UPC/EAN code:</label>
           <input type="text" value={this.props.editingAlbum.upc_ean}
-            onChange={() => this.props.editAlbum('upc_ean')}
+            onChange={this.props.ctx.editAlbum('upc_ean').bind(this.props.ctx)}
             placeholder="(optional)"
             id="album-form-upc-ean" />
         </div>
         <div className="input-wrapper">
           <label className="album-form-label" htmlFor="album-form-catalog-number">catalog number:</label>
           <input type="text" value={this.props.editingAlbum.catalog_number}
-            onChange={() => this.props.editAlbum('catalog_number')}
+            onChange={this.props.ctx.editAlbum('catalog_number').bind(this.props.ctx)}
             placeholder="(optional)"
             id="album-form-catalog-number" />
         </div>
