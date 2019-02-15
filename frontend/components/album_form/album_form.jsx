@@ -137,6 +137,7 @@ class AlbumFormComponent extends React.Component {
     {
       [track.id]: {
         "album_id": `${editingAlbum.id}`,
+        "duration": `${track.duration}`,
         "title": `${track.title}`,
         "bonus_track": `${track.bonus_track}`,
         "lyrics": `${track.lyrics}`,
@@ -170,6 +171,7 @@ class AlbumFormComponent extends React.Component {
     if (this.state.formType === 'Update') {
       pageAfter = "/user";
     }
+    debugger
     this.props.action(formData).then(() => {
       this.props.history.push(pageAfter);
     });
@@ -249,11 +251,13 @@ class AlbumFormComponent extends React.Component {
             <div className="album-publish-menu">
               <h4 className="album-publish-head">Publish</h4>
               <ul>
-                <li><input onChange={this.editAlbum('published')}
+                <li><input name="album-published" 
+                  onChange={this.editAlbum('published')}
                   type="radio"
                   value="true"
                   checked={String(editingAlbum.published) === "true"} /> public</li>
-                <li><input onChange={this.editAlbum('published')}
+                <li><input name="album-published" 
+                  onChange={this.editAlbum('published')}
                   type="radio"
                   value="false"
                   checked={String(editingAlbum.published) === "false"} /> private</li>

@@ -52,6 +52,7 @@ class Api::AlbumsController < ApplicationController
         tParams = {}
         tParams[:id] = trackId
         tParams[:album_id] = tData["album_id"]
+        tParams[:duration] = tData["duration"]
         tParams[:title] = tData["title"]
         tParams[:release_date] = tData["release_date"]
         tParams[:bonus_track] = tData["bonus_track"]
@@ -69,7 +70,7 @@ class Api::AlbumsController < ApplicationController
             albumErrors.push(track.errors.full_messages)
             savedTracks = false
           end
-          unless newAudio === ''
+          unless newAudio === '' || newAudio.nil? || newAudio === 'undefined'
             track.audio_file.attach(newAudio)
           end
         else
@@ -79,7 +80,8 @@ class Api::AlbumsController < ApplicationController
             albumErrors.push(track.errors.full_messages)
             savedTracks = false
           end
-          unless newAudio === ''
+          debugger
+          unless newAudio === '' || newAudio.nil? || newAudio === 'undefined'
             track.audio_file.attach(newAudio)
           end
         end
