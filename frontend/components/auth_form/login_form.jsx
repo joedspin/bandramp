@@ -54,7 +54,7 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div className="auth-page">
-        <AuthHeader />
+        <AuthHeader theme="light" />
         <div className="auth-page-content">
           <div className='login-form-container'>
             <h2 className="form-head">Log in</h2>

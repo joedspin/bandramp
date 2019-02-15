@@ -171,7 +171,6 @@ class AlbumFormComponent extends React.Component {
     if (this.state.formType === 'Update') {
       pageAfter = "/user";
     }
-    debugger
     this.props.action(formData).then(() => {
       this.props.history.push(pageAfter);
     });

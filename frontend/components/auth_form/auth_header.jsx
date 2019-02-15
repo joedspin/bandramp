@@ -10,7 +10,7 @@ class AuthHeader extends React.Component {
             <div className="flex-12-12">
               <div className="head-brand auth">
                 <Link to="/">
-                  <img src={this.props.theme === 'dark' ? window.bandrampLogoDarkUrl : window.bandrampLogoURL} />
+                  <img src={window.bandrampLogoURL} />
                 </Link>
               </div>
             </div>
