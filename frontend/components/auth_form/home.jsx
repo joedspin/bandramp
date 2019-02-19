@@ -16,7 +16,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment >
         {this.headerLinks()}
         <SplashFeatureList />
         <p className="home-message">Fans have paid artists <strong>$354 million</strong> using Bandramp, and <strong>$7.2 million</strong> in the last 30 days alone.</p>
@@ -24,7 +24,7 @@ class Home extends React.Component {
         <div className="auth-footer">
 
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

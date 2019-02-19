@@ -18,14 +18,14 @@ class AlbumList extends React.Component {
     });
 
     return (
-      <div>
+      <React.Fragment>
         <div className="album-box">
           <h3 className="album-box-head">SELLING RIGHT NOW</h3>
           <ul className="album-thumb-container">
             {publicAlbumsIndex}
           </ul>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

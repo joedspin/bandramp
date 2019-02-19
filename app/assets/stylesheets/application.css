@@ -37,7 +37,7 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+  vertical-align: baseline;
 }
 a {
   text-decoration: none;
@@ -70,18 +70,21 @@ button:active, button:focus, input:active, input:focus,
   outline: none;
 }
 
-
 #root{
   display: block;
   margin: auto;
-  
 }
+/* 
+html, main {
+  height: 100%;
+} */
 
 body {
-      font-family: 'FreeSans',Helvetica,Arial,sans-serif;
-      font-size: 13px;
-      line-height: 120%;
-      min-width: 100%;
+  font-family: 'FreeSans',Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  line-height: 120%;
+  min-width: 100%;
+  height: 100%;
 }
 
 a:visited, a:hover, a:active {
@@ -289,6 +292,10 @@ header {
   margin: auto;
 }
 
+.album-page {
+  height: 100%;
+}
+
 .album-form-container {
   display: flex;
   flex-flow: column-reverse;
@@ -302,7 +309,6 @@ header {
   width: 650px;
   margin: auto;
 }
-
 
 .login-form-box input, .album-form-box input{
   line-height: normal;
@@ -364,6 +370,8 @@ input[type="submit"] {
 .album-form-box {
   display: flex;
   flex-flow: column;
+  padding-bottom: 80px;
+  height: 100%;
 }
 
 .album-form-container {
@@ -373,6 +381,7 @@ input[type="submit"] {
   align-items: flex-start;
   justify-content: flex-end;
   background-color: #f7f7f7;
+  height: 100%;
 }
 
 .album-menu-column {
@@ -384,7 +393,7 @@ input[type="submit"] {
   margin-top: 25px;
 }
 
-.ablum-info-column {
+.album-info-column {
   width: 490px;
   display: flex;
   flex-direction: column;
@@ -395,7 +404,6 @@ input[type="submit"] {
 
 .album-title-menu {
   width: 440px;
-  background-color: white;
   padding: 10px;
   border-left: 1px solid #C32056;
   border-top: 1px solid #ccc;
@@ -561,6 +569,7 @@ input[type="submit"] {
   border-right: 1px solid #ccc;
   padding-left: 10px;
   z-index: 1;
+  height: 100%;
   /* box-shadow: 0 0 1px 0 #ccc; */
 }
 
@@ -827,7 +836,7 @@ strong {
 }
 
 .track-title-menu {
-  width: 440px;
+  width: 400px;
   height: 65px;
   padding: 10px;
   padding-left: 50px;
@@ -839,7 +848,7 @@ strong {
   user-select: none;
 }
 
-.track-title-menu:hover {
+.track-title-menu:hover, .album-title-menu:hover {
   background-color: #fcfcfc;
 }
 
@@ -853,6 +862,7 @@ strong {
   border-left: 1px solid #C32056;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ddd;
+  z-index: 100;
 }
 
 .tracks-section-head {

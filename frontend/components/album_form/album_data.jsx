@@ -23,7 +23,7 @@ class AlbumDataComponent extends React.Component {
       rDate = '';
     }
     return (
-      <div>
+      <React.Fragment>
         <div className="input-wrapper">
           <input type="text" value={this.props.editingAlbum.title}
             onChange={this.props.ctx.editAlbum('title').bind(this.props.ctx)}
@@ -71,7 +71,7 @@ class AlbumDataComponent extends React.Component {
             placeholder="(optional)"
             id="album-form-catalog-number" />
         </div>
-      </div>
+      </React.Fragment>
     );
    }
   }

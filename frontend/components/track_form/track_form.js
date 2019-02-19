@@ -56,13 +56,15 @@ class TrackFormComponent extends React.Component {
   }
 
   render() {
+    let rect = document.getElementById(`tm${this.props.id}`).getBoundingClientRect();
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     return (
-      <div>
+      <div style={{ marginTop: `${rect.top + scrollTop - 60}px` }}>
         <div>
           <div className="input-wrapper">
             <input type="text" value={this.props.track.title}
               onChange={this.editTrack(this.props.id, 'title').bind(this)}
-              id="track-form-title" required placeholder='track name' />
+              id="track-form-title" required placeholder="track name" />
           </div>
           <div className="input-wrapper">
             <label className="album-form-label" htmlFor="track-form-duration">duration:</label>

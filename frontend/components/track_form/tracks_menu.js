@@ -14,7 +14,8 @@ class TracksMenu extends React.Component {
           trackId={track.id}
           key={track.id}
           track={track} 
-          selectPane={this.props.selectPane} />
+          selectPane={this.props.selectPane}
+          selectedPane={this.props.selectedPane} />
       );
     });
 

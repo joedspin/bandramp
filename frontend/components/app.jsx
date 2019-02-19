@@ -10,8 +10,6 @@ import { AlbumForm } from './album_form/album_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
-  <div>
-
     <Switch>
       <Route exact path="/home" component={Home} />
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
@@ -21,7 +19,6 @@ const App = () => (
       <ProtectedRoute path="/albums/:albumId/edit" component={AlbumForm} />
       <ProtectedRoute path="/" component={UserHome} />
     </Switch>
-  </div>
 );
 
 export default App;

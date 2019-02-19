@@ -69,8 +69,10 @@ class TrackMenu extends React.Component {
   }
 
   render() {
+    let tabSelected;
+    this.props.selectedPane === this.props.track.id ? tabSelected = ' tab-on' : tabSelected = ' tab-off';
     return (
-      <div className="track-title-menu tab-off" onClick={()=>this.props.selectPane(this.props.id)}>
+      <div id={`tm${this.props.id}`} className={`track-title-menu${tabSelected}`} onClick={()=>this.props.selectPane(this.props.id)}>
         <div>
           <FeatureKey track_order={this.props.track.track_order} />
           <div className="track-order">{this.props.track.track_order}</div>

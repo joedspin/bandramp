@@ -21,6 +21,14 @@ export const BLANK_ALBUM = {
   photo: null
 };
 
+export function privateTag(published) {
+  let privateTag = '';
+  if (published) {
+    privateTag = <p><span className="album-private">private</span></p>
+  }
+  return privateTag;
+}
+
 class AlbumFormComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -37,9 +45,10 @@ class AlbumFormComponent extends React.Component {
       this.props.fetchAlbum(this.props.match.params.albumId)
         .then(() => {
           this.setState(this.props.album);
+          this.setState({ selectedPane: 0 });
         });
     } else {
-      this.setState({ formType: 'Save Draft' });
+      this.setState({ formType: 'Save Draft', selectedPane: 0 });
     }
   }
 
@@ -47,14 +56,14 @@ class AlbumFormComponent extends React.Component {
     if (prevProps.match.params.albumId !== this.props.match.params.albumId) {
       if (typeof this.props.match.params.albumId === "undefined") {
         this.props.clearForm();
-        this.setState({ formType: 'Save Draft' });
+        this.setState({ formType: 'Save Draft', selectedPane: 0});
       } else {
-        this.setState({ formType: 'Update' });
+        this.setState({ formType: 'Update', selectedPane: 0 });
         this.props.fetchAlbum(this.props.match.params.albumId)
           .then(() => { this.setState(this.props.album); }).then(() => {
             if (prevProps.match.path === '/albums/new') {
               this.props.clearCreatedAlbumId();
-              this.setState({ formType: 'Update' });
+              this.setState({ formType: 'Update', selectedPane: 0 });
             }
           });
       }
@@ -76,7 +85,7 @@ class AlbumFormComponent extends React.Component {
 
   editAlbum(field) {
     return (e) => {
-      e.preventDefault();
+      // e.preventDefault();
       this.props.editAlbum({ [field]: e.target.value });
     };
   }
@@ -188,14 +197,6 @@ class AlbumFormComponent extends React.Component {
     );
   }
 
-  privateTag() {
-    let privateTag = '';
-    if (!this.getAlbum().published) {
-      privateTag = <p><span className="album-private">private</span></p>
-    }
-    return privateTag;
-  }
-
   activePane(paneId) {
     if (paneId === 0) {
       return (
@@ -227,6 +228,8 @@ class AlbumFormComponent extends React.Component {
     } else {
       rDateString = '';
     }
+    let tabSelected;
+    this.state.selectedPane === 0 ? tabSelected = ' tab-on' : tabSelected = ' tab-off';
     return (
       <div className="album-page">
         <UserHeader theme="dark" />
@@ -237,16 +240,16 @@ class AlbumFormComponent extends React.Component {
             </form>
           </div>
           <div className="album-menu-column">
-            <div className="album-title-menu" onClick={() => this.selectPane(0)}>
+            <div className={`album-title-menu${tabSelected}`} onClick={() => this.selectPane(0)}>
               <CoverThumb photo={editingAlbum.photo} photoUrl={editingAlbum.photoUrl} ctx={this} />
               <div>
                 <h3 className="album-head">{editingAlbum.title || 'Untitled Album'}</h3>
                 {artistString}
                 {rDateString}
-                {this.privateTag()}
+                {privateTag(!this.getAlbum().published)}
               </div>
             </div>
-            <TracksMenu selectPane={this.selectPane}/>
+            <TracksMenu selectPane={this.selectPane} selectedPane={this.state.selectedPane} />
             <div className="album-publish-menu">
               <h4 className="album-publish-head">Publish</h4>
               <ul>
