@@ -198,13 +198,15 @@ class AlbumFormComponent extends React.Component {
   }
 
   activePane(paneId) {
+    
     if (paneId === 0) {
       return (
         <AlbumData editingAlbum={this.getAlbum()} ctx={this} />
       );
     } else {
       return (
-        <TrackForm trackId={paneId} ctx={this} track={this.props.editing.tracks[paneId]} />
+        <TrackForm trackId={paneId} ctx={this} 
+        track={this.props.editing.tracks[paneId]} />
       );
     }
   }
@@ -228,13 +230,16 @@ class AlbumFormComponent extends React.Component {
     } else {
       rDateString = '';
     }
+    let container = document.getElementsByClassName("album-form-container")[0];
+    let container_height = "100%";
+    if (container) container_height = `${container.getBoundingClientRect().height}px`;
     let tabSelected;
     this.state.selectedPane === 0 ? tabSelected = ' tab-on' : tabSelected = ' tab-off';
     return (
       <div className="album-page">
         <UserHeader theme="dark" />
         <div className='album-form-container'>
-          <div className="album-info-column">
+          <div className="album-info-column" style={{ height: `${container_height}` }} >
             <form className="album-form-box">
               {this.activePane(this.state.selectedPane)}
             </form>

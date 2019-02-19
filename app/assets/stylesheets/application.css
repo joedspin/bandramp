@@ -398,7 +398,8 @@ input[type="submit"] {
   display: flex;
   flex-direction: column;
   background-color: white;
-  border: 1px solid #cccc;
+  border-left: 1px solid #cccc;
+  border-top: none;
   z-index: 1;
 }
 
