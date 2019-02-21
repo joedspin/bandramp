@@ -6,8 +6,10 @@ import { fetchTrack } from '../../actions/track_actions';
 const mapStateToProps = (state, ownProps) => {
   const trackId = ownProps.trackId || 0;
   const track = state.entities.tracks[trackId] || BLANK_TRACK;
+  const buttonSize = ownProps.buttonSize;
   return {
-    track
+    track,
+    buttonSize
   };
  };
 

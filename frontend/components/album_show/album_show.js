@@ -3,6 +3,7 @@ import UserHeader from '../auth_form/user_header';
 import UserLinks from './user_links';
 import { CoverArt, CoverBanner } from './album_show_cover';
 import AlbumPlayer from './album_show_player_container';
+import AlbumShowTracks from './album_show_tracks_container';
 import { convertDate } from '../../util/album_api_util';
 
 const BLANK_ALBUM = {
@@ -51,7 +52,8 @@ class AlbumShowComponent extends React.Component {
   }
 
   userLinks() {
-    if (this.props.album.administrator_id === this.props.sesionUserId) {
+    console.log(this.props.album.administrator_id);
+    if (this.props.album.administrator_id === this.props.sessionUserId) {
       return <UserLinks albumId />;
     } else {
       return '';
@@ -65,6 +67,16 @@ class AlbumShowComponent extends React.Component {
     } else {
       rDateString = '';
     }
+    let tracks = [];
+    let trackCount = 0;
+    this.state.track_ids.forEach((trackId) => {
+      trackCount += 1;
+      tracks.push(
+        <AlbumPlayer key={trackId} 
+        trackId={trackId} 
+        buttonSize={trackCount === 1 ? 'large' : 'small'} /> 
+      );
+    })
     return (
       <div className="album-page">
         <UserHeader />
@@ -76,7 +88,7 @@ class AlbumShowComponent extends React.Component {
               <p className="album-show-artist">by {this.state.artist_name}</p>
               {this.userLinks()}
               {privateTag(!this.state.published)}
-              <AlbumPlayer trackId={this.state.track_ids[0]} /> 
+              {tracks}
               {rDateString}
               <p className="album-show-release-date">all rights reserved</p>
             </div>
@@ -84,7 +96,7 @@ class AlbumShowComponent extends React.Component {
               <CoverArt photo={this.state.photo} photoUrl={this.state.photoUrl} />
             </div>
             <div className="album-show-more">
-              Additional content
+              
             </div>
           </div>
         </div>

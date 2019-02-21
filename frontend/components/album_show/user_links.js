@@ -1,27 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class UserLinks extends React.Component {
   constructor(props) {
     super(props);
     this.state = { redirect: false };
   }
-  
-  setRedirect() {
-    this.setState({ redirect: true });
-  }
-
-  renderRedirect() {
-    if (this.state.redirect) {
-      return <Redirect to={`/albums/${this.props.albumId}/edit`} />;
-    }
-  }
 
   render() {
     return (
-      <div>
-        {this.renderRedirect()}
-        <button name="album-edit-button" onClick={this.setRedirect}>EDIT</button>
-      </div>
+      <Link to={`/albums/${this.props.albumId}/edit`} className="album-edit-button">Edit</Link>
     );
   }
 }
