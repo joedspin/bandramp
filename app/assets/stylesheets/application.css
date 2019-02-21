@@ -1193,3 +1193,10 @@ strong {
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+.no-albums {
+  margin: auto;
+  margin-top: 50px;
+  font-size: 12px;
+  color: #666;
+}

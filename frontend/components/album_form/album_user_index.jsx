@@ -12,8 +12,12 @@ class AlbumUserList extends React.Component {
   }
 
   render() {
-    let userAlbumsIndex = null;
+    let userAlbumsIndex = (
+      <div className="no-albums">You don't have any albums yet. Click add+ above to create your first album.'</div>
+    );
+    let noAlbums = true;
     userAlbumsIndex = this.props.userAlbums.map ((album) => {
+        noAlbums = false;
         return (
           <AlbumItemLink 
             key={album.id}
@@ -21,7 +25,9 @@ class AlbumUserList extends React.Component {
             edit="/edit" />
         );
       });
-
+    if (noAlbums) userAlbumsIndex = (
+      <div className="no-albums">You don't have any albums yet. Click +add above to create your first album.</div>
+    );
     return (
       <div>
         <div className="album-box">
