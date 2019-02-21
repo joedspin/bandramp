@@ -1089,6 +1089,7 @@ strong {
   color: rgb(63, 96, 202);
   text-decoration: none;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .album-edit-button:hover {
@@ -1182,6 +1183,8 @@ strong {
 
 .album-player-title {
   font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .album-show-release-date {
