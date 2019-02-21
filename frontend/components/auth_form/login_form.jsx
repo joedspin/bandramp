@@ -52,6 +52,7 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    const submitEnable = this.state.username.length > 0 && this.state.password.length > 0;
     return (
       <div className="auth-page">
         <AuthHeader theme="light" />
@@ -75,7 +76,7 @@ class LoginForm extends React.Component {
               <div className="input-wrapper">
                 <label htmlFor="login-form-submit">&nbsp;</label>
                   <input type="submit" value={this.props.formType} 
-                  id="login-form-submit" />
+                  id="login-form-submit" disabled={!submitEnable} />
               </div>
               <div className="demo-login-link">
                 <Link to="/login/demo"><span className="head-highlight">Demo log in!</span></Link>

@@ -7,7 +7,7 @@ class AlbumItemLink extends React.Component {
     let albumTitle ='';
     if (this.props.albumId !== this.props.activeAlbumId) {
       albumTitle = (
-        <Link to={`/albums/${this.props.album.id}/edit`}>
+        <Link to={`/albums/${this.props.album.id}${this.props.edit}`}>
           {this.props.album.title}
         </Link>
       );
@@ -23,7 +23,7 @@ class AlbumItemLink extends React.Component {
     let thumbImage;
     if (this.props.album.photo) {
       thumbImage = (
-        <Link to={`/albums/${this.props.album.id}/edit`}>
+        <Link to={`/albums/${this.props.album.id}${this.props.edit}`}>
           <div className="album-list-thumb">
             <img src={this.props.album.photo} />
             {privateLabel}
@@ -32,7 +32,7 @@ class AlbumItemLink extends React.Component {
       );
     } else {
       thumbImage = (
-        <Link to={`/albums/${this.props.album.id}/edit`}>
+        <Link to={`/albums/${this.props.album.id}${this.props.edit}`}>
           <div className="album-list-thumb" src={this.props.album.photo}>
             {privateLabel}
           </div>

@@ -13,7 +13,8 @@ class AlbumList extends React.Component {
       return (
         <AlbumLink
           key={album.id}
-          album={album} />
+          album={album} 
+          edit="" />
       );
     });
 

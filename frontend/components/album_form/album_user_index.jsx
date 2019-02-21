@@ -17,7 +17,8 @@ class AlbumUserList extends React.Component {
         return (
           <AlbumItemLink 
             key={album.id}
-            album={album} />
+            album={album} 
+            edit="/edit" />
         );
       });
 

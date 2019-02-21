@@ -15,13 +15,13 @@ export const BLANK_ALBUM = {
   upc_ean: '',
   catalog_number: '',
   published: false,
-  trackIds: [],
+  track_ids: [],
   photoFile: null,
   photoUrl: null,
   photo: null
 };
 
-export function privateTag(published) {
+function privateTag(published) {
   let privateTag = '';
   if (published) {
     privateTag = <p><span className="album-private">private</span></p>
@@ -29,7 +29,7 @@ export function privateTag(published) {
   return privateTag;
 }
 
-class AlbumFormComponent extends React.Component {
+export class AlbumFormComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.album || BLANK_ALBUM;
@@ -235,6 +235,13 @@ class AlbumFormComponent extends React.Component {
     if (container) container_height = `${container.getBoundingClientRect().height}px`;
     let tabSelected;
     this.state.selectedPane === 0 ? tabSelected = ' tab-on' : tabSelected = ' tab-off';
+    let allTracksHaveTitles = true;
+    editingAlbum.track_ids.forEach((trackId) => {
+      if (this.props.editing.tracks[trackId].title === '') allTracksHaveTitles = false;
+      }
+    )
+    const submitEnable = editingAlbum.title.length > 0 && 
+      editingAlbum.artist_name.length > 0 && allTracksHaveTitles;
     return (
       <div className="album-page">
         <UserHeader theme="dark" />
@@ -273,7 +280,7 @@ class AlbumFormComponent extends React.Component {
             <div className="input-wrapper">
               <input onClick={this.handleSubmit}
                 type="submit" value={editingAlbum.formType}
-                id="album-form-submit" />
+                id="album-form-submit" disabled={!submitEnable} />
             </div>
             {this.renderErrors()}
           </div>
@@ -283,5 +290,3 @@ class AlbumFormComponent extends React.Component {
     );
   }
 }
-
-export { AlbumFormComponent };
