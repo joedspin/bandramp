@@ -15,9 +15,9 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
       <AuthRoute exact path="/login" component={LogInFormContainer} />
       <AuthRoute exact path="/login/demo" component={DemoLogInFormContainer} />
-      <Route exact path="/albums/:albumId" component={AlbumShow} />
       <ProtectedRoute path="/albums/new" component={AlbumForm} />
       <ProtectedRoute path="/albums/:albumId/edit" component={AlbumForm} />
+      <Route exact path="/albums/:albumId" component={AlbumShow} />
       <ProtectedRoute path="/" component={UserHome} />
     </Switch>
 );
