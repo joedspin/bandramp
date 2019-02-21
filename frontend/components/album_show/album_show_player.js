@@ -25,7 +25,7 @@ class AlbumPlayer extends React.Component {
         <p>Download all the currently available Vintage Schatrax White and Grey series. Plus unavailable exclusives. 38 tracks and counting...</p>
         </div></div>);
     }
-    if (this.state.audio_file) {
+    if (true) {
       return (
         <div>
           <div className="album-player">

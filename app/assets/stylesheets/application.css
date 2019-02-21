@@ -1081,6 +1081,9 @@ strong {
   flex-direction: column;
 }
 
+.album-user-links {
+  margin-bottom: 20px;
+}
 .album-edit-button {
   padding: .25em .75em;
   background-color: lightyellow;
@@ -1183,8 +1186,6 @@ strong {
 
 .album-player-title {
   font-size: 12px;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .album-show-release-date {
