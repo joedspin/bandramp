@@ -8,9 +8,9 @@ class Home extends React.Component {
 
   headerLinks() {
     if (this.props.proSignedIn) {
-      return (<UserHeader theme="dark" />);
+      return (<UserHeader />);
     } else {
-      return (<AuthLinks theme="dark" />);
+      return (<AuthLinks />);
     }
   }
 
