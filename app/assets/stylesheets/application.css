@@ -346,8 +346,9 @@ input[type="submit"] {
 .input-wrapper {
   width: 650px;
   display: flex;
-  height: 59px;
+  /* height: 59px; */
   justify-content: center;
+  height: auto;
 }
 
 .user {
