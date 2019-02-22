@@ -443,6 +443,7 @@ input[type="submit"] {
 .album-thumb-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin: auto;
 }
 
@@ -529,6 +530,7 @@ input[type="submit"] {
   width: 490px;
   display: flex;
   flex-direction: column;
+  box-sizing: content-box;
 }
 
 .album-form-box .input-wrapper input {
