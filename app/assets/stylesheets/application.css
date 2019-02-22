@@ -346,7 +346,6 @@ input[type="submit"] {
 .input-wrapper {
   width: 650px;
   display: flex;
-  margin-top: 8px;
   justify-content: center;
   height: auto;
   box-sizing: content-box;
@@ -416,7 +415,7 @@ input[type="submit"] {
 .album-title-menu {
   width: 440px;
   padding: 10px;
-  border-left: 1px solid #C32056;
+  /* border-left: 1px solid #C32056; */
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ddd;
   display: flex;
@@ -653,6 +652,17 @@ input[type="submit"] {
 .album-private {
   color: #f00;
   font-size: 10px;
+}
+
+.private-radio {
+  display: flex;
+}
+
+.album-published {
+  width: 13px;
+  height: 13px;
+  margin: 3px 10px 5px 0;
+  padding: 0;
 }
 
 .label-private {
@@ -999,7 +1009,7 @@ strong {
   border: none;
   background: none;
   text-decoration: none;
-  width: 80px;
+  width: 140px;
   text-align: left;
 }
 

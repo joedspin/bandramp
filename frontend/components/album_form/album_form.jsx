@@ -98,7 +98,24 @@ export class AlbumFormComponent extends React.Component {
     });
   }
 
+  editTrackAudio(photo, photoUrl, photoFile) {
+    this.props.editAlbum({
+      photo: photo,
+      photoUrl: photoUrl,
+      photoFile: photoFile
+    });
+  }
+
   deleteCoverArt(e) {
+    e.preventDefault();
+    this.editAlbumPhoto('delete', '', '');
+    const formData = this.fillFormData(true);
+    if (this.state.formType === 'Update') {
+      this.props.action(formData).then(() => { this.editAlbum({ photo: '' }); });
+    }
+  }
+
+  deleteAudioFile(e) {
     e.preventDefault();
     this.editAlbumPhoto('delete', '', '');
     const formData = this.fillFormData(true);
@@ -265,12 +282,14 @@ export class AlbumFormComponent extends React.Component {
             <div className="album-publish-menu">
               <h4 className="album-publish-head">Publish</h4>
               <ul>
-                <li><input name="album-published" 
+                <li className="private-radio"><input name="album-published" 
+                  className="album-published"
                   onChange={this.editAlbum('published')}
                   type="radio"
                   value="true"
                   checked={String(editingAlbum.published) === "true"} /> public</li>
-                <li><input name="album-published" 
+                <li className="private-radio"><input name="album-published" 
+                  className="album-published"
                   onChange={this.editAlbum('published')}
                   type="radio"
                   value="false"

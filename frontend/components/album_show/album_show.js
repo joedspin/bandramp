@@ -52,7 +52,6 @@ class AlbumShowComponent extends React.Component {
   }
 
   userLinks() {
-    console.log(this.props.album.administrator_id);
     if (this.props.album.administrator_id === this.props.sessionUserId) {
       return <UserLinks albumId />;
     } else {

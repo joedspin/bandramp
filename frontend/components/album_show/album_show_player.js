@@ -22,7 +22,6 @@ class AlbumPlayer extends React.Component {
         <div className="album-feature-subhead">Streaming + Download</div>
         <div className="album-feature-info">
         <p>Includes unlimited streaming via the free Bandramp app, plus high-quality download in MP3, FLAC and more.</p>
-        <p>Download all the currently available Vintage Schatrax White and Grey series. Plus unavailable exclusives. 38 tracks and counting...</p>
         </div></div>);
     }
     if (true) {
