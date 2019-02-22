@@ -346,9 +346,10 @@ input[type="submit"] {
 .input-wrapper {
   width: 650px;
   display: flex;
-  /* height: 59px; */
+  margin-top: 8px;
   justify-content: center;
   height: auto;
+  box-sizing: content-box;
 }
 
 .user {
