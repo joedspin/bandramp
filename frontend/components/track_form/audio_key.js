@@ -1,10 +1,9 @@
 import React from 'react';
 
 const AudioKey = (track, deleteAudio) => {
-  const { audioUrl } = track;
-  const { audio_file } = track;
-  const { audio_size } = track;
-  
+  const { audioUrl } = track.track;
+  const { audio_file } = track.track;
+  const { audio_size } = track.track;
   let audioFile;
   if (audioUrl) {
     audioFile = (
@@ -14,7 +13,7 @@ const AudioKey = (track, deleteAudio) => {
     audioFile = (
       <div className="audio-file">{audio_size}
         track loaded
-        <button onClick={deleteAudio.bind(this)} className="delete">X</button>
+        <button onClick={() => deleteAudio()} className="delete-audio">X</button>
       </div>
     );
   } else {

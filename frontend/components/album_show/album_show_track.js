@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AlbumPlayerComponent extends React.Component {
+class AlbumTrackComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = props.track;
@@ -10,14 +10,24 @@ class AlbumPlayerComponent extends React.Component {
     this.props.fetchTrack(this.props.trackId).then(() => {
       this.setState(this.props.track);
     });
-    console.log(`this.props.trackId ${this.props.trackId}`);
+  }
+
+  formatTrackNum(num) {
+    if (num > 0) {
+      if (num < 10) {
+        return '0' + num.toString() + '. ';
+      } else {
+        return num.toString() + '. ';
+      }
+    }
   }
 
   render() {
+    
     return (
       <div>
         <div className="album-player">
-          <button id="album-player-button" className={"album-play-button"} onClick={() => {
+          <button id="album-player-button" className={'album-play-button-small'} onClick={() => {
             let audioElement = document.getElementById("album-audio");
             let buttonElement = document.getElementById("album-player-button");
             if (audioElement.paused) {
@@ -28,18 +38,14 @@ class AlbumPlayerComponent extends React.Component {
               buttonElement.innerHTML = "▶";
             }
           }}>▶</button>
-          <div className="album-player-title">{this.state.title} {this.state.duration}</div>
+          <div className="album-player-title">{this.formatTrackNum(this.props.trackNum)}
+            {this.state.title} {this.state.duration}</div>
           <audio id="album-audio" src={this.state.audio_file} type="audio/mpeg" />
           <div className="album-player-playbar"><div className="album-player-draggable"></div></div>
         </div>
-        <div className="album-feature-block"><div className="album-feature-head">Digital Album</div>
-        <div className="album-feature-subhead">Streaming + Download</div>
-        <div className="album-feature-info">
-          <p>Includes unlimited streaming via the free Bandramp app, plus high-quality download in MP3, FLAC and more.</p>
-        </div></div>
       </div>
     );
   }
 }
 
-export default AlbumPlayerComponent;
+export default AlbumTrackComponent;

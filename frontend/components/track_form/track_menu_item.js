@@ -3,6 +3,10 @@ import AudioKey from './audio_key';
 import { FeatureKey, FeatureDescription } from './feature_key';
 
 class TrackMenu extends React.Component {
+  constructor(props) {
+    super(props)
+    this.deleteTrackAudio = this.deleteTrackAudio.bind(this);
+  }
 
   editTrack(trackId, field) {
     return (e) => {
@@ -79,7 +83,7 @@ class TrackMenu extends React.Component {
           <h3 className="track-head">{this.props.track.title || 'Untitled Track'}</h3>
           <FeatureDescription track_order={this.props.track.track_order} />
           {this.fileDetails()}
-          <AudioKey track={this.props.track} deleteAudio={this.props.deleteTrackAudio} />
+          <AudioKey track={this.props.track} deleteAudio={this.deleteTrackAudio} />
         </div>
       </div>
     );

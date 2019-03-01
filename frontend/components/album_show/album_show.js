@@ -2,8 +2,7 @@ import React from 'react';
 import UserHeader from '../auth_form/user_header';
 import UserLinks from './user_links';
 import { CoverArt, CoverBanner } from './album_show_cover';
-import AlbumPlayer from './album_show_player_container';
-import AlbumShowTracks from './album_show_tracks_container';
+import { AlbumPlayer, AlbumTrack } from './album_show_player_container';
 import { convertDate } from '../../util/album_api_util';
 
 const BLANK_ALBUM = {
@@ -42,13 +41,6 @@ class AlbumShowComponent extends React.Component {
           this.setState(this.props.album);
         });
     }
-    const bodyEl = document.querySelector('body');
-    bodyEl.backgroundColor = "darkgray";
-  }
-
-  componentWillUnmount() {
-    const bodyEl = document.querySelector('body');
-    bodyEl.backgroundColor = "white";
   }
 
   userLinks() {
@@ -71,11 +63,12 @@ class AlbumShowComponent extends React.Component {
     this.state.track_ids.forEach((trackId) => {
       trackCount += 1;
       tracks.push(
-        <AlbumPlayer key={trackId} 
+        <AlbumTrack key={trackId} 
         trackId={trackId} 
-        buttonSize={trackCount === 1 ? 'large' : 'small'} /> 
+        buttonSize='small' 
+        trackNum={trackCount} /> 
       );
-    })
+    });
     return (
       <div className="album-page">
         <UserHeader />
@@ -87,6 +80,8 @@ class AlbumShowComponent extends React.Component {
               <p className="album-show-artist">by {this.state.artist_name}</p>
               {this.userLinks()}
               {privateTag(!this.state.published)}
+              <AlbumPlayer key={this.state.track_ids[0]}
+                trackId={this.state.track_ids[0]} /> 
               {tracks}
               {rDateString}
               <p className="album-show-release-date">all rights reserved</p>

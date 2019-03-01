@@ -521,6 +521,15 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+.delete-audio {
+  font-size: 12px;
+  font-weight: bold;
+  color: silver;
+  position: absolute;
+  top: 10px;
+  right: 100px;
+}
+
 .album-form-label {
   font-size: 12px;
   color: #333;
