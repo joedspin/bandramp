@@ -37,13 +37,13 @@ class AlbumItemLink extends React.Component {
       );
     }
     return (
-      <li className="album-list-thumb">
+      <div className="album-list-thumb">
         {thumbImage}
         <h3 className="album-list-title">
           {albumTitle}<br/>
           by {this.props.album.artist_name}</h3>
         <p>{convertDate(this.props.album.release_date, 2)}</p>
-      </li>
+      </div>
     );
   }
 }

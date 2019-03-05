@@ -639,17 +639,18 @@ input[type="submit"] {
 
 .album-list-thumb {
   width: 112px;
-  height: 112px;
-  border: 1px solid #ccc;
-  background-color: #f8f8f8;
+  height: 212px;
+  border: 1px solid white;
   position: relative;
   font-size: 11px;
   line-height: 155%;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .album-list-thumb:hover {
-  background-color: purple;
+  opacity: 0.85;
+  background-color: #f8f8f8;
 }
 
 .album-list-thumb img {
