@@ -21,7 +21,8 @@ class AlbumPlayerComponent extends React.Component {
     if (!this.fetched) {
       this.props.fetchTrack(this.props.trackId).then(() => {
         this.setState(this.props.track);
-      this.fetched = true;
+        this.fetched = true;
+        this.audioElement.play();
       });
     }
   }

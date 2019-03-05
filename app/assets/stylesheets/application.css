@@ -1191,12 +1191,15 @@ strong {
   background-color: white;
   color: #111;
   border: none;
-  border-radius: 2px;
-  width: 52px;
-  height: 52px;
+  border-radius: 1px;
+  width: 58px;
+  height: 54px;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 28px;
   margin-right: 10px;
+  padding: 0 15px 0 15px;
+  overflow: hidden;
+  line-height: 50%;
 }
 
 .album-play-button-small {

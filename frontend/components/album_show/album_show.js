@@ -32,6 +32,7 @@ class AlbumShowComponent extends React.Component {
     super(props);
     this.state = {};
     this.state.playingTrack = 0;
+    this.playTrack = this.playTrack.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +50,10 @@ class AlbumShowComponent extends React.Component {
     }
   }
 
+  playTrack(trackIndex) {
+    this.setState({playingTrack: trackIndex});
+  }
+
   render() {
     let rDateString;
     if (this.props.album.release_date.length) {
@@ -64,7 +69,8 @@ class AlbumShowComponent extends React.Component {
         <AlbumTrack key={trackId} 
         trackId={trackId} 
         buttonSize='small' 
-        trackNum={trackCount} /> 
+        trackNum={trackCount} 
+        playTrack={this.playTrack} /> 
       );
     });
     return (
