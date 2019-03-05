@@ -24,18 +24,15 @@ class AlbumItemLink extends React.Component {
     if (this.props.album.photo) {
       thumbImage = (
         <Link to={`/albums/${this.props.album.id}${this.props.edit}`}>
-          <div className="album-list-thumb">
-            <img src={this.props.album.photo} />
-            {privateLabel}
-          </div>
+          <img src={this.props.album.photo} />
+          {privateLabel}
         </Link>
       );
     } else {
       thumbImage = (
         <Link to={`/albums/${this.props.album.id}${this.props.edit}`}>
-          <div className="album-list-thumb" src={this.props.album.photo}>
-            {privateLabel}
-          </div>
+          <img src={this.props.album.photo} />
+          {privateLabel}
         </Link>
       );
     }

@@ -645,6 +645,11 @@ input[type="submit"] {
   position: relative;
   font-size: 11px;
   line-height: 155%;
+  cursor: pointer;
+}
+
+.album-list-thumb:hover {
+  background-color: purple;
 }
 
 .album-list-thumb img {
