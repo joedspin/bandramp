@@ -3,6 +3,7 @@ import { EDIT_ALBUM } from '../actions/editing_actions';
 import { EDIT_TRACK } from '../actions/editing_actions';
 import { ADD_TRACK } from '../actions/editing_actions';
 import { CLEAR_FORM } from '../actions/editing_actions';
+import { DELETE_TRACK } from '../actions/track_actions';
 import { merge } from 'lodash';
 
 const EditingReducer = (state = {}, action) => {

@@ -30,22 +30,20 @@ function privateTag(published) {
 class AlbumShowComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.album || BLANK_ALBUM;
+    this.state = {};
+    this.state.playingTrack = 0;
   }
 
   componentDidMount() {
     this.props.fetchAlbums();
     if (typeof this.props.albumId !== "undefined") {
-      this.props.fetchAlbum(this.props.albumId)
-        .then(() => {
-          this.setState(this.props.album);
-        });
+      this.props.fetchAlbum(this.props.albumId);
     }
   }
 
   userLinks() {
     if (this.props.album.administrator_id === this.props.sessionUserId) {
-      return <UserLinks albumId />;
+      return <UserLinks albumId={this.props.albumId} />;
     } else {
       return '';
     }
@@ -53,14 +51,14 @@ class AlbumShowComponent extends React.Component {
 
   render() {
     let rDateString;
-    if (this.state.release_date.length) {
-      rDateString = <p className="album-show-release-date">released {convertDate(this.state.release_date, 3)}</p>;
+    if (this.props.album.release_date.length) {
+      rDateString = <p className="album-show-release-date">released {convertDate(this.props.album.release_date, 3)}</p>;
     } else {
       rDateString = '';
     }
     let tracks = [];
     let trackCount = 0;
-    this.state.track_ids.forEach((trackId) => {
+    this.props.album.track_ids.forEach((trackId) => {
       trackCount += 1;
       tracks.push(
         <AlbumTrack key={trackId} 
@@ -73,21 +71,21 @@ class AlbumShowComponent extends React.Component {
       <div className="album-page">
         <UserHeader />
         <div className='album-show-container'>
-          <CoverBanner photo={this.state.photo} photoUrl={this.state.photoUrl} />
+          <CoverBanner photo={this.props.album.photo} photoUrl={this.props.album.photoUrl} />
           <div className="album-show-body">
             <div className="album-show-info">
-              <p className="album-show-title">{this.state.title}</p>
-              <p className="album-show-artist">by {this.state.artist_name}</p>
+              <p className="album-show-title">{this.props.album.title}</p>
+              <p className="album-show-artist">by {this.props.album.artist_name}</p>
               {this.userLinks()}
-              {privateTag(!this.state.published)}
-              <AlbumPlayer key={this.state.track_ids[0]}
-                trackId={this.state.track_ids[0]} /> 
+              {privateTag(!this.props.album.published)}
+              <AlbumPlayer key={this.props.album.track_ids[this.state.playingTrack]}
+                trackId={this.props.album.track_ids[this.state.playingTrack]} /> 
               {tracks}
               {rDateString}
               <p className="album-show-release-date">all rights reserved</p>
             </div>
             <div className="album-show-cover">
-              <CoverArt photo={this.state.photo} photoUrl={this.state.photoUrl} />
+              <CoverArt photo={this.props.album.photo} photoUrl={this.props.album.photoUrl} />
             </div>
             <div className="album-show-more">
               

@@ -21,6 +21,10 @@ class User < ApplicationRecord
     class_name: 'Album',
     foreign_key: :administrator_id
 
+  has_many :administered_tracks,
+    through: :administered_albums,
+    source: :tracks
+
   after_initialize :ensure_session_token
 
   attr_reader :password

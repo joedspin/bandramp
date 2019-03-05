@@ -24,13 +24,14 @@ class TrackMenu extends React.Component {
     });
   }
 
-  deleteTrackAudio(e) {
-    e.preventDefault();
-    this.editTrackAudio('delete', '', '');
-    const formData = this.fillFormData(true);
-    if (this.state.formType === 'Update') {
-      this.props.action(formData).then(() => { this.editTrack({ audio_file: '' }); });
-    }
+  deleteTrackAudio() {
+    // e.preventDefault();
+    // this.editTrackAudio('delete', '', '');
+    // const formData = this.fillFormData(true);
+    // if (this.state.formType === 'Update') {
+    //   this.props.action(formData).then(() => { this.editTrack({ audio_file: '' }); });
+    // }
+    this.props.deleteTrack(this.props.id);
   }
 
   popTrackLoadWindow(trackId) {
@@ -83,11 +84,12 @@ class TrackMenu extends React.Component {
           <h3 className="track-head">{this.props.track.title || 'Untitled Track'}</h3>
           <FeatureDescription track_order={this.props.track.track_order} />
           {this.fileDetails()}
-          <AudioKey track={this.props.track} deleteAudio={this.deleteTrackAudio} />
+          
+          <button onClick={() => this.deleteTrackAudio(this.props.track.id)} className="delete-audio">X</button>
         </div>
       </div>
     );
   }
 }
-
+// <AudioKey track={this.props.track} />
 export default TrackMenu;

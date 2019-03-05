@@ -31,3 +31,10 @@ export const updateTrack = (track, trackId) => {
     processData: false
   });
 };
+
+export const deleteTrack = (trackId) => {
+  return $.ajax({
+    url: `/api/tracks/${trackId}`,
+    method: 'DELETE'
+  });
+};

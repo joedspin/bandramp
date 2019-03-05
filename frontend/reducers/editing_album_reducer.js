@@ -1,5 +1,6 @@
 import { RECEIVE_ALBUM } from '../actions/album_actions';
 import { EDIT_ALBUM , CLEAR_FORM, ADD_TRACK } from '../actions/editing_actions';
+import { DELETE_TRACK } from '../actions/track_actions';
 import { merge } from 'lodash';
 
 const EditingReducer = (state = {}, action) => {
@@ -25,9 +26,15 @@ const EditingReducer = (state = {}, action) => {
       }
     case ADD_TRACK:
       const newTrackId = ['add' + action.newTrackNum];
-      let newTrackIds = state.track_ids || []
+      let newTrackIds = state.track_ids || [];
       newTrackIds = newTrackIds.concat(newTrackId);
       return merge({}, state, { track_ids: newTrackIds });
+    case DELETE_TRACK:
+      const newState = merge({}, state);
+      let trackIds = state.track_ids || [];
+      trackIds = trackIds.filter((el) => el !== action.trackId);
+      newState.track_ids = trackIds;
+      return newState;
     default:
       return state;
     }
