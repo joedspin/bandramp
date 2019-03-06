@@ -51,15 +51,13 @@ class AlbumShowComponent extends React.Component {
   }
 
   playTrack(trackIndex) {
-    this.setState({playingTrack: trackIndex});
+    this.setState({playingTrack: trackIndex - 1});
   }
 
   render() {
-    let rDateString;
+    let rDateString = '';
     if (this.props.album.release_date.length) {
       rDateString = <p className="album-show-release-date">released {convertDate(this.props.album.release_date, 3)}</p>;
-    } else {
-      rDateString = '';
     }
     let tracks = [];
     let trackCount = 0;

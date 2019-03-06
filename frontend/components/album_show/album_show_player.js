@@ -17,8 +17,8 @@ class AlbumPlayerComponent extends React.Component {
     });
   }
 
-  componentDidUpdate() {
-    if (!this.fetched) {
+  componentDidUpdate(prevProps) {
+      if (prevProps.trackId !== this.props.trackId) {
       this.props.fetchTrack(this.props.trackId).then(() => {
         this.setState(this.props.track);
         this.fetched = true;
@@ -56,7 +56,7 @@ class AlbumPlayerComponent extends React.Component {
           }}>▶</button>
           <div className="album-player-title">{this.state.title} {this.state.duration}</div>
           <input className="album-range" type="range" name="progress" min="0" max="1000" value={this.state.progress} 
-            onChange={console.log(this.value)} step="1" />
+            onChange={() => {return true}} step="1" />
           <audio id="album-audio" src={this.state.audio_file} type="audio/mpeg" />
           <div className="album-player-playbar"><div className="album-player-draggable"></div></div>
         </div>
