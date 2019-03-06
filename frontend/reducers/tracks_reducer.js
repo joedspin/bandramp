@@ -13,8 +13,17 @@ const TracksReducer = (state = {}, action) => {
     case RECEIVE_ALBUM:
       return merge({}, state, action.tracks);
     case DELETE_TRACK:
-      let newState = Object.assign({}, state);
-      delete newState[action.trackId];
+      let tempState = Object.assign({}, state);
+      delete tempState[action.trackId];
+      let newState = {};
+      let trackCount = 1;
+      Object.entries(tempState).forEach((track) => {
+        let key = track[0];
+        let value = track[1];
+        value.track_order = trackCount;
+        trackCount += 1;
+        newState = merge({}, newState, {[key]: value});
+      });
       return newState;
     case ADD_TRACK:
       const newTrackId = 'add' + action.newTrackNum;

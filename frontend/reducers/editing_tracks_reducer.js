@@ -17,11 +17,20 @@ const EditingTracksReducer = (state = {}, action) => {
       newTrack = merge({},  { [newTrackId]: newTrack });
       return merge({}, state, newTrack);
     case DELETE_TRACK:
-      let newState = merge({}, state);
-      delete newState[`${action.trackId}`];
+      let tempState = Object.assign({}, state);
+      delete tempState[action.trackId];
+      let newState = {};
+      let trackCount = 1;
+      Object.entries(tempState).forEach((track) => {
+        let key = track[0];
+        let value = track[1];
+        value.track_order = trackCount;
+        trackCount += 1;
+        newState = merge({}, newState, { [key]: value });
+      });
       return newState;
     case CLEAR_FORM:
-      return {}
+      return {};
     default:
       return state;
   }

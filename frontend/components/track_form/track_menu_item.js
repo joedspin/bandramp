@@ -91,5 +91,4 @@ class TrackMenu extends React.Component {
     );
   }
 }
-// <AudioKey track={this.props.track} />
 export default TrackMenu;

@@ -9,9 +9,10 @@ import { merge } from 'lodash';
 const EditingReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
+  let prevTrackCount;
   switch (action.type) {
     case RECEIVE_ALBUM:
-      const prevTrackCount = action.album.track_ids.length || 0;
+      prevTrackCount = action.album.track_ids.length || 0;
       return {
         albumChanged: false, 
         tracksChanged: [], 
@@ -31,9 +32,12 @@ const EditingReducer = (state = {}, action) => {
     case ADD_TRACK:
       newState = Object.assign({}, newState, {newTracks: action.newTrackNum});
       return newState;
+    case DELETE_TRACK:
+      prevTrackCount = state.prevTrackCount - 1;
+      return merge({}, newState, { prevTrackCount: prevTrackCount });
     case CLEAR_FORM:
       return {albumChanged: false, tracksChanged: [], 
-          newTracks: 0, prevTrackCount: 0}
+        newTracks: 0, prevTrackCount: 0}
     default:
       return state;
   }

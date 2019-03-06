@@ -91,15 +91,11 @@ class AlbumShowComponent extends React.Component {
             <div className="album-show-cover">
               <CoverArt photo={this.props.album.photo} photoUrl={this.props.album.photoUrl} />
             </div>
-            <div className="album-show-more">
-              
-            </div>
           </div>
         </div>
       </div>
     );
   }
-
 }
 
 export default AlbumShowComponent;

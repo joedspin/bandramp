@@ -30,7 +30,6 @@ class AlbumTrackComponent extends React.Component {
           }}>▶</button>
           <div className="album-player-title">{this.formatTrackNum(this.props.trackNum - 1)}
             {this.props.track.title} {this.props.track.duration}</div>
-          <audio id="album-audio" src={this.props.track.audio_file} type="audio/mpeg" />
           <div className="album-player-playbar"><div className="album-player-draggable"></div></div>
         </div>
       </div>
