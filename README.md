@@ -3,7 +3,7 @@
 [bandramp](https://bandramp.herokuapp.com/) is a single-page clone of [bandcamp](https://bandcamp.com/), a music  platform for artists and labels to share and monetize their work and for fans to discover and enjoy it.
 
 ### Technologies
-bandramp’s frontend is dynamically generated using React, Redux, and ES6. The backed data interaction is build in Ruby on Rails with some jQuery to generate ajax requests to the Rails backend.
+bandramp’s frontend is dynamically generated using React, Redux, and ES6. The backed data interaction is built in Ruby on Rails with some jQuery to generate ajax requests to the Rails backend.
 
 ## Features
 
