@@ -1237,7 +1237,7 @@ strong {
 
 input[type=range].album-range {
   -webkit-appearance: none;
-  width: 100%;
+  width: 250px;
   margin: 1px 0;
 }
 input[type=range].album-range:focus {
