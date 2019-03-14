@@ -32,6 +32,7 @@ class AlbumShowComponent extends React.Component {
     super(props);
     this.state = {};
     this.state.playingTrack = 0;
+    this.state.autoPlay = false;
     this.playTrack = this.playTrack.bind(this);
   }
 
@@ -51,7 +52,7 @@ class AlbumShowComponent extends React.Component {
   }
 
   playTrack(trackIndex) {
-    this.setState({playingTrack: trackIndex - 1});
+    this.setState({playingTrack: trackIndex - 1, autoPlay: true});
   }
 
   render() {
@@ -82,7 +83,8 @@ class AlbumShowComponent extends React.Component {
               <p className="album-show-artist">by {this.props.album.artist_name}</p>
               {this.userLinks()}
               {privateTag(!this.props.album.published)}
-              <AlbumPlayer trackId={this.props.album.track_ids[this.state.playingTrack]} /> 
+              <AlbumPlayer trackId={this.props.album.track_ids[this.state.playingTrack]} 
+                autoPlay={this.state.autoPlay} /> 
               {tracks}
               {rDateString}
               <p className="album-show-release-date">all rights reserved</p>

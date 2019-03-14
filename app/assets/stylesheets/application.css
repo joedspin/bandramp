@@ -1320,3 +1320,8 @@ input[type=range].album-range:focus::-ms-fill-lower {
 input[type=range].album-range:focus::-ms-fill-upper {
   background: #999999;
 }
+
+.album-player-info {
+  display: flex;
+  flex-direction: column;
+}

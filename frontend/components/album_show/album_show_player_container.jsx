@@ -6,10 +6,12 @@ import { fetchTrack } from '../../actions/track_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const trackId = ownProps.trackId || 0;
+  const autoPlay = ownProps.autoPlay || false;
   const track = state.entities.tracks[trackId] || BLANK_TRACK;
   return {
     track,
-    trackId: trackId
+    trackId,
+    autoPlay
   };
  };
 

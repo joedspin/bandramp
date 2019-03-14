@@ -16,9 +16,15 @@ class AlbumPlayerComponent extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-      if (prevProps.trackId !== this.props.trackId) {
+    if (prevProps.trackId !== this.props.trackId) {
       this.props.fetchTrack(this.props.trackId).then(() => {
         this.fetched = true;
+        if (this.props.autoPlay) {
+          this.audioElement = document.getElementById("album-audio");
+          let buttonElement = document.getElementById("album-player-button");
+          buttonElement.innerHTML = "||";
+          this.audioElement.play();
+        }
       });
     }
   }
@@ -36,7 +42,6 @@ class AlbumPlayerComponent extends React.Component {
   }
 
   render() {
-    console.log(this.props.track.title)
     return (
       <div>
         <div className="album-player">
@@ -51,10 +56,12 @@ class AlbumPlayerComponent extends React.Component {
               buttonElement.innerHTML = "▶";
             }
           }}>▶</button>
-          <div className="album-player-title">{this.props.track.title} {this.props.track.duration}</div>
-          <input className="album-range" type="range" name="progress" min="0" max="1000" value={this.state.progress} 
-            onChange={() => {return true}} step="1" />
-          <audio id="album-audio" src={this.props.track.audio_file} type="audio/mpeg" />
+          <div className="album-player-info">
+            <div className="album-player-title">{this.props.track.title} {this.props.track.duration}</div>
+            <input className="album-range" type="range" name="progress" min="0" max="1000" value={this.state.progress} 
+              onChange={() => {return true}} step="1" />
+            <audio id="album-audio" src={this.props.track.audio_file} type="audio/mpeg" />
+          </div>
           <div className="album-player-playbar"><div className="album-player-draggable"></div></div>
         </div>
         <div className="album-feature-block"><div className="album-feature-head">Digital Album</div>
