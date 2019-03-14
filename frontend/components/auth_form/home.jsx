@@ -7,7 +7,7 @@ import AlbumList from '../album_form/album_index_container';
 class Home extends React.Component {
 
   headerLinks() {
-    if (this.props.proSignedIn) {
+    if (this.props.signedIn) {
       return (<UserHeader />);
     } else {
       return (<AuthLinks />);
