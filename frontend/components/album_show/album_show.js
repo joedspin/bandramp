@@ -82,8 +82,7 @@ class AlbumShowComponent extends React.Component {
               <p className="album-show-artist">by {this.props.album.artist_name}</p>
               {this.userLinks()}
               {privateTag(!this.props.album.published)}
-              <AlbumPlayer key={this.props.album.track_ids[this.state.playingTrack]}
-                trackId={this.props.album.track_ids[this.state.playingTrack]} /> 
+              <AlbumPlayer trackId={this.props.album.track_ids[this.state.playingTrack]} /> 
               {tracks}
               {rDateString}
               <p className="album-show-release-date">all rights reserved</p>
