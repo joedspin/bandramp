@@ -541,6 +541,7 @@ input[type="submit"] {
   font-size: 12px;
   color: #333;
   text-align: left;
+  margin-top: 20px;
 }
 
 .album-form-box .input-wrapper {

@@ -184,7 +184,7 @@ export class AlbumFormComponent extends React.Component {
     }
     formData.append('album[changed]', albumChanged);
     formData.append('album[changedTrackIds]', changedTrackIds);
-    const tracksChanged = this.props.editing.changes.tracksChanged;
+    const tracksChanged = this.props.editing.changes.tracksChanged || [];
     let changedTracks = {};
     if (tracksChanged.length > 0) {
       tracksChanged.forEach((trackId) => {
