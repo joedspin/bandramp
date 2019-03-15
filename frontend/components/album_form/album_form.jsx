@@ -70,6 +70,10 @@ export class AlbumFormComponent extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.clearForm();
+  }
+
   // if it exists, get the album data from the Redux state
   getAlbum() {
     let editingAlbum = BLANK_ALBUM;
@@ -194,6 +198,7 @@ export class AlbumFormComponent extends React.Component {
     }
     formData.append('tracks', JSON.stringify(changedTracks));
     let pageAfter = `/albums/${this.props.createdAlbumId}/edit`;
+    pageAfter = '/user';
     if (this.state.formType === 'Update') {
       pageAfter = "/user";
     }

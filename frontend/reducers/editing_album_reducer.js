@@ -23,7 +23,7 @@ const EditingReducer = (state = {}, action) => {
         photoFile: null,
         photoUrl: null,
         photo: null
-      }
+      };
     case ADD_TRACK:
       const newTrackId = ['add' + action.newTrackNum];
       let newTrackIds = state.track_ids || [];
