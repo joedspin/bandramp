@@ -5,20 +5,6 @@ import { CoverArt, CoverBanner } from './album_show_cover';
 import { AlbumPlayer, AlbumTrack } from './album_show_player_container';
 import { convertDate } from '../../util/album_api_util';
 
-const BLANK_ALBUM = {
-  title: '',
-  artist_name: '',
-  release_date: '',
-  description: '',
-  upc_ean: '',
-  catalog_number: '',
-  published: false,
-  track_ids: [],
-  photoFile: null,
-  photoUrl: null,
-  photo: null,
-};
-
 function privateTag(published) {
   let privateTag = '';
   if (published) {
